@@ -52,7 +52,7 @@
 #include "nrf_log_ctrl.h"
 
 // TFT Screen tests:
-char * test_text = "Send nudes";
+//char test_text[BLE_NUS_MAX_DATA_LEN];
 extern const nrf_gfx_font_desc_t Font10x16_desc;
 
 // UART Settings:
@@ -96,6 +96,109 @@ static ble_nus_t                        m_nus;                                  
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 
 static ble_uuid_t                       m_adv_uuids[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
+
+
+void gfx_initialization(void)
+{
+    ret_code_t err_code;
+
+    nrf_gfx_config_t nrf_gfx_config_ili = 
+    {
+        .lcd_init = ili9341_init,
+        .point_draw = (point_draw_t)ili9341_pixel_draw,
+        .rect_draw = (rect_draw_t)ili9341_rect_draw,
+        .screen_width = ILI9341_TFTWIDTH,
+        .screen_height = ILI9341_TFTHEIGHT
+    };
+
+    err_code = nrf_gfx_init(&nrf_gfx_config_ili);
+    APP_ERROR_CHECK(err_code);
+}
+
+void brackground_set(void)
+{
+    //nrf_gfx_background_set(nrf52);
+}
+
+void text_print(char test_text[])
+{
+    nrf_gfx_point_t text_start = NRF_GFX_POINT(10, 150);
+    nrf_gfx_print(&text_start, 0xFFFF, test_text, &Font10x16_desc, true);
+}
+
+void screen_clear(void)
+{
+    nrf_gfx_screen_fill(0x0000);
+}
+
+void line_draw(void)
+{
+    nrf_gfx_line_t my_line = NRF_GFX_LINE(0, 0, 0, 320, 2);
+    nrf_gfx_line_t my_line_2 = NRF_GFX_LINE(240, 320, 0, 320, 1);
+
+    for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 10)
+    {
+        my_line.x_end = i;
+        nrf_gfx_line_draw(&my_line, 0xF800);
+    }
+
+    for (uint16_t i = 0; i <= ILI9341_TFTHEIGHT; i += 10)
+    {
+        my_line.y_end = (ILI9341_TFTHEIGHT - i);
+        nrf_gfx_line_draw(&my_line, 0xF800);
+    }
+
+    for (uint16_t i = 0; i <= ILI9341_TFTHEIGHT; i += 10)
+    {
+        my_line_2.y_end = (ILI9341_TFTHEIGHT - i);
+        nrf_gfx_line_draw(&my_line_2, 0x001F);
+    }
+
+    for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 10)
+    {
+        my_line_2.x_end = i;
+        nrf_gfx_line_draw(&my_line_2, 0x001F);
+    }
+}
+
+void circle_draw(void)
+{
+    nrf_gfx_circle_t my_circle = NRF_GFX_CIRCLE(0, 0, 10);
+
+    for (uint16_t j = 0; j <= ILI9341_TFTHEIGHT; j += 20)
+    {
+        my_circle.y = j;
+        for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 20)
+        {
+            my_circle.x = i;
+            nrf_gfx_circle_draw(&my_circle, 0x1415, true);
+        }
+    }
+
+    for (uint16_t j = 10; j <= ILI9341_TFTHEIGHT; j += 20)
+    {
+        my_circle.y = j;
+        for (uint16_t i = 10; i <= ILI9341_TFTWIDTH; i += 20)
+        {
+            my_circle.x = i;
+            nrf_gfx_circle_draw(&my_circle, 0x0005, false);
+        }
+    }
+}
+
+void rect_draw(void)
+{
+    nrf_gfx_rect_t my_rect = NRF_GFX_RECT(ILI9341_TFTWIDTH / 2, ILI9341_TFTHEIGHT / 2, 2, 2);
+    for (uint16_t i = 0, j = 0; i <= ILI9341_TFTWIDTH / 2; i += 6, j+= 8)
+    {
+        my_rect.x = i;
+        my_rect.y = j;
+        my_rect.width = ILI9341_TFTWIDTH - i * 2;
+        my_rect.height = ILI9341_TFTHEIGHT - j * 2;
+        nrf_gfx_rect_draw(&my_rect, 2, (i + j) * 10, true, UINT16_MAX - (i + j) * 10);
+    }
+
+}
 
 
 /**@brief Function for assert macro callback.
@@ -157,12 +260,16 @@ static void gap_params_init(void)
 /**@snippet [Handling the data received over BLE] */
 static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
+		char received_string[21];
     for (uint32_t i = 0; i < length; i++)
     {
         while (app_uart_put(p_data[i]) != NRF_SUCCESS);
+				received_string[i]= (char) p_data[i];
     }
     while (app_uart_put('\r') != NRF_SUCCESS);
     while (app_uart_put('\n') != NRF_SUCCESS);
+		screen_clear();
+		text_print(received_string);
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -494,7 +601,7 @@ void uart_event_handle(app_uart_evt_t * p_event)
 
             if ((data_array[index - 1] == '\n') || (index >= (BLE_NUS_MAX_DATA_LEN)))
             {
-                err_code = ble_nus_string_send(&m_nus, data_array, index);
+								err_code = ble_nus_string_send(&m_nus, data_array, index);
                 if (err_code != NRF_ERROR_INVALID_STATE)
                 {
                     APP_ERROR_CHECK(err_code);
@@ -608,111 +715,6 @@ static void power_manage(void)
 /**@brief Application main function.
  */
 
-void gfx_initialization(void)
-{
-    ret_code_t err_code;
-
-    nrf_gfx_config_t nrf_gfx_config_ili = 
-    {
-        .lcd_init = ili9341_init,
-        .point_draw = (point_draw_t)ili9341_pixel_draw,
-        .rect_draw = (rect_draw_t)ili9341_rect_draw,
-        .screen_width = ILI9341_TFTWIDTH,
-        .screen_height = ILI9341_TFTHEIGHT
-    };
-
-    err_code = nrf_gfx_init(&nrf_gfx_config_ili);
-    APP_ERROR_CHECK(err_code);
-}
-
-void brackground_set(void)
-{
-    //nrf_gfx_background_set(nrf52);
-}
-
-void text_print(void)
-{
-    nrf_gfx_point_t text_start = NRF_GFX_POINT(10, 150);
-    nrf_gfx_print(&text_start, 0xFFFF, test_text, &Font10x16_desc, true);
-}
-
-void screen_clear(void)
-{
-    nrf_gfx_screen_fill(0x0000);
-}
-
-void line_draw(void)
-{
-    nrf_gfx_line_t my_line = NRF_GFX_LINE(0, 0, 0, 320, 2);
-    nrf_gfx_line_t my_line_2 = NRF_GFX_LINE(240, 320, 0, 320, 1);
-
-    for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 10)
-    {
-        my_line.x_end = i;
-        nrf_gfx_line_draw(&my_line, 0xF800);
-    }
-
-    for (uint16_t i = 0; i <= ILI9341_TFTHEIGHT; i += 10)
-    {
-        my_line.y_end = (ILI9341_TFTHEIGHT - i);
-        nrf_gfx_line_draw(&my_line, 0xF800);
-    }
-
-    for (uint16_t i = 0; i <= ILI9341_TFTHEIGHT; i += 10)
-    {
-        my_line_2.y_end = (ILI9341_TFTHEIGHT - i);
-        nrf_gfx_line_draw(&my_line_2, 0x001F);
-    }
-
-    for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 10)
-    {
-        my_line_2.x_end = i;
-        nrf_gfx_line_draw(&my_line_2, 0x001F);
-    }
-}
-
-void circle_draw(void)
-{
-    nrf_gfx_circle_t my_circle = NRF_GFX_CIRCLE(0, 0, 10);
-
-    for (uint16_t j = 0; j <= ILI9341_TFTHEIGHT; j += 20)
-    {
-        my_circle.y = j;
-        for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 20)
-        {
-            my_circle.x = i;
-            nrf_gfx_circle_draw(&my_circle, 0x1415, true);
-        }
-    }
-
-    for (uint16_t j = 10; j <= ILI9341_TFTHEIGHT; j += 20)
-    {
-        my_circle.y = j;
-        for (uint16_t i = 10; i <= ILI9341_TFTWIDTH; i += 20)
-        {
-            my_circle.x = i;
-            nrf_gfx_circle_draw(&my_circle, 0x0005, false);
-        }
-    }
-}
-
-void rect_draw(void)
-{
-    nrf_gfx_rect_t my_rect = NRF_GFX_RECT(ILI9341_TFTWIDTH / 2, ILI9341_TFTHEIGHT / 2, 2, 2);
-    for (uint16_t i = 0, j = 0; i <= ILI9341_TFTWIDTH / 2; i += 6, j+= 8)
-    {
-        my_rect.x = i;
-        my_rect.y = j;
-        my_rect.width = ILI9341_TFTWIDTH - i * 2;
-        my_rect.height = ILI9341_TFTHEIGHT - j * 2;
-        nrf_gfx_rect_draw(&my_rect, 2, (i + j) * 10, true, UINT16_MAX - (i + j) * 10);
-    }
-
-}
-
-
-
-
 
 int main(void)
 {
@@ -737,7 +739,7 @@ int main(void)
 		// Initialize the Screen
 		gfx_initialization();
 		screen_clear();
-		text_print();
+		text_print("Don't forget! \n Send nudes");
 		
     // Enter main loop.
     for (;;)
