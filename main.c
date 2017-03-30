@@ -120,10 +120,10 @@ void brackground_set(void)
     //nrf_gfx_background_set(nrf52);
 }
 
-void text_print(char test_text[])
+void text_print(char text_in[], uint16_t posX, uint16_t posY)
 {
-    nrf_gfx_point_t text_start = NRF_GFX_POINT(10, 150);
-    nrf_gfx_print(&text_start, 0xFFFF, test_text, &Font10x16_desc, true);
+    nrf_gfx_point_t text_start = NRF_GFX_POINT(posX, posY);
+    nrf_gfx_print(&text_start, 0xFFFF, text_in, &Font10x16_desc, true);
 }
 
 void screen_clear(void)
@@ -269,7 +269,7 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
     while (app_uart_put('\r') != NRF_SUCCESS);
     while (app_uart_put('\n') != NRF_SUCCESS);
 		screen_clear();
-		text_print(received_string);
+		text_print(received_string,10,150);
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -720,26 +720,28 @@ int main(void)
 {
     uint32_t err_code;
     bool erase_bonds;
-
+		//Initialize the screen
+			gfx_initialization();
+			screen_clear();
     // Initialize the UART
     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
     uart_init();
-
+				text_print("uart_init",10,10);
     buttons_leds_init(&erase_bonds);
+				text_print("btn_init",10,26);
     ble_stack_init();
+				text_print("ble_stack_init",10,42);
     gap_params_init();
     services_init();
+				text_print("services_init",10,58);
     advertising_init();
+				text_print("adv_init", 10, 74);
     conn_params_init();
-
+				text_print("conn_params_init",10,90);
     printf("\r\nUART Start!\r\n");
-    err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
+				err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
+				text_print("Advertising_start",10,106);
     APP_ERROR_CHECK(err_code);
-		
-		// Initialize the Screen
-		gfx_initialization();
-		screen_clear();
-		text_print("Don't forget! \n Send nudes");
 		
     // Enter main loop.
     for (;;)
