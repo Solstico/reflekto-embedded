@@ -247,6 +247,17 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+static void print_data_to_screen(char received_string[21],uint16_t length)
+{
+		for(uint32_t i=0; i < 21; i++)
+		{
+				if (received_string[i]=='\n') received_string[i]=0;
+				if (i>=length) received_string[i]=0;
+		}
+		screen_clear();
+		text_print(received_string,10,150);
+}
+
 
 /**@brief Function for handling the data from the Nordic UART Service.
  *
@@ -264,14 +275,13 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
     for (uint32_t i = 0; i < length; i++)
     {
         while (app_uart_put(p_data[i]) != NRF_SUCCESS);
-				received_string[i]= (char) p_data[i];
     }
     while (app_uart_put('\r') != NRF_SUCCESS);
     while (app_uart_put('\n') != NRF_SUCCESS);
-		screen_clear();
-		text_print(received_string,10,150);
+		print_data_to_screen((char*) p_data,length);
 }
 /**@snippet [Handling the data received over BLE] */
+
 
 
 /**@brief Function for initializing services that will be used by the application.
