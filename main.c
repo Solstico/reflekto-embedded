@@ -1,26 +1,3 @@
-/* Copyright (c) 2014 Nordic Semiconductor. All Rights Reserved.
- *
- * The information contained herein is property of Nordic Semiconductor ASA.
- * Terms and conditions of usage are described in detail in NORDIC
- * SEMICONDUCTOR STANDARD SOFTWARE LICENSE AGREEMENT.
- *
- * Licensees are granted free, non-transferable use of the information. NO
- * WARRANTY of ANY KIND is provided. This heading must NOT be removed from
- * the file.
- *
- */
-
-/** @file
- *
- * @defgroup ble_sdk_uart_over_ble_main main.c
- * @{
- * @ingroup  ble_sdk_app_nus_eval
- * @brief    UART over BLE application main file.
- *
- * This file contains the source code for a sample application that uses the Nordic UART service.
- * This application uses the @ref srvlib_conn_params module.
- */
-
 // UART Includes:
 #include <stdint.h>
 #include <string.h>
@@ -39,21 +16,8 @@
 #include "bsp.h"
 #include "bsp_btn_ble.h"
 
-// TFT Screen Includes:
-#include "nrf_gfx.h"
-#include "ili9341.h"
-#include "nrf52.h"
-#include "nrf_gpio.h"
-#include "nrf_delay.h"
-#include "boards.h"
-#include "app_error.h"
-#define NRF_LOG_MODULE_NAME "APP"
-#include "nrf_log.h"
-#include "nrf_log_ctrl.h"
-
-// TFT Screen tests:
-//char test_text[BLE_NUS_MAX_DATA_LEN];
-extern const nrf_gfx_font_desc_t Font10x16_desc;
+// Reflekto includes:
+#include "reflekto_lib.h"
 
 // UART Settings:
 
@@ -74,7 +38,7 @@ extern const nrf_gfx_font_desc_t Font10x16_desc;
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
-#define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
+#define APP_ADV_TIMEOUT_IN_SECONDS      0                                         /**< The advertising timeout (in units of seconds). */
 
 #define APP_TIMER_PRESCALER             0                                           /**< Value of the RTC1 PRESCALER register. */
 #define APP_TIMER_OP_QUEUE_SIZE         4                                           /**< Size of timer operation queues. */
@@ -96,110 +60,6 @@ static ble_nus_t                        m_nus;                                  
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 
 static ble_uuid_t                       m_adv_uuids[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
-
-
-void gfx_initialization(void)
-{
-    ret_code_t err_code;
-
-    nrf_gfx_config_t nrf_gfx_config_ili = 
-    {
-        .lcd_init = ili9341_init,
-        .point_draw = (point_draw_t)ili9341_pixel_draw,
-        .rect_draw = (rect_draw_t)ili9341_rect_draw,
-        .screen_width = ILI9341_TFTWIDTH,
-        .screen_height = ILI9341_TFTHEIGHT
-    };
-
-    err_code = nrf_gfx_init(&nrf_gfx_config_ili);
-    APP_ERROR_CHECK(err_code);
-}
-
-void brackground_set(void)
-{
-    //nrf_gfx_background_set(nrf52);
-}
-
-void text_print(char text_in[], uint16_t posX, uint16_t posY)
-{
-    nrf_gfx_point_t text_start = NRF_GFX_POINT(posX, posY);
-    nrf_gfx_print(&text_start, 0xFFFF, text_in, &Font10x16_desc, true);
-}
-
-void screen_clear(void)
-{
-    nrf_gfx_screen_fill(0x0000);
-}
-
-void line_draw(void)
-{
-    nrf_gfx_line_t my_line = NRF_GFX_LINE(0, 0, 0, 320, 2);
-    nrf_gfx_line_t my_line_2 = NRF_GFX_LINE(240, 320, 0, 320, 1);
-
-    for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 10)
-    {
-        my_line.x_end = i;
-        nrf_gfx_line_draw(&my_line, 0xF800);
-    }
-
-    for (uint16_t i = 0; i <= ILI9341_TFTHEIGHT; i += 10)
-    {
-        my_line.y_end = (ILI9341_TFTHEIGHT - i);
-        nrf_gfx_line_draw(&my_line, 0xF800);
-    }
-
-    for (uint16_t i = 0; i <= ILI9341_TFTHEIGHT; i += 10)
-    {
-        my_line_2.y_end = (ILI9341_TFTHEIGHT - i);
-        nrf_gfx_line_draw(&my_line_2, 0x001F);
-    }
-
-    for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 10)
-    {
-        my_line_2.x_end = i;
-        nrf_gfx_line_draw(&my_line_2, 0x001F);
-    }
-}
-
-void circle_draw(void)
-{
-    nrf_gfx_circle_t my_circle = NRF_GFX_CIRCLE(0, 0, 10);
-
-    for (uint16_t j = 0; j <= ILI9341_TFTHEIGHT; j += 20)
-    {
-        my_circle.y = j;
-        for (uint16_t i = 0; i <= ILI9341_TFTWIDTH; i += 20)
-        {
-            my_circle.x = i;
-            nrf_gfx_circle_draw(&my_circle, 0x1415, true);
-        }
-    }
-
-    for (uint16_t j = 10; j <= ILI9341_TFTHEIGHT; j += 20)
-    {
-        my_circle.y = j;
-        for (uint16_t i = 10; i <= ILI9341_TFTWIDTH; i += 20)
-        {
-            my_circle.x = i;
-            nrf_gfx_circle_draw(&my_circle, 0x0005, false);
-        }
-    }
-}
-
-void rect_draw(void)
-{
-    nrf_gfx_rect_t my_rect = NRF_GFX_RECT(ILI9341_TFTWIDTH / 2, ILI9341_TFTHEIGHT / 2, 2, 2);
-    for (uint16_t i = 0, j = 0; i <= ILI9341_TFTWIDTH / 2; i += 6, j+= 8)
-    {
-        my_rect.x = i;
-        my_rect.y = j;
-        my_rect.width = ILI9341_TFTWIDTH - i * 2;
-        my_rect.height = ILI9341_TFTHEIGHT - j * 2;
-        nrf_gfx_rect_draw(&my_rect, 2, (i + j) * 10, true, UINT16_MAX - (i + j) * 10);
-    }
-
-}
-
 
 /**@brief Function for assert macro callback.
  *
@@ -247,15 +107,22 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-static void print_data_to_screen(char received_string[21],uint16_t length)
-{
-		for(uint32_t i=0; i < 21; i++)
-		{
-				if (received_string[i]=='\n') received_string[i]=0;
-				if (i>=length) received_string[i]=0;
-		}
-		screen_clear();
-		text_print(received_string,10,150);
+static void print_data_to_screen(char string_to_print[18],uint8_t type, uint8_t package, uint16_t length)
+{	
+		switch (type){
+			case 0:
+				print_actual_time(string_to_print);
+				break;
+			case 1:
+				print_actual_weather(string_to_print);
+				break;
+			case 3:
+				print_name(string_to_print);
+				break;
+			default:
+				text_print("Something bad",10,250);
+				break;
+			}
 }
 
 
@@ -271,14 +138,20 @@ static void print_data_to_screen(char received_string[21],uint16_t length)
 /**@snippet [Handling the data received over BLE] */
 static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
-		char received_string[21];
-    for (uint32_t i = 0; i < length; i++)
-    {
-        while (app_uart_put(p_data[i]) != NRF_SUCCESS);
-    }
-    while (app_uart_put('\r') != NRF_SUCCESS);
-    while (app_uart_put('\n') != NRF_SUCCESS);
-		print_data_to_screen((char*) p_data,length);
+		char string_to_print[18];
+//    for (uint32_t i = 0; i < length; i++)
+//    {
+//        while (app_uart_put(p_data[i]) != NRF_SUCCESS);
+//    }
+//		
+//    while (app_uart_put('\r') != NRF_SUCCESS);
+//    while (app_uart_put('\n') != NRF_SUCCESS);
+		for(uint8_t i = 2; i<= length && p_data[i]!='\n'; i++)
+		{
+				string_to_print[i-2]= (char) p_data[i];
+		}
+		string_to_print[length]=0;
+		print_data_to_screen(string_to_print,p_data[0]-48,p_data[1]-32,length);
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -677,7 +550,8 @@ static void advertising_init(void)
     memset(&advdata, 0, sizeof(advdata));
     advdata.name_type          = BLE_ADVDATA_FULL_NAME;
     advdata.include_appearance = false;
-    advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+    //advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+		advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
 
     memset(&scanrsp, 0, sizeof(scanrsp));
     scanrsp.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
@@ -725,7 +599,6 @@ static void power_manage(void)
 /**@brief Application main function.
  */
 
-
 int main(void)
 {
     uint32_t err_code;
@@ -752,7 +625,7 @@ int main(void)
 				err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
 				text_print("Advertising_start",10,106);
     APP_ERROR_CHECK(err_code);
-		
+				screen_clear();
     // Enter main loop.
     for (;;)
     {

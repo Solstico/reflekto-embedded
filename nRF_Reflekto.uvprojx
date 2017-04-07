@@ -1834,6 +1834,16 @@
               <FileType>1</FileType>
               <FilePath>.\components\libraries\gfx\nrf_gfx.c</FilePath>
             </File>
+            <File>
+              <FileName>reflekto_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\reflekto_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>reflekto_lib.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\reflekto_lib.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4025,6 +4035,16 @@
               <FileName>nrf_gfx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\components\libraries\gfx\nrf_gfx.c</FilePath>
+            </File>
+            <File>
+              <FileName>reflekto_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\reflekto_lib.c</FilePath>
+            </File>
+            <File>
+              <FileName>reflekto_lib.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\reflekto_lib.h</FilePath>
             </File>
           </Files>
         </Group>
