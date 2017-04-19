@@ -114,8 +114,18 @@ void print_actual_weather(char string_to_print[18])
 	text_print(string_to_print,10,60);
 }
 
+void print_hello(char string_to_print[18])
+{
+	text_print(string_to_print,10,90);
+}
+
 void print_name(char string_to_print[18])
 {
-	text_print("Name: ",10,90);
-	text_print(string_to_print,90,90);
+	text_print("Name: ",10,120);
+	text_print(string_to_print,90,120);
+}
+
+void print_additional_weather(char string_to_print[18])
+{
+	text_print(string_to_print,10,150);
 }

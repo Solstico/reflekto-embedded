@@ -116,11 +116,16 @@ static void print_data_to_screen(char string_to_print[18],uint8_t type, uint8_t 
 			case 1:
 				print_actual_weather(string_to_print);
 				break;
+			case 2:
+				print_hello(string_to_print);
+				break;
 			case 3:
 				print_name(string_to_print);
 				break;
+			case 5:
+				print_additional_weather(string_to_print);
 			default:
-				text_print("Something bad",10,250);
+				text_print("BadData",10,250);
 				break;
 			}
 }
@@ -138,7 +143,9 @@ static void print_data_to_screen(char string_to_print[18],uint8_t type, uint8_t 
 /**@snippet [Handling the data received over BLE] */
 static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
 {
-		char string_to_print[18];
+		static char string_to_print[18];
+		uint8_t wrong_chars=0;
+		memset(&string_to_print,0,18*sizeof(char));
 //    for (uint32_t i = 0; i < length; i++)
 //    {
 //        while (app_uart_put(p_data[i]) != NRF_SUCCESS);
@@ -146,9 +153,10 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 //		
 //    while (app_uart_put('\r') != NRF_SUCCESS);
 //    while (app_uart_put('\n') != NRF_SUCCESS);
-		for(uint8_t i = 2; i<= length && p_data[i]!='\n'; i++)
+		for(uint8_t i = 2; i< length && p_data[i]!='\n'; i++)
 		{
-				string_to_print[i-2]= (char) p_data[i];
+				string_to_print[i-2-wrong_chars]= (char) p_data[i];
+				if(p_data[i] <32 || p_data[i]>128) wrong_chars++;
 		}
 		string_to_print[length]=0;
 		print_data_to_screen(string_to_print,p_data[0]-48,p_data[1]-32,length);

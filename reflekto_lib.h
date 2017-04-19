@@ -21,5 +21,7 @@ void circle_draw(void);
 void rect_draw(void);
 void print_actual_time(char string_to_print[18]);
 void print_actual_weather(char string_to_print[18]);
+void print_hello(char string_to_print[18]);
 void print_name(char string_to_print[18]);
+void print_additional_weather(char string_to_print[18]);
 #endif
