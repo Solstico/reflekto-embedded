@@ -388,6 +388,7 @@ void nrf_gfx_print(nrf_gfx_point_t * p_point,
             {
                 y += p_font->height + p_font->line_break_size;
                 x = p_point->x;
+								if(string[i+1]==' ') i++;
             }
             else
             {
