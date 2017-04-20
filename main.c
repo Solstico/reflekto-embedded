@@ -110,22 +110,35 @@ static void gap_params_init(void)
 static void print_data_to_screen(char string_to_print[18],uint8_t type, uint8_t package, uint16_t length)
 {	
 		switch (type){
-			case 0:
+			case TIME:
 				print_actual_time(string_to_print);
 				break;
-			case 1:
+			case WEATHER1:
 				print_actual_weather(string_to_print);
 				break;
-			case 2:
+			case HELLO:
 				print_hello(string_to_print);
 				break;
-			case 3:
+			case NAME:
 				print_name(string_to_print);
 				break;
-			case 5:
+			case SEX:
+				print_sex(string_to_print);
+				break;
+			case COMPLIMENT:
+				print_compliment(string_to_print);
+				break;
+			case WEATHER2:
 				print_additional_weather(string_to_print);
+				break;
+			case WEATHER3:
+				print_weather_advise(string_to_print);
+				break;
+			case CALENDAR:
+				print_next_event(string_to_print);
+				break;
 			default:
-				text_print("BadData",10,250);
+				text_print("BadData",50,310,5);
 				break;
 			}
 }
@@ -613,27 +626,27 @@ int main(void)
     bool erase_bonds;
 		//Initialize the screen
 			gfx_initialization();
-			screen_clear();
+			clear_GUI(CLR_SCR);
     // Initialize the UART
     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
     uart_init();
-				text_print("uart_init",10,10);
+				text_print("uart_init",10,10,10);
     buttons_leds_init(&erase_bonds);
-				text_print("btn_init",10,26);
+				text_print("btn_init",10,26,10);
     ble_stack_init();
-				text_print("ble_stack_init",10,42);
+				text_print("ble_stack_init",10,42,10);
     gap_params_init();
     services_init();
-				text_print("services_init",10,58);
+				text_print("services_init",10,58,10);
     advertising_init();
-				text_print("adv_init", 10, 74);
+				text_print("adv_init", 10, 74,10);
     conn_params_init();
-				text_print("conn_params_init",10,90);
+				text_print("conn_params_init",10,90,10);
     printf("\r\nUART Start!\r\n");
 				err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
-				text_print("Advertising_start",10,106);
+				text_print("Advertising_start",10,106,10);
     APP_ERROR_CHECK(err_code);
-				screen_clear();
+				clear_GUI(CLR_SCR);
     // Enter main loop.
     for (;;)
     {
