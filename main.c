@@ -61,6 +61,34 @@ static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;
 
 static ble_uuid_t                       m_adv_uuids[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
 
+APP_TIMER_DEF(our_disconnect_timer);
+APP_TIMER_DEF(our_screen_clear_timer);
+#define TIME_TO_CLEAR 25 // Time to clear the screen in seconds
+#define OUR_SCREEN_CLEAR_INTERVAL APP_TIMER_TICKS(TIME_TO_CLEAR*1000,APP_TIMER_PRESCALER) // 1000 ms
+#define DISCONNECT_TIME APP_TIMER_TICKS(20000,APP_TIMER_PRESCALER) // 1000 ms
+
+static void screen_timer_timeout_handler(void * p_context)
+{
+	clear_GUI(CLR_SCR);
+}
+
+static void disconnect_timer_timeout_handler(void * conn_handle)
+{
+		sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+}
+
+static void timer_init_and_start(void)
+{
+    // Initialize timer module.
+    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
+		app_timer_create(&our_screen_clear_timer, APP_TIMER_MODE_REPEATED, screen_timer_timeout_handler);
+		app_timer_start(our_screen_clear_timer, OUR_SCREEN_CLEAR_INTERVAL,NULL);
+	
+	  APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
+		app_timer_create(&our_disconnect_timer, APP_TIMER_MODE_REPEATED, disconnect_timer_timeout_handler);
+		//app_timer_start(our_disconnect_timer, DISCONNECT_TIME,NULL);
+}
+
 /**@brief Function for assert macro callback.
  *
  * @details This function will be called in case of an assert in the SoftDevice.
@@ -173,6 +201,9 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 		}
 		string_to_print[length]=0;
 		print_data_to_screen(string_to_print,p_data[0]-48,p_data[1]-32,length);
+		
+		app_timer_stop(our_screen_clear_timer);
+		app_timer_start(our_screen_clear_timer, OUR_SCREEN_CLEAR_INTERVAL,NULL);
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -308,12 +339,14 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+						app_timer_start(our_disconnect_timer, DISCONNECT_TIME,NULL);
             break; // BLE_GAP_EVT_CONNECTED
 
         case BLE_GAP_EVT_DISCONNECTED:
             err_code = bsp_indication_set(BSP_INDICATE_IDLE);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
+						app_timer_stop(our_disconnect_timer);
             break; // BLE_GAP_EVT_DISCONNECTED
 
         case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
@@ -644,6 +677,7 @@ int main(void)
 				text_print("adv_init", 10, 74,10);
     conn_params_init();
 				text_print("conn_params_init",10,90,10);
+		timer_init_and_start();
     printf("\r\nUART Start!\r\n");
 				err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
 				text_print("Advertising_start",10,106,10);
