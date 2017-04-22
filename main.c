@@ -65,7 +65,7 @@ APP_TIMER_DEF(our_disconnect_timer);
 APP_TIMER_DEF(our_screen_clear_timer);
 #define TIME_TO_CLEAR 25 // Time to clear the screen in seconds
 #define OUR_SCREEN_CLEAR_INTERVAL APP_TIMER_TICKS(TIME_TO_CLEAR*1000,APP_TIMER_PRESCALER) // 1000 ms
-#define DISCONNECT_TIME APP_TIMER_TICKS(20000,APP_TIMER_PRESCALER) // 1000 ms
+#define DISCONNECT_TIME APP_TIMER_TICKS(1500,APP_TIMER_PRESCALER) // 1000 ms
 
 static void screen_timer_timeout_handler(void * p_context)
 {
@@ -86,7 +86,6 @@ static void timer_init_and_start(void)
 	
 	  APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
 		app_timer_create(&our_disconnect_timer, APP_TIMER_MODE_REPEATED, disconnect_timer_timeout_handler);
-		//app_timer_start(our_disconnect_timer, DISCONNECT_TIME,NULL);
 }
 
 /**@brief Function for assert macro callback.
@@ -191,7 +190,6 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 //    {
 //        while (app_uart_put(p_data[i]) != NRF_SUCCESS);
 //    }
-//		
 //    while (app_uart_put('\r') != NRF_SUCCESS);
 //    while (app_uart_put('\n') != NRF_SUCCESS);
 		for(uint8_t i = 2; i< length && p_data[i]!='\n'; i++)
