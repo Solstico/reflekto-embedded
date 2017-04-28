@@ -36,6 +36,8 @@
     <folder Name="Application">
       <file file_name="./main.c" />
       <file file_name="./config/sdk_config.h" />
+      <file file_name="time_service.c" />
+      <file file_name="time_service.h" />
     </folder>
     <folder Name="Board Definition">
       <file file_name="./components/boards/boards.c" />

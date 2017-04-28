@@ -27,6 +27,8 @@
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 
+// Reflekto includes:
+#include "time_service.h"
 
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2    /**< Reply when unsupported features are requested. */
 
@@ -64,7 +66,10 @@ static nrf_ble_gatt_t m_gatt;                                                   
  */
 
 // YOUR_JOB: Use UUIDs for service(s) used in your application.
+#define BLE_UUID_OUR_BASE_UUID              {0x23, 0xD1, 0x13, 0xEF, 0x5F, 0x78, 0x23, 0x15, 0xDE, 0xEF, 0x12, 0x12, 0x00, 0x00, 0x00, 0x00}
+#define BLE_UUID_TIME_SERVICE                0x1111
 static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
+//static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_OUR_BASE_UUID, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
 
 static void advertising_start(bool erase_bonds);
 
@@ -83,7 +88,6 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 {
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
 }
-
 
 /**@brief Function for handling Peer Manager events.
  *
@@ -184,7 +188,6 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
             break;
     }
 }
-
 
 /**@brief Function for the Timer initialization.
  *
@@ -770,7 +773,7 @@ static void advertising_start(bool erase_bonds)
 int main(void)
 {
     bool erase_bonds;
-
+    time_t mytimer=1493409345;
     // Initialize.
     log_init();
     timers_init();
@@ -788,7 +791,7 @@ int main(void)
     application_timers_start();
 
     advertising_start(erase_bonds);
-
+    test_time_conv(mytimer);
     // Enter main loop.
     for (;;)
     {

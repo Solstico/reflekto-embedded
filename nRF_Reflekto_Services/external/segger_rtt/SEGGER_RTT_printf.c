@@ -41,7 +41,7 @@ File    : SEGGER_RTT_printf.c
 Purpose : Replacement for printf to write formatted data via RTT
 ----------------------------------------------------------------------
 */
-
+#define NRF_LOG_USES_RTT 1
 #if defined(NRF_LOG_USES_RTT) && NRF_LOG_USES_RTT == 1
 
 #include "SEGGER_RTT.h"

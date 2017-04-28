@@ -23,6 +23,8 @@
   <ProjectSessionItem path="nRF_Reflekto;nRF_Reflekto"/>
   <ProjectSessionItem path="nRF_Reflekto;nRF_Reflekto;Application"/>
   <ProjectSessionItem path="nRF_Reflekto;nRF_Reflekto;Internal Files"/>
+  <ProjectSessionItem path="nRF_Reflekto;nRF_Reflekto;nRF_BLE"/>
+  <ProjectSessionItem path="nRF_Reflekto;nRF_Reflekto;nRF_BLE_Services"/>
   <ProjectSessionItem path="nRF_Reflekto;nRF_Reflekto;nRF_Libraries"/>
  </Project>
  <Register1>
@@ -55,10 +57,14 @@
  </Watch4>
  <Files>
   <SessionOpenFile x="0" y="28" useTextEdit="1" useBinaryEdit="0" left="0" path="components/libraries/uart/retarget.c" debugPath="components/libraries/uart/retarget.c" selected="0" top="26" codecName="Default"/>
-  <SessionOpenFile x="0" y="23" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="16" codecName="Default"/>
-  <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="config/sdk_config.h" debugPath="config/sdk_config.h" selected="0" top="7" codecName="Default"/>
+  <SessionOpenFile x="54" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="17" codecName="Default"/>
   <SessionOpenFile x="0" y="367" useTextEdit="1" useBinaryEdit="0" left="0" path="/Applications/SEGGER Embedded Studio 3.12/source/thumb_crt0.s" debugPath="/Applications/SEGGER Embedded Studio 3.12/source/thumb_crt0.s" selected="0" top="359" codecName="Default"/>
-  <SessionOpenFile x="0" y="46" useTextEdit="1" useBinaryEdit="0" left="0" path="components/device/nrf.h" debugPath="components/device/nrf.h" selected="1" top="37" codecName="Default"/>
+  <SessionOpenFile x="0" y="46" useTextEdit="1" useBinaryEdit="0" left="0" path="components/device/nrf.h" debugPath="components/device/nrf.h" selected="0" top="25" codecName="Default"/>
+  <SessionOpenFile x="0" y="38" useTextEdit="1" useBinaryEdit="0" left="0" path="components/ble/ble_advertising/ble_advertising.c" debugPath="components/ble/ble_advertising/ble_advertising.c" selected="0" top="20" codecName="Default"/>
+  <SessionOpenFile x="0" y="127" useTextEdit="1" useBinaryEdit="0" left="0" path="components/ble/common/ble_advdata.h" debugPath="components/ble/common/ble_advdata.h" selected="0" top="109" codecName="Default"/>
+  <SessionOpenFile x="0" y="578" useTextEdit="1" useBinaryEdit="0" left="0" path="components/softdevice/s132/headers/ble.h" debugPath="components/softdevice/s132/headers/ble.h" selected="0" top="560" codecName="Default"/>
+  <SessionOpenFile x="0" y="21" useTextEdit="1" useBinaryEdit="0" left="0" path="components/ble/ble_services/ble_nus/ble_nus.c" debugPath="components/ble/ble_services/ble_nus/ble_nus.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="43" useTextEdit="1" useBinaryEdit="0" left="0" path="components/ble/ble_services/ble_nus/ble_nus.h" debugPath="components/ble/ble_services/ble_nus/ble_nus.h" selected="0" top="25" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="nRF52_Reflekto" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/components/toolchain/embedded_studio" debugSearchPath="" autoConnectCapabilities="1132"/>
+ <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="nRF52_Reflekto" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/components/toolchain/embedded_studio" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
