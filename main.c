@@ -1,4 +1,4 @@
-// UART Includes:
+// Main Includes:
 #include <stdint.h>
 #include <string.h>
 #include "nordic_common.h"
@@ -18,8 +18,6 @@
 
 // Reflekto includes:
 #include "reflekto_lib.h"
-
-// UART Settings:
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include the service_changed characteristic. If not enabled, the server's database cannot be changed for the lifetime of the device. */
 
@@ -64,8 +62,8 @@ static ble_uuid_t                       m_adv_uuids[] = {{BLE_UUID_NUS_SERVICE, 
 APP_TIMER_DEF(our_disconnect_timer);
 APP_TIMER_DEF(our_screen_clear_timer);
 #define TIME_TO_CLEAR 25 // Time to clear the screen in seconds
-#define OUR_SCREEN_CLEAR_INTERVAL APP_TIMER_TICKS(TIME_TO_CLEAR*1000,APP_TIMER_PRESCALER) // 1000 ms
-#define DISCONNECT_TIME APP_TIMER_TICKS(1500,APP_TIMER_PRESCALER) // 1000 ms
+#define OUR_SCREEN_CLEAR_INTERVAL APP_TIMER_TICKS(TIME_TO_CLEAR*1000,APP_TIMER_PRESCALER)
+#define DISCONNECT_TIME APP_TIMER_TICKS(1500,APP_TIMER_PRESCALER)
 
 static void screen_timer_timeout_handler(void * p_context)
 {
@@ -84,7 +82,7 @@ static void timer_init_and_start(void)
 		app_timer_create(&our_screen_clear_timer, APP_TIMER_MODE_REPEATED, screen_timer_timeout_handler);
 		app_timer_start(our_screen_clear_timer, OUR_SCREEN_CLEAR_INTERVAL,NULL);
 	
-	  APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
+    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
 		app_timer_create(&our_disconnect_timer, APP_TIMER_MODE_REPEATED, disconnect_timer_timeout_handler);
 }
 
@@ -103,7 +101,6 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 {
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
 }
-
 
 /**@brief Function for the GAP initialization.
  *
@@ -192,6 +189,12 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 //    }
 //    while (app_uart_put('\r') != NRF_SUCCESS);
 //    while (app_uart_put('\n') != NRF_SUCCESS);
+      if(p_data[0]=='1' && p_data[1]=='1')
+      {
+        sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+       }
+       else
+       {
 		for(uint8_t i = 2; i< length && p_data[i]!='\n'; i++)
 		{
 				string_to_print[i-2-wrong_chars]= (char) p_data[i];
@@ -199,9 +202,9 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 		}
 		string_to_print[length]=0;
 		print_data_to_screen(string_to_print,p_data[0]-48,p_data[1]-32,length);
-		
-		app_timer_stop(our_screen_clear_timer);
-		app_timer_start(our_screen_clear_timer, OUR_SCREEN_CLEAR_INTERVAL,NULL);
+	}
+	app_timer_stop(our_screen_clear_timer);
+	app_timer_start(our_screen_clear_timer, OUR_SCREEN_CLEAR_INTERVAL,NULL);
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -657,12 +660,12 @@ int main(void)
 {
     uint32_t err_code;
     bool erase_bonds;
-		//Initialize the screen
+  //Initialize the screen
 			gfx_initialization();
 			clear_GUI(CLR_SCR);
     // Initialize the UART
     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
-    uart_init();
+    //uart_init();
 				text_print("uart_init",10,10,10);
     buttons_leds_init(&erase_bonds);
 				text_print("btn_init",10,26,10);
@@ -676,7 +679,7 @@ int main(void)
     conn_params_init();
 				text_print("conn_params_init",10,90,10);
 		timer_init_and_start();
-    printf("\r\nUART Start!\r\n");
+    //printf("\r\nUART Start!\r\n");
 				err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
 				text_print("Advertising_start",10,106,10);
     APP_ERROR_CHECK(err_code);
