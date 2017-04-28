@@ -33,8 +33,8 @@ struct __FILE
 };
 #endif
 
-FILE __stdout;
-FILE __stdin;
+//FILE __stdout;
+//FILE __stdin;
 
 
 #if defined(__CC_ARM) ||  defined(__ICCARM__)
