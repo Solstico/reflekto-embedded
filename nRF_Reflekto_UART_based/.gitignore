@@ -5,6 +5,8 @@
 JLink*
 /RTE
 /Output/nRF_Reflekto*
+*.o
+*.d
 
 ### macOS ###
 *.DS_Store
