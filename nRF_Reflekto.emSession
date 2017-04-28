@@ -55,9 +55,10 @@
  </Watch4>
  <Files>
   <SessionOpenFile x="0" y="28" useTextEdit="1" useBinaryEdit="0" left="0" path="components/libraries/uart/retarget.c" debugPath="components/libraries/uart/retarget.c" selected="0" top="26" codecName="Default"/>
-  <SessionOpenFile x="0" y="146" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="16" codecName="Default"/>
+  <SessionOpenFile x="0" y="23" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="16" codecName="Default"/>
   <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="config/sdk_config.h" debugPath="config/sdk_config.h" selected="0" top="7" codecName="Default"/>
   <SessionOpenFile x="0" y="367" useTextEdit="1" useBinaryEdit="0" left="0" path="/Applications/SEGGER Embedded Studio 3.12/source/thumb_crt0.s" debugPath="/Applications/SEGGER Embedded Studio 3.12/source/thumb_crt0.s" selected="0" top="359" codecName="Default"/>
+  <SessionOpenFile x="28" y="46" useTextEdit="1" useBinaryEdit="0" left="0" path="components/device/nrf.h" debugPath="components/device/nrf.h" selected="1" top="37" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.asm;*.s;*.inc" autoConnectTarget="J-Link" buildConfiguration="nRF52_Reflekto" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/components/toolchain/embedded_studio" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
