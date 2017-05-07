@@ -22,18 +22,19 @@
 #include "nrf_gpio.h"
 #include "ble_conn_state.h"
 #include "nrf_ble_gatt.h"
+#include "SEGGER_RTT.h"
 
 #define NRF_LOG_MODULE_NAME "APP"
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 
 // Reflekto includes:
-#include "time_service.h"
+#include "reflekto_ble_services.h"
 
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2    /**< Reply when unsupported features are requested. */
 
-#define DEVICE_NAME                     "nRF_Reflekto"                       /**< Name of device. Will be included in the advertising data. */
-#define MANUFACTURER_NAME               "Solstico"                   /**< Manufacturer. Will be passed to Device Information Service. */
+#define DEVICE_NAME                     "Reflekto_nRF"                       /**< Name of device. Will be included in the advertising data. */
+#define MANUFACTURER_NAME               "Solstico"                            /**< Manufacturer. Will be passed to Device Information Service. */
 #define APP_ADV_INTERVAL                300                                     /**< The advertising interval (in units of 0.625 ms. This value corresponds to 187.5 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS      0                                     /**< The advertising timeout in units of seconds. */
 
@@ -60,16 +61,12 @@
 static uint16_t       m_conn_handle = BLE_CONN_HANDLE_INVALID;                  /**< Handle of the current connection. */
 static nrf_ble_gatt_t m_gatt;                                                   /**< GATT module instance. */
 
-/* YOUR_JOB: Declare all services structure your application is using
-   static ble_xx_service_t                     m_xxs;
-   static ble_yy_service_t                     m_yys;
- */
+#define BLE_UUID_ADV 0x6973
+static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_ADV, BLE_UUID_TYPE_VENDOR_BEGIN}}; /**< Universally unique service identifiers. */
+static ble_uuid_t m_scrsp_uuids[] = {{BLE_UUID_TIME_SERVICE, BLE_UUID_TYPE_BLE}};
+static ble_os_t our_time_service;
 
-// YOUR_JOB: Use UUIDs for service(s) used in your application.
-#define BLE_UUID_OUR_BASE_UUID              {0x23, 0xD1, 0x13, 0xEF, 0x5F, 0x78, 0x23, 0x15, 0xDE, 0xEF, 0x12, 0x12, 0x00, 0x00, 0x00, 0x00}
-#define BLE_UUID_TIME_SERVICE                0x1111
-static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
-//static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_OUR_BASE_UUID, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
+
 
 static void advertising_start(bool erase_bonds);
 
@@ -284,6 +281,7 @@ static void on_yys_evt(ble_yy_service_t     * p_yy_service,
  */
 static void services_init(void)
 {
+      time_service_init(&our_time_service);
     /* YOUR_JOB: Add code to initialize the services used by the application.
        ret_code_t                         err_code;
        ble_xxs_init_t                     xxs_init;
@@ -524,10 +522,8 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
     nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
-    /*YOUR_JOB add calls to _on_ble_evt functions from each service your application is using
-       ble_xxs_on_ble_evt(&m_xxs, p_ble_evt);
-       ble_yys_on_ble_evt(&m_yys, p_ble_evt);
-     */
+    
+    time_service_on_ble_evt(&our_time_service, p_ble_evt);
 }
 
 
@@ -573,7 +569,7 @@ static void ble_stack_init(void)
     ble_cfg_t ble_cfg;
 
     memset(&ble_cfg, 0, sizeof(ble_cfg));
-    ble_cfg.common_cfg.vs_uuid_cfg.vs_uuid_count = 0;
+    ble_cfg.common_cfg.vs_uuid_cfg.vs_uuid_count = 3;
     err_code = sd_ble_cfg_set(BLE_COMMON_CFG_VS_UUID, &ble_cfg, ram_start);
     APP_ERROR_CHECK(err_code);
 
@@ -698,7 +694,7 @@ static void advertising_init(void)
     memset(&advdata, 0, sizeof(advdata));
 
     advdata.name_type               = BLE_ADVDATA_FULL_NAME;
-    advdata.include_appearance      = true;
+    advdata.include_appearance      = false;
     advdata.flags                   = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
     advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     advdata.uuids_complete.p_uuids  = m_adv_uuids;
@@ -708,7 +704,12 @@ static void advertising_init(void)
     options.ble_adv_fast_interval = APP_ADV_INTERVAL;
     options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
 
-    err_code = ble_advertising_init(&advdata, NULL, &options, on_adv_evt, NULL);
+    ble_advdata_t srdata;
+    memset(&srdata,0,sizeof(srdata));
+    srdata.uuids_complete.uuid_cnt = sizeof(m_scrsp_uuids)/sizeof(m_scrsp_uuids[0]);
+    srdata.uuids_complete.p_uuids = m_scrsp_uuids;
+
+    err_code = ble_advertising_init(&advdata, &srdata, &options, on_adv_evt, NULL);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -781,8 +782,8 @@ int main(void)
     ble_stack_init();
     gap_params_init();
     gatt_init();
-    advertising_init();
     services_init();
+    advertising_init();
     conn_params_init();
     peer_manager_init();
 
@@ -793,6 +794,7 @@ int main(void)
     advertising_start(erase_bonds);
     test_time_conv(mytimer);
     // Enter main loop.
+    SEGGER_RTT_printf(0,"End of initial\n");
     for (;;)
     {
         if (NRF_LOG_PROCESS() == false)

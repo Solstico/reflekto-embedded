@@ -1,5 +1,5 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution Name="ble_app_template_pca10040_s132" target="8" version="2">
+<solution Name="nRF_Reflekto_Services" target="8" version="2">
   <project Name="nRF_Reflekto">
     <configuration
       Name="Common"
@@ -13,6 +13,7 @@
       arm_target_interface_type="SWD"
       debug_start_from_entry_point_symbol="No"
       debug_target_connection="J-Link"
+      gcc_optimization_level="Level 3"
       linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
       linker_section_placements_segments="FLASH RX 0x00000000 0x00080000;SRAM RWX 0x20000000 0x00010000"
       project_directory=""
@@ -36,8 +37,8 @@
     <folder Name="Application">
       <file file_name="./main.c" />
       <file file_name="./config/sdk_config.h" />
-      <file file_name="time_service.c" />
-      <file file_name="time_service.h" />
+      <file file_name="reflekto_ble_services.c" />
+      <file file_name="reflekto_ble_services.h" />
     </folder>
     <folder Name="Board Definition">
       <file file_name="./components/boards/boards.c" />
