@@ -30,6 +30,7 @@
 
 // Reflekto includes:
 #include "reflekto_ble_services.h"
+#include "reflekto_timers.h"
 
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2    /**< Reply when unsupported features are requested. */
 
@@ -61,12 +62,11 @@
 static uint16_t       m_conn_handle = BLE_CONN_HANDLE_INVALID;                  /**< Handle of the current connection. */
 static nrf_ble_gatt_t m_gatt;                                                   /**< GATT module instance. */
 
-#define BLE_UUID_ADV 0x6973
+#define BLE_UUID_ADV 0x6973 // UUID only for advertising "this is reflekto"
 static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_ADV, BLE_UUID_TYPE_VENDOR_BEGIN}}; /**< Universally unique service identifiers. */
-static ble_uuid_t m_scrsp_uuids[] = {{BLE_UUID_TIME_SERVICE, BLE_UUID_TYPE_BLE}};
+static ble_uuid_t m_scrsp_uuids[] = {{BLE_UUID_TIME_SERVICE, BLE_UUID_TYPE_BLE},{BLE_UUID_WEATHER_SERVICE, BLE_UUID_TYPE_BLE}};
 static ble_os_t our_time_service;
-
-
+static ble_os_t our_weather_service;
 
 static void advertising_start(bool erase_bonds);
 
@@ -190,22 +190,7 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
  *
  * @details Initializes the timer module. This creates and starts application timers.
  */
-static void timers_init(void)
-{
-    // Initialize timer module.
-    ret_code_t err_code = app_timer_init();
-    APP_ERROR_CHECK(err_code);
 
-    // Create timers.
-
-    /* YOUR_JOB: Create any timers to be used by the application.
-                 Below is an example of how to create a timer.
-                 For every new timer needed, increase the value of the macro APP_TIMER_MAX_TIMERS by
-                 one.
-       ret_code_t err_code;
-       err_code = app_timer_create(&m_app_timer_id, APP_TIMER_MODE_REPEATED, timer_timeout_handler);
-       APP_ERROR_CHECK(err_code); */
-}
 
 
 /**@brief Function for the GAP initialization.
@@ -282,6 +267,7 @@ static void on_yys_evt(ble_yy_service_t     * p_yy_service,
 static void services_init(void)
 {
       time_service_init(&our_time_service);
+      weather_service_init(&our_weather_service);
     /* YOUR_JOB: Add code to initialize the services used by the application.
        ret_code_t                         err_code;
        ble_xxs_init_t                     xxs_init;
@@ -361,19 +347,6 @@ static void conn_params_init(void)
     err_code = ble_conn_params_init(&cp_init);
     APP_ERROR_CHECK(err_code);
 }
-
-
-/**@brief Function for starting timers.
- */
-static void application_timers_start(void)
-{
-    /* YOUR_JOB: Start your timers. below is an example of how to start a timer.
-       ret_code_t err_code;
-       err_code = app_timer_start(m_app_timer_id, TIMER_INTERVAL, NULL);
-       APP_ERROR_CHECK(err_code); */
-
-}
-
 
 /**@brief Function for putting the chip into sleep mode.
  *
@@ -492,6 +465,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                     auth_reply.params.write.gatt_status = APP_FEATURE_NOT_SUPPORTED;
                     err_code = sd_ble_gatts_rw_authorize_reply(p_ble_evt->evt.gatts_evt.conn_handle,
                                                                &auth_reply);
+                    SEGGER_RTT_printf(0,"AUTH REQ ErrCode: %x\n",err_code);
                     APP_ERROR_CHECK(err_code);
                 }
             }
@@ -515,6 +489,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     /** The Connection state module has to be fed BLE events in order to function correctly
      * Remember to call ble_conn_state_on_ble_evt before calling any ble_conns_state_* functions. */
+    SEGGER_RTT_printf(0,"BLE Event: %x\n",p_ble_evt->header.evt_id);
     ble_conn_state_on_ble_evt(p_ble_evt);
     pm_on_ble_evt(p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
@@ -522,8 +497,8 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
     nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
-    
     time_service_on_ble_evt(&our_time_service, p_ble_evt);
+    weather_service_on_ble_evt(&our_weather_service, p_ble_evt);
 }
 
 
@@ -768,13 +743,11 @@ static void advertising_start(bool erase_bonds)
     }
 }
 
-
 /**@brief Function for application main entry.
  */
 int main(void)
 {
     bool erase_bonds;
-    time_t mytimer=1493409345;
     // Initialize.
     log_init();
     timers_init();
@@ -789,10 +762,9 @@ int main(void)
 
     // Start execution.
     NRF_LOG_INFO("Template example started.\r\n");
-    application_timers_start();
+    //application_timers_start();
 
     advertising_start(erase_bonds);
-    test_time_conv(mytimer);
     // Enter main loop.
     SEGGER_RTT_printf(0,"End of initial\n");
     for (;;)

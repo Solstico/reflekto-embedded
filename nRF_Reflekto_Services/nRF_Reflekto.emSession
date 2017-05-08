@@ -26,6 +26,8 @@
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;Application"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;Internal Files"/>
+  <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;nRF_BLE"/>
+  <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;nRF_Libraries"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;nRF_Segger_RTT"/>
  </Project>
  <Register1>
@@ -45,7 +47,9 @@
   <Trace enabled="Yes"/>
  </TraceWindow>
  <Watch1>
-  <Watches active="1" update="Never"/>
+  <Watches active="1" update="Never">
+   <Watchpoint numelements="0" expression="APP_TIMER_TICKS" evalMode="0" name="APP_TIMER_TICKS" radix="16" linenumber="72" filename="main.c" list=""/>
+  </Watches>
  </Watch1>
  <Watch2>
   <Watches active="0" update="Never"/>
@@ -57,12 +61,13 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile x="8" y="762" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="739" codecName="Default"/>
-  <SessionOpenFile x="17" y="62" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="65" y="22" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="0" y="134" useTextEdit="1" useBinaryEdit="0" left="0" path="external/segger_rtt/SEGGER_RTT.c" debugPath="external/segger_rtt/SEGGER_RTT.c" selected="0" top="99" codecName="Default"/>
-  <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="external/segger_rtt/RTT_Syscalls_KEIL.c" debugPath="external/segger_rtt/RTT_Syscalls_KEIL.c" selected="0" top="280" codecName="Default"/>
-  <SessionOpenFile x="0" y="231" useTextEdit="1" useBinaryEdit="0" left="0" path="components/softdevice/s132/headers/ble_gatts.h" debugPath="components/softdevice/s132/headers/ble_gatts.h" selected="0" top="196" codecName="Default"/>
+  <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="43" y="67" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="47" codecName="Default"/>
+  <SessionOpenFile x="73" y="33" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="1" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="4" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.h" debugPath="reflekto_timers.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="18" y="22" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="1" top="14" codecName="Default"/>
+  <SessionOpenFile x="0" y="9" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.h" debugPath="reflekto_data_collector.h" selected="0" top="4" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/ble/nrf_ble_qwr" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
