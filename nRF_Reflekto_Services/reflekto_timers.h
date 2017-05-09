@@ -8,7 +8,8 @@ static time_t current_unix_seconds;
 static void test_time_conv(time_t unix_time);
 static void clock_timer_handler(void *p_context);
 void timers_init(void);
-void application_timers_start(void);
+void disconnect_timer_start(void);
+void disconnect_timer_stop(void);
 void set_current_time(time_t new_time);
 
 #endif

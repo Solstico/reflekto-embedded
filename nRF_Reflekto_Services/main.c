@@ -64,9 +64,16 @@ static nrf_ble_gatt_t m_gatt;                                                   
 
 #define BLE_UUID_ADV 0x6973 // UUID only for advertising "this is reflekto"
 static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_ADV, BLE_UUID_TYPE_VENDOR_BEGIN}}; /**< Universally unique service identifiers. */
-static ble_uuid_t m_scrsp_uuids[] = {{BLE_UUID_TIME_SERVICE, BLE_UUID_TYPE_BLE},{BLE_UUID_WEATHER_SERVICE, BLE_UUID_TYPE_BLE}};
+static ble_uuid_t m_scrsp_uuids[] = {{BLE_UUID_TIME_SERVICE, BLE_UUID_TYPE_BLE}};
 static ble_os_t our_time_service;
 static ble_os_t our_weather_service;
+static ble_os_t our_personal_info_service;
+static ble_os_t our_configuration_service;
+bool has_permission_to_write = false;
+
+void disconnect_peripheral(){
+    sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+}
 
 static void advertising_start(bool erase_bonds);
 
@@ -268,6 +275,8 @@ static void services_init(void)
 {
       time_service_init(&our_time_service);
       weather_service_init(&our_weather_service);
+      personal_info_service_init(&our_personal_info_service);
+      configuration_service_init(&our_configuration_service);
     /* YOUR_JOB: Add code to initialize the services used by the application.
        ret_code_t                         err_code;
        ble_xxs_init_t                     xxs_init;
@@ -411,6 +420,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             NRF_LOG_INFO("Disconnected.\r\n");
             err_code = bsp_indication_set(BSP_INDICATE_IDLE);
             APP_ERROR_CHECK(err_code);
+            disconnect_timer_stop();
             break; // BLE_GAP_EVT_DISCONNECTED
 
         case BLE_GAP_EVT_CONNECTED:
@@ -418,6 +428,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            disconnect_timer_start(); // disconnect after 1 second if no password
             break; // BLE_GAP_EVT_CONNECTED
 
         case BLE_GATTC_EVT_TIMEOUT:
@@ -497,8 +508,12 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
     nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
+
+    configuration_service_on_ble_evt(&our_configuration_service, p_ble_evt);
     time_service_on_ble_evt(&our_time_service, p_ble_evt);
     weather_service_on_ble_evt(&our_weather_service, p_ble_evt);
+    personal_info_service_on_ble_evt(&our_personal_info_service, p_ble_evt);
+
 }
 
 
@@ -544,7 +559,7 @@ static void ble_stack_init(void)
     ble_cfg_t ble_cfg;
 
     memset(&ble_cfg, 0, sizeof(ble_cfg));
-    ble_cfg.common_cfg.vs_uuid_cfg.vs_uuid_count = 3;
+    ble_cfg.common_cfg.vs_uuid_cfg.vs_uuid_count = 14;
     err_code = sd_ble_cfg_set(BLE_COMMON_CFG_VS_UUID, &ble_cfg, ram_start);
     APP_ERROR_CHECK(err_code);
 
@@ -747,6 +762,7 @@ static void advertising_start(bool erase_bonds)
  */
 int main(void)
 {
+    has_permission_to_write = false;
     bool erase_bonds;
     // Initialize.
     log_init();
@@ -762,7 +778,6 @@ int main(void)
 
     // Start execution.
     NRF_LOG_INFO("Template example started.\r\n");
-    //application_timers_start();
 
     advertising_start(erase_bonds);
     // Enter main loop.
