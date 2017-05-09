@@ -27,6 +27,7 @@ typedef enum {
     WORK_ETA,
     NAME,
     HELLO,
+    COMPLIMENT
 } string_type;
 
 extern collected_string weather_city;

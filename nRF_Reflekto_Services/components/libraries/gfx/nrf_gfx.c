@@ -40,8 +40,6 @@
 
 #include "sdk_common.h"
 
-#if NRF_MODULE_ENABLED(NRF_GFX)
-
 #include "nrf_gfx.h"
 #include <stdlib.h>
 #include "app_util_platform.h"
@@ -624,5 +622,4 @@ uint16_t nrf_gfx_width_get(nrf_lcd_t const * p_instance)
     return p_instance->p_lcd_cb->width;
 }
 
-#endif //NRF_MODULE_ENABLED(NRF_GFX)
 

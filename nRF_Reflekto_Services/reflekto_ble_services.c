@@ -28,13 +28,13 @@ static void on_time_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
 	SEGGER_RTT_printf(0, "UUID: %x\n", p_evt_write->uuid.uuid);
 
         time_t received_time = 0;
-        received_time |= p_evt_write->data[0];
-        received_time <<= 8;
-        received_time |= p_evt_write->data[1];
+        received_time |= p_evt_write->data[3];
         received_time <<= 8;
         received_time |= p_evt_write->data[2];
         received_time <<= 8;
-        received_time |= p_evt_write->data[3];
+        received_time |= p_evt_write->data[1];
+        received_time <<= 8;
+        received_time |= p_evt_write->data[0];
         SEGGER_RTT_printf(0, "Received time: %d", received_time);
         if(received_time > 1494000000) //check if time is after 5.5.2017
           set_current_time(received_time);
@@ -87,6 +87,9 @@ static void on_string_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
             break;
         case BLE_UUID_PERSONAL_WORK_ETA_CHAR:
             update_collected_string(p_evt_write->data,p_evt_write->len,WORK_ETA);
+            break;
+        case BLE_UUID_PERSONAL_COMPLIMENT:
+            update_collected_string(p_evt_write->data,p_evt_write->len,COMPLIMENT);
             break;
         default:
             break;
@@ -247,6 +250,8 @@ void personal_info_service_init(ble_os_t * p_our_service)
     char_uuid.uuid = BLE_UUID_PERSONAL_NAME_CHAR;
     string_char_add(p_our_service,char_uuid);
     char_uuid.uuid = BLE_UUID_PERSONAL_HELLO_CHAR;
+    string_char_add(p_our_service,char_uuid);
+    char_uuid.uuid = BLE_UUID_PERSONAL_COMPLIMENT;
     string_char_add(p_our_service,char_uuid);
 
 }

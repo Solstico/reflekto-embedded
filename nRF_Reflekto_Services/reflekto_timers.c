@@ -9,7 +9,7 @@ APP_TIMER_DEF(disconnect_timer);
 #define TIME_TO_CLEAR 25 // Time to clear the screen in seconds
 
 #define CLOCK_INTERVAL APP_TIMER_TICKS(1000)
-#define DISCONNECT_INTERVAL APP_TIMER_TICKS(2000)
+#define DISCONNECT_INTERVAL APP_TIMER_TICKS(5000)
 
 extern time_t current_unix_seconds;
 
@@ -22,6 +22,7 @@ static void clock_timer_handler(void * p_context)
 {
     extern time_t current_unix_seconds;
     current_unix_seconds++;
+    SEGGER_RTT_printf(0,"Current timestamp: %d", current_unix_seconds);
     test_time_conv(current_unix_seconds);
 }
 
@@ -45,9 +46,9 @@ void timers_init(void)
 
 void disconnect_timer_start(void)
 {
-    ret_code_t err_code;
-    err_code = app_timer_start(disconnect_timer, DISCONNECT_INTERVAL, NULL);
-    APP_ERROR_CHECK(err_code);
+    //ret_code_t err_code;
+    //err_code = app_timer_start(disconnect_timer, DISCONNECT_INTERVAL, NULL);
+    //APP_ERROR_CHECK(err_code);
 }
 
 void disconnect_timer_stop(void)
