@@ -377,8 +377,9 @@ ret_code_t nrf_gfx_circle_draw(nrf_lcd_t const * p_instance,
 ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
                              nrf_gfx_rect_t const * p_rect,
                              uint16_t thickness,
-                             uint32_t color,
-                             bool fill)
+                             uint32_t border_color,
+                             bool fill,
+                             uint32_t fill_color)
 {
     ASSERT(p_instance != NULL);
     ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);
@@ -405,10 +406,9 @@ ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
                   p_rect->y,
                   p_rect->width,
                   p_rect->height,
-                  color);
+                  fill_color);
     }
-    else
-    {
+    
         nrf_gfx_line_t line;
 
         // Top horizontal line.
@@ -417,26 +417,26 @@ ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
         line.x_end = p_rect->x + p_rect->width;
         line.y_end = p_rect->y;
         line.thickness = thickness;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
         // Bottom horizontal line.
         line.x_start = p_rect->x;
         line.y_start = p_rect->y + rect_height;
         line.x_end = p_rect->x + p_rect->width;
         line.y_end = p_rect->y + rect_height;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
         // Left vertical line.
         line.x_start = p_rect->x;
         line.y_start = p_rect->y + thickness;
         line.x_end = p_rect->x;
         line.y_end = p_rect->y + rect_height;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
         // Right vertical line.
         line.x_start = p_rect->x + rect_width;
         line.y_start = p_rect->y + thickness;
         line.x_end = p_rect->x + rect_width;
         line.y_end = p_rect->y + rect_height;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
-    }
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
+    
 
     return NRF_SUCCESS;
 }

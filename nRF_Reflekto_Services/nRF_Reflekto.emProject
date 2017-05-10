@@ -43,6 +43,9 @@
       </file>
       <file file_name="reflekto_data_collector.c" />
       <file file_name="reflekto_display.c" />
+      <file file_name="reflekto_lib.c">
+        <configuration Name="nrf52832_xxaa" build_exclude_from_build="Yes" />
+      </file>
     </folder>
     <folder Name="Board Definition">
       <file file_name="./components/boards/boards.c" />
@@ -109,6 +112,11 @@
     </folder>
     <folder Name="nRF_Drivers_External">
       <file file_name="components/drivers_ext/ili9341/ili9341.c" />
+    </folder>
+    <folder Name="nRF_fonts">
+      <file file_name="external/thedotfactory_fonts/serif16pts.c" />
+      <file file_name="external/thedotfactory_fonts/serif8pts.c" />
+      <file file_name="serif_time_20pts.c" />
     </folder>
   </project>
   <configuration Name="Internal" hidden="Yes" />

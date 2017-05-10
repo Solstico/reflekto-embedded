@@ -218,8 +218,9 @@ ret_code_t nrf_gfx_circle_draw(nrf_lcd_t const * p_instance,
 ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
                              nrf_gfx_rect_t const * p_rect,
                              uint16_t thickness,
-                             uint32_t color,
-                             bool fill);
+                             uint32_t border_color,
+                             bool fill,
+                             uint32_t fill_color);
 
 /**
  * @brief Function for filling the screen with selected color.

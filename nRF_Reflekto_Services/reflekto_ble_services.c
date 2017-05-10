@@ -108,6 +108,7 @@ static void configuration_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
     ) 
         {
             has_permission_to_write = true;
+            disconnect_timer_stop();
             return;
         }
     if( p_evt_write->data[0] == 6 && p_evt_write->data[1] == 6 && p_evt_write->data[2] == 6)
