@@ -61,13 +61,17 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile x="27" y="788" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="771" codecName="Default"/>
-  <SessionOpenFile x="36" y="110" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="75" codecName="Default"/>
-  <SessionOpenFile x="0" y="2" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="7" codecName="Default"/>
-  <SessionOpenFile x="32" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="4" codecName="Default"/>
+  <SessionOpenFile x="5" y="750" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="745" codecName="Default"/>
+  <SessionOpenFile x="74" y="67" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="60" codecName="Default"/>
+  <SessionOpenFile x="0" y="2" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="1" codecName="Default"/>
+  <SessionOpenFile x="0" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="33" codecName="Default"/>
   <SessionOpenFile x="0" y="11" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.h" debugPath="reflekto_timers.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="26" y="3" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="1" top="0" codecName="Default"/>
-  <SessionOpenFile x="0" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.c" debugPath="reflekto_display.c" selected="0" top="38" codecName="Default"/>
+  <SessionOpenFile x="17" y="70" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="0" top="27" codecName="Default"/>
+  <SessionOpenFile x="50" y="142" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.c" debugPath="reflekto_display.c" selected="1" top="89" codecName="Default"/>
+  <SessionOpenFile x="16" y="34" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.h" debugPath="reflekto_display.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="5" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.h" debugPath="reflekto_data_collector.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="1642" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/serif8pts.c" debugPath="external/thedotfactory_fonts/serif8pts.c" selected="0" top="1582" codecName="Default"/>
+  <SessionOpenFile x="21" y="591" useTextEdit="1" useBinaryEdit="0" left="0" path="components/libraries/gfx/nrf_gfx.c" debugPath="components/libraries/gfx/nrf_gfx.c" selected="0" top="555" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/external/thedotfactory_fonts" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

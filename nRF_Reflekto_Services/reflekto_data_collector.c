@@ -1,5 +1,6 @@
 #include "reflekto_data_collector.h"
 #include "SEGGER_RTT.h"
+#include "reflekto_display.h"
 
 collected_string weather_city = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 collected_string weather_wind  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
@@ -63,6 +64,7 @@ void update_collected_string(uint8_t in_data[20], uint8_t length, string_type ty
                 updated_string->is_completed = true;
                 updated_string->data[updated_string->collected_chars]='\0';
                 SEGGER_RTT_printf(0,"String updated: %s \nChars: %d \nUpdate %d\nType: %d\n", updated_string->data, updated_string->collected_chars, updated_string->needs_to_be_printed, type);
+                update_gui(type);
                 break;
             default:
                 if(updated_string->data[updated_string->collected_chars] != in_data[i])

@@ -42,7 +42,9 @@
         <configuration Name="Common" gcc_optimization_level="Level 3" />
       </file>
       <file file_name="reflekto_data_collector.c" />
-      <file file_name="reflekto_display.c" />
+      <file file_name="reflekto_display.c">
+        <configuration Name="Common" gcc_debugging_level="Level 2" />
+      </file>
       <file file_name="reflekto_lib.c">
         <configuration Name="nrf52832_xxaa" build_exclude_from_build="Yes" />
       </file>

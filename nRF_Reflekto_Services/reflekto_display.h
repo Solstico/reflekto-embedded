@@ -2,6 +2,7 @@
 #define  REFLEKTO_DISPLAY_H__
 
 #include "reflekto_data_collector.h"
+
 #include "nrf_gfx.h"
 #include "nrf52.h"
 #include "nrf_gpio.h"
@@ -11,6 +12,7 @@
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_font.h"
+
 
 #define ILI9341_TFTWIDTH    240
 #define ILI9341_TFTHEIGHT   320
@@ -28,17 +30,15 @@ typedef enum{
     COMPLIMENT_G,
     CALENDAR_G,
     CLR_SCR
-}gui_type;
+}clear_gui_type;
 
-void clear_GUI(gui_type type);
-void print_actual_time(char string_to_print[18]);
-void print_actual_weather(char string_to_print[18]);
-void print_hello(char string_to_print[18]);
-void print_name(char string_to_print[18]);
-void print_additional_weather(char string_to_print[18]);
-void print_weather_advise(char string_to_print[18]);
-void print_sex(char string_to_print[18]);
-void print_compliment(char string_to_print[18]);
-void print_next_event(char string_to_print[18]);
+void update_gui(string_type type);
+void clear_GUI(clear_gui_type type);
+
+void update_weather();
+void update_calendar();
+void update_emails();
+void update_work_eta();
+void update_hello();
 
 #endif
