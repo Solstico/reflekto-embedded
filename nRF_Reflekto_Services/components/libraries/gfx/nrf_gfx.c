@@ -39,7 +39,6 @@
  */
 
 #include "sdk_common.h"
-
 #include "nrf_gfx.h"
 #include <stdlib.h>
 #include "app_util_platform.h"
@@ -476,6 +475,31 @@ ret_code_t nrf_gfx_bmp565_draw(nrf_lcd_t const * p_instance,
         }
     }
 
+    return NRF_SUCCESS;
+}
+
+ret_code_t nrf_gfx_bitmap_draw(nrf_lcd_t const * p_instance,
+                               uint8_t width, uint8_t height,
+                               uint8_t x, uint8_t y,
+                               uint8_t const *img_buf)
+{
+    ASSERT(p_instance != NULL);
+    ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);
+    ASSERT(img_buf != NULL);
+    uint8_t pixel=0;
+    for(uint8_t i = 0; i < height; i++)
+    {
+        for(uint8_t j = 0; j < width; j++)
+        {
+            for(int8_t k = 7; k >= 0; k--)
+            {
+                pixel=img_buf[i*width+j];
+                pixel >>= k;
+                pixel &= 0x01;
+                if(pixel) pixel_draw(p_instance, x + j*8+7-k, y + i, 0xFFFF);
+            }
+        }
+    }
     return NRF_SUCCESS;
 }
 

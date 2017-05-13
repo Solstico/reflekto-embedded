@@ -786,9 +786,6 @@ int main(void)
     advertising_start(erase_bonds);
     // Enter main loop.
     SEGGER_RTT_printf(0,"End of initial\n");
-    char * eoi = "10 : 11";
-    text_print(eoi, 30, 30, 5);
-
     for (;;)
     {
         if (NRF_LOG_PROCESS() == false)

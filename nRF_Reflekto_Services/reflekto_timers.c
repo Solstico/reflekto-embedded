@@ -3,6 +3,10 @@
 #include "app_error.h"
 #include "SEGGER_RTT.h"
 #include "reflekto_ble_services.h"
+#include "reflekto_display.h"
+
+time_t current_unix_seconds;
+struct tm* local_time;
 
 APP_TIMER_DEF(clock_timer);
 APP_TIMER_DEF(disconnect_timer);
@@ -11,19 +15,16 @@ APP_TIMER_DEF(disconnect_timer);
 #define CLOCK_INTERVAL APP_TIMER_TICKS(1000)
 #define DISCONNECT_INTERVAL APP_TIMER_TICKS(2000)
 
-extern time_t current_unix_seconds;
-
-static void test_time_conv(time_t unix_time){
-    struct tm* local_time=localtime(&unix_time);
+static void time_convert_and_update(){
+    local_time = localtime(&current_unix_seconds);
     SEGGER_RTT_printf(0, " %d %d %d\n",local_time->tm_hour,local_time->tm_min,local_time->tm_sec);
+    update_timer();
 }
 
 static void clock_timer_handler(void * p_context)
 {
-    extern time_t current_unix_seconds;
     current_unix_seconds++;
-    SEGGER_RTT_printf(0,"Current timestamp: %d", current_unix_seconds);
-    test_time_conv(current_unix_seconds);
+    time_convert_and_update();
 }
 
 static void disconnect_timer_handler(void * p_context)

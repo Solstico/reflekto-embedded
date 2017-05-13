@@ -14,9 +14,9 @@
 #include "nrf_font.h"
 
 
-#define ILI9341_TFTWIDTH    240
-#define ILI9341_TFTHEIGHT   320
-
+#define TFTWIDTH    320
+#define TFTHEIGHT   240
+#define IMGWIDTH    64
 void gfx_initialization(void);
 void background_set(void);
 void screen_clear(void);
@@ -32,10 +32,26 @@ typedef enum{
     CLR_SCR
 }clear_gui_type;
 
+typedef enum{
+    CLEAR_DAY,
+    CLEAR_NIGHT,
+    CLOUDY,
+    FOG,
+    PARTLY_CLOUDLY_DAY,
+    PARTLY_CLOUDLY_NIGHT,
+    RAIN,
+    SLEET,
+    SNOW,
+    WIND_I
+}weather_icon;
+
 void update_gui(string_type type);
 void clear_GUI(clear_gui_type type);
 
+static void print_weather_icon(weather_icon icon);
 void update_weather();
+
+void update_timer();
 void update_calendar();
 void update_emails();
 void update_work_eta();

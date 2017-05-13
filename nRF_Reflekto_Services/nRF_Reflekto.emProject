@@ -120,6 +120,9 @@
       <file file_name="external/thedotfactory_fonts/serif8pts.c" />
       <file file_name="serif_time_20pts.c" />
     </folder>
+    <folder Name="nRF_Weather_Icons">
+      <file file_name="weather_icons.c" />
+    </folder>
   </project>
   <configuration Name="Internal" hidden="Yes" />
   <configuration Name="nrf52832_xxaa" inherited_configurations="Internal" />

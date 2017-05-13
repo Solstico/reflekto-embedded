@@ -3,7 +3,8 @@
 
 #include <time.h>
 
-static time_t current_unix_seconds;
+extern time_t current_unix_seconds;
+extern struct tm* local_time;
 
 static void test_time_conv(time_t unix_time);
 static void clock_timer_handler(void *p_context);

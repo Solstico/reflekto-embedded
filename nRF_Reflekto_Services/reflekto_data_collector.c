@@ -9,6 +9,7 @@ collected_string weather_advice  = {.data = "", .collected_chars = 0, .is_comple
 collected_string next_calendar_event  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 collected_string unread_emails  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 collected_string work_eta  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
+
 collected_string name  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 collected_string hello  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 collected_string compliment  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
