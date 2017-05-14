@@ -31,6 +31,8 @@
 // Reflekto includes:
 #include "reflekto_ble_services.h"
 #include "reflekto_timers.h"
+#include "nrf_gfx.h"
+#include "reflekto_display.h"
 
 #define APP_FEATURE_NOT_SUPPORTED       BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2    /**< Reply when unsupported features are requested. */
 
@@ -72,7 +74,8 @@ static ble_os_t our_configuration_service;
 bool has_permission_to_write = false;
 
 void disconnect_peripheral(){
-    sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+    scr_clr_timer_start();
+    if(m_conn_handle!=BLE_CONN_HANDLE_INVALID) sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
 }
 
 static void advertising_start(bool erase_bonds);
@@ -559,7 +562,7 @@ static void ble_stack_init(void)
     ble_cfg_t ble_cfg;
 
     memset(&ble_cfg, 0, sizeof(ble_cfg));
-    ble_cfg.common_cfg.vs_uuid_cfg.vs_uuid_count = 14;
+    ble_cfg.common_cfg.vs_uuid_cfg.vs_uuid_count = 15;
     err_code = sd_ble_cfg_set(BLE_COMMON_CFG_VS_UUID, &ble_cfg, ram_start);
     APP_ERROR_CHECK(err_code);
 
@@ -762,6 +765,8 @@ static void advertising_start(bool erase_bonds)
  */
 int main(void)
 {
+    gfx_initialization();
+    screen_clear();
     has_permission_to_write = false;
     bool erase_bonds;
     // Initialize.

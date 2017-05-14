@@ -2121,7 +2121,7 @@
 // <e> SPI_ENABLED - nrf_drv_spi - SPI/SPIM peripheral driver
 //==========================================================
 #ifndef SPI_ENABLED
-#define SPI_ENABLED 0
+#define SPI_ENABLED 1
 #endif
 #if  SPI_ENABLED
 // <o> SPI_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
@@ -2144,7 +2144,7 @@
 // <e> SPI0_ENABLED - Enable SPI0 instance
 //==========================================================
 #ifndef SPI0_ENABLED
-#define SPI0_ENABLED 0
+#define SPI0_ENABLED 1
 #endif
 #if  SPI0_ENABLED
 // <q> SPI0_USE_EASY_DMA  - Use EasyDMA
@@ -3975,3 +3975,98 @@
 // <<< end of configuration section >>>
 #endif //SDK_CONFIG_H
 
+//==========================================================
+
+// <h> nRF_Drivers_External 
+
+//==========================================================
+// <e> ILI9341_ENABLED - ili9341 - ILI9341 TFT controller
+//==========================================================
+#ifndef ILI9341_ENABLED
+#define ILI9341_ENABLED 1
+#endif
+#if  ILI9341_ENABLED
+// <h> SPI_CONFIGURATION - SPI configuration
+
+//==========================================================
+// <o> ILI9341_SCK_PIN - Pin number  <0-47> 
+
+
+#ifndef ILI9341_SCK_PIN
+#define ILI9341_SCK_PIN 25
+#endif
+
+// <o> ILI9341_MISO_PIN - Pin number  <0-47> 
+
+
+#ifndef ILI9341_MISO_PIN
+#define ILI9341_MISO_PIN 24
+#endif
+
+// <o> ILI9341_MOSI_PIN - Pin number  <0-47> 
+
+
+#ifndef ILI9341_MOSI_PIN
+#define ILI9341_MOSI_PIN 23
+#endif
+
+// <o> ILI9341_SS_PIN - Pin number  <0-47> 
+
+
+#ifndef ILI9341_SS_PIN
+#define ILI9341_SS_PIN 22
+#endif
+
+// <o> ILI9341_IRQ_PRIORITY  - Interrupt priority
+ 
+
+// <i> Priorities 0,2 (nRF51) and 0,1,4,5 (nRF52) are reserved for SoftDevice
+// <0=> 0 (highest) 
+// <1=> 1 
+// <2=> 2 
+// <3=> 3 
+// <4=> 4 
+// <5=> 5 
+// <6=> 6 
+// <7=> 7 
+
+#ifndef ILI9341_IRQ_PRIORITY
+#define ILI9341_IRQ_PRIORITY 3
+#endif
+
+// </h> 
+//==========================================================
+
+// <o> ILI9341_SPI_INSTANCE
+ 
+// <0=> 0 
+// <1=> 1 
+// <2=> 2 
+
+#ifndef ILI9341_SPI_INSTANCE
+#define ILI9341_SPI_INSTANCE 0
+#endif
+
+// <o> ILI9341_DC_PIN - Pin number  <0-47> 
+
+
+#ifndef ILI9341_DC_PIN
+#define ILI9341_DC_PIN 20
+#endif
+
+// <o> ILI9341_HEIGHT - ILI9341 height  <0-320> 
+
+
+#ifndef ILI9341_HEIGHT
+#define ILI9341_HEIGHT 320
+#endif
+
+// <o> ILI9341_WIDTH - ILI9341 width  <0-240> 
+
+
+#ifndef ILI9341_WIDTH
+#define ILI9341_WIDTH 240
+#endif
+
+#endif //ILI9341_ENABLED
+// </e>

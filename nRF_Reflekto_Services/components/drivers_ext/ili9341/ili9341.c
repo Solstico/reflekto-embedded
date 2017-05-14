@@ -40,8 +40,6 @@
 
 #include "sdk_common.h"
 
-#if NRF_MODULE_ENABLED(ILI9341)
-
 #include "nrf_lcd.h"
 #include "nrf_drv_spi.h"
 #include "nrf_delay.h"
@@ -393,5 +391,3 @@ const nrf_lcd_t nrf_lcd_ili9341 = {
     .lcd_display_invert = ili9341_display_invert,
     .p_lcd_cb = &ili9341_cb
 };
-
-#endif // NRF_MODULE_ENABLED(ILI9341)

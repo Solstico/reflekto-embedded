@@ -39,9 +39,6 @@
  */
 
 #include "sdk_common.h"
-
-#if NRF_MODULE_ENABLED(NRF_GFX)
-
 #include "nrf_gfx.h"
 #include <stdlib.h>
 #include "app_util_platform.h"
@@ -379,8 +376,9 @@ ret_code_t nrf_gfx_circle_draw(nrf_lcd_t const * p_instance,
 ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
                              nrf_gfx_rect_t const * p_rect,
                              uint16_t thickness,
-                             uint32_t color,
-                             bool fill)
+                             uint32_t border_color,
+                             bool fill,
+                             uint32_t fill_color)
 {
     ASSERT(p_instance != NULL);
     ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);
@@ -407,10 +405,9 @@ ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
                   p_rect->y,
                   p_rect->width,
                   p_rect->height,
-                  color);
+                  fill_color);
     }
-    else
-    {
+    
         nrf_gfx_line_t line;
 
         // Top horizontal line.
@@ -419,26 +416,26 @@ ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
         line.x_end = p_rect->x + p_rect->width;
         line.y_end = p_rect->y;
         line.thickness = thickness;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
         // Bottom horizontal line.
         line.x_start = p_rect->x;
         line.y_start = p_rect->y + rect_height;
         line.x_end = p_rect->x + p_rect->width;
         line.y_end = p_rect->y + rect_height;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
         // Left vertical line.
         line.x_start = p_rect->x;
         line.y_start = p_rect->y + thickness;
         line.x_end = p_rect->x;
         line.y_end = p_rect->y + rect_height;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
         // Right vertical line.
         line.x_start = p_rect->x + rect_width;
         line.y_start = p_rect->y + thickness;
         line.x_end = p_rect->x + rect_width;
         line.y_end = p_rect->y + rect_height;
-        (void)nrf_gfx_line_draw(p_instance, &line, color);
-    }
+        (void)nrf_gfx_line_draw(p_instance, &line, border_color);
+    
 
     return NRF_SUCCESS;
 }
@@ -478,6 +475,31 @@ ret_code_t nrf_gfx_bmp565_draw(nrf_lcd_t const * p_instance,
         }
     }
 
+    return NRF_SUCCESS;
+}
+
+ret_code_t nrf_gfx_bitmap_draw(nrf_lcd_t const * p_instance,
+                               uint8_t width, uint8_t height,
+                               uint8_t x, uint8_t y,
+                               uint8_t const *img_buf)
+{
+    ASSERT(p_instance != NULL);
+    ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);
+    ASSERT(img_buf != NULL);
+    uint8_t pixel=0;
+    for(uint8_t i = 0; i < height; i++)
+    {
+        for(uint8_t j = 0; j < width; j++)
+        {
+            for(int8_t k = 7; k >= 0; k--)
+            {
+                pixel=img_buf[i*width+j];
+                pixel >>= k;
+                pixel &= 0x01;
+                if(pixel) pixel_draw(p_instance, x + j*8+7-k, y + i, 0xFFFF);
+            }
+        }
+    }
     return NRF_SUCCESS;
 }
 
@@ -574,12 +596,13 @@ ret_code_t nrf_gfx_print(nrf_lcd_t const * p_instance,
 
     for (size_t i = 0; string[i] != '\0' ; i++)
     {
+        
         if (string[i] == '\n')
         {
             x = p_point->x;
             y += p_font->height + p_font->height / 10;
         }
-        else
+        else if (string[i] > 31 && string [i] < 127)
         {
             write_character(p_instance, p_font, (uint8_t)string[i], &x, y, font_color);
         }
@@ -624,5 +647,4 @@ uint16_t nrf_gfx_width_get(nrf_lcd_t const * p_instance)
     return p_instance->p_lcd_cb->width;
 }
 
-#endif //NRF_MODULE_ENABLED(NRF_GFX)
 
