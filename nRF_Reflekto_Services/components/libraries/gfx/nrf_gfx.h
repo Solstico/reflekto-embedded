@@ -218,8 +218,9 @@ ret_code_t nrf_gfx_circle_draw(nrf_lcd_t const * p_instance,
 ret_code_t nrf_gfx_rect_draw(nrf_lcd_t const * p_instance,
                              nrf_gfx_rect_t const * p_rect,
                              uint16_t thickness,
-                             uint32_t color,
-                             bool fill);
+                             uint32_t border_color,
+                             bool fill,
+                             uint32_t fill_color);
 
 /**
  * @brief Function for filling the screen with selected color.
@@ -244,7 +245,10 @@ void nrf_gfx_screen_fill(nrf_lcd_t const * p_instance, uint32_t color);
 ret_code_t nrf_gfx_bmp565_draw(nrf_lcd_t const * p_instance,
                                nrf_gfx_rect_t const * p_rect,
                                uint16_t const * img_buf);
-
+ret_code_t nrf_gfx_bitmap_draw(nrf_lcd_t const * p_instance,
+                               uint8_t width, uint8_t height,
+                               uint8_t x, uint8_t y,
+                               uint8_t const * img_buf);
 /**
  * @brief Function for drawing an image from a .bmp file.
  *

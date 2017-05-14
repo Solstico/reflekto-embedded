@@ -3,6 +3,8 @@
 
 #include "reflekto_ble_services.h"
 #include "reflekto_timers.h"
+
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
@@ -27,6 +29,7 @@ typedef enum {
     WORK_ETA,
     NAME,
     HELLO,
+    COMPLIMENT
 } string_type;
 
 extern collected_string weather_city;
@@ -39,6 +42,7 @@ extern collected_string work_eta;
 
 extern collected_string name;
 extern collected_string hello;
+extern collected_string compliment;
 
 void update_collected_string(uint8_t in_data[20], uint8_t length , string_type type);
 

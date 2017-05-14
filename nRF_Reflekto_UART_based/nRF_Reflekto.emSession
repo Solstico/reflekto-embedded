@@ -56,7 +56,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile x="35" y="180" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="156" codecName="Default"/>
+  <SessionOpenFile x="0" y="180" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="156" codecName="Default"/>
   <SessionOpenFile x="0" y="46" useTextEdit="1" useBinaryEdit="0" left="0" path="components/device/nrf.h" debugPath="components/device/nrf.h" selected="0" top="25" codecName="Default"/>
   <SessionOpenFile x="0" y="38" useTextEdit="1" useBinaryEdit="0" left="0" path="components/ble/ble_advertising/ble_advertising.c" debugPath="components/ble/ble_advertising/ble_advertising.c" selected="0" top="182" codecName="Default"/>
   <SessionOpenFile x="0" y="127" useTextEdit="1" useBinaryEdit="0" left="0" path="components/ble/common/ble_advdata.h" debugPath="components/ble/common/ble_advdata.h" selected="0" top="109" codecName="Default"/>
