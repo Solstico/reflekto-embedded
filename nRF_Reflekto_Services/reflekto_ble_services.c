@@ -22,7 +22,6 @@ static void on_time_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
     SEGGER_RTT_WriteString(0, "Time was written\n"); // Print message to RTT to the application flow
     if(p_evt_write->len > 0)
     {
-	//memset(&(p_evt_write->data[p_evt_write->len]),0,(20-p_evt_write->len)*sizeof(p_evt_write->data[0]));
 	SEGGER_RTT_printf(0, "%d\n",p_evt_write->len);
 	SEGGER_RTT_printf(0, "%\n",p_evt_write->data);
 	SEGGER_RTT_printf(0, "UUID: %x\n", p_evt_write->uuid.uuid);
@@ -109,6 +108,7 @@ static void configuration_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
         {
             has_permission_to_write = true;
             disconnect_timer_stop();
+            scr_clr_timer_stop();
             return;
         }
     if( p_evt_write->data[0] == 6 && p_evt_write->data[1] == 6 && p_evt_write->data[2] == 6)

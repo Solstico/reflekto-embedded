@@ -12,5 +12,7 @@ void timers_init(void);
 void disconnect_timer_start(void);
 void disconnect_timer_stop(void);
 void set_current_time(time_t new_time);
+void scr_clr_timer_start(void);
+void scr_clr_timer_stop(void);
 
 #endif

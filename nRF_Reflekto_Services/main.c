@@ -74,6 +74,7 @@ static ble_os_t our_configuration_service;
 bool has_permission_to_write = false;
 
 void disconnect_peripheral(){
+    scr_clr_timer_start();
     if(m_conn_handle!=BLE_CONN_HANDLE_INVALID) sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
 }
 

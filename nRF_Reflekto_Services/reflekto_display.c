@@ -60,6 +60,17 @@ void text_print(char *text_in, uint16_t posX, uint16_t posY, uint8_t size)
 void screen_clear(void)
 {
     nrf_gfx_screen_fill(p_lcd, BLACK);
+    weather_city.data[0]='\0';
+    weather_wind.data[0]='\0';
+    weather_wind.data[0]='\0';
+
+    next_calendar_event.data[0]='\0';
+    unread_emails.data[0]='\0';
+    work_eta.data[0]='\0';
+
+    name.data[0]='\0';
+    hello.data[0]='\0';
+    compliment.data[0]='\0';
 }
 
 void update_gui(string_type type)
@@ -133,17 +144,23 @@ void clear_GUI(clear_gui_type type)
 			case CALENDAR_G:
                             my_rect.x=0; my_rect.y=2*IMGWIDTH+56;
                             my_rect.width = TFTWIDTH; my_rect.height = 56; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,true,0x000);
+                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,true,0x0000);
                             break;
                         case WORK_ETA_G:
                             my_rect.x=0; my_rect.y=2*IMGWIDTH+4;
                             my_rect.width = TFTWIDTH; my_rect.height = 26; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,true,0x000);
+                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
+                            my_rect.x=0; my_rect.y=2*IMGWIDTH+4;
+                            my_rect.width = TFTWIDTH; my_rect.height = 53; 
+                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,false,0x000);
                             break;
                         case MAIL_G:
                             my_rect.x=0; my_rect.y=2*IMGWIDTH+30;
                             my_rect.width = TFTWIDTH; my_rect.height = 26; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,true,0x000);
+                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
+                            my_rect.x=0; my_rect.y=2*IMGWIDTH+4;
+                            my_rect.width = TFTWIDTH; my_rect.height = 53; 
+                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,false,0x000);
                             break;
 			case CLR_SCR:
                             screen_clear();
@@ -229,6 +246,8 @@ void update_weather()
 
     clear_GUI(WEATHER_G);
     uint8_t weather_i = weather_city.data[weather_city.collected_chars-1];
+    weather_i -= 48;
+    SEGGER_RTT_printf(0,"WEATHER ICON: %d\n", weather_i);
     switch (weather_i){
         case 1:
             print_weather_icon(CLEAR_DAY);
@@ -265,10 +284,10 @@ void update_weather()
             break;
     }
     //uncomment when icon ready
-    //weather_city.data[weather_city.collected_chars-1]='\0';
-    text_print(weather_city.data,3*IMGWIDTH+5,8,8);
-    //weather_city.data[weather_city.collected_chars-1]=weather_i;
-    text_print(weather_wind.data,3*IMGWIDTH+5,24,8);
+    weather_city.data[weather_city.collected_chars-1]='\0';//
+    text_print(weather_city.data,3*IMGWIDTH+8,8,8);
+    weather_city.data[weather_city.collected_chars-1]=weather_i+48;//
+    text_print(weather_wind.data,3*IMGWIDTH+8,24,8);
     uint16_t xpos=TFTWIDTH/2-weather_advice.collected_chars*3.2;
     text_print(weather_advice.data,xpos,IMGWIDTH+3,8);
 }
@@ -383,7 +402,7 @@ void update_timer()
     text_print(final,3,28,28);
     text_print(final_sec,90,41,16);
     SEGGER_RTT_printf(0,"final: %s, final_sec: %s \n",final,final_sec);
-    text_print(week_day,3,3,8);
+    text_print(week_day,3,5,8);
     prev_min = local_time->tm_min;
     prev_hour = local_time->tm_hour;
     prev_wday = local_time->tm_wday;
@@ -396,7 +415,7 @@ void update_calendar()
     if(!next_calendar_event.needs_to_be_printed) return;
     next_calendar_event.needs_to_be_printed = false;
     clear_GUI(CALENDAR_G);
-    text_print(next_calendar_event.data,5,2*IMGWIDTH+58,16);
+    text_print(next_calendar_event.data,8,2*IMGWIDTH+58,16);
 }
 
 void update_emails()
@@ -406,7 +425,7 @@ void update_emails()
     unread_emails.needs_to_be_printed = false;
     
     clear_GUI(MAIL_G);
-    text_print(unread_emails.data,5,2*IMGWIDTH+32,16);
+    text_print(unread_emails.data,8,2*IMGWIDTH+31,16);
 }
 
 void update_work_eta()
@@ -416,7 +435,7 @@ void update_work_eta()
     work_eta.needs_to_be_printed = false;
 
     clear_GUI(WORK_ETA_G);
-    text_print(work_eta.data,5,2*IMGWIDTH+6,16);
+    text_print(work_eta.data,8,2*IMGWIDTH+7,16);
 }
 
 void update_hello()
@@ -435,8 +454,8 @@ void update_hello()
     strcat(say_hello,", ");
     strcat(say_hello,name.data);
     clear_GUI(HELLO_G);
-    text_print(say_hello,5,IMGWIDTH+20,16);
-    text_print(compliment.data,5, IMGWIDTH+42,16);
+    text_print(say_hello,8,IMGWIDTH+20,16);
+    text_print(compliment.data,8, IMGWIDTH+42,16);
 
 }
 

@@ -10,10 +10,12 @@ struct tm* local_time;
 
 APP_TIMER_DEF(clock_timer);
 APP_TIMER_DEF(disconnect_timer);
-#define TIME_TO_CLEAR 25 // Time to clear the screen in seconds
+APP_TIMER_DEF(clear_screen_timer);
+#define TIME_TO_CLEAR 30 // Time to clear the screen in seconds
 
 #define CLOCK_INTERVAL APP_TIMER_TICKS(1000)
 #define DISCONNECT_INTERVAL APP_TIMER_TICKS(2000)
+#define CLEAR_SCREEN_INTERVAL APP_TIMER_TICKS(TIME_TO_CLEAR*1000)
 
 static void time_convert_and_update(){
     local_time = localtime(&current_unix_seconds);
@@ -33,6 +35,11 @@ static void disconnect_timer_handler(void * p_context)
     has_permission_to_write = false;
 }
 
+static void clear_screen_handler(void * p_context)
+{
+    screen_clear();
+}
+
 void timers_init(void)
 {
     // Initialize timer module.
@@ -44,8 +51,21 @@ void timers_init(void)
     // Create timers.
     err_code = app_timer_create(&clock_timer,APP_TIMER_MODE_REPEATED, clock_timer_handler);
     err_code = app_timer_create(&disconnect_timer,APP_TIMER_MODE_REPEATED, disconnect_timer_handler);
+    err_code = app_timer_create(&clear_screen_timer,APP_TIMER_MODE_SINGLE_SHOT, clear_screen_handler);
     APP_ERROR_CHECK(err_code);
     /* For every new timer needed, increase the value of the macro APP_TIMER_MAX_TIMERS by one.*/
+}
+
+void scr_clr_timer_start(void)
+{
+    ret_code_t err_code;
+    err_code = app_timer_start(clear_screen_timer, CLEAR_SCREEN_INTERVAL, NULL);
+    APP_ERROR_CHECK(err_code);
+}
+
+void scr_clr_timer_stop(void)
+{
+    app_timer_stop(clear_screen_timer);
 }
 
 void disconnect_timer_start(void)
