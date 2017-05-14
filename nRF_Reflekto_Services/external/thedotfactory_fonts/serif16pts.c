@@ -1,24 +1,3 @@
-/* Copyright (c) 2016 Eran Duchan
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 #include "nrf_font.h"
 // 
 //  Font data for Microsoft Sans Serif 16pt
@@ -2282,30 +2261,6 @@ const uint8_t microsoftSansSerif_16ptBitmaps[] =
 	0x00, 0x00, //           
 	0x00, 0x00, //           
 	0x00, 0x00, //           
-
-	// @3520 '°' (6 pixels wide)
-	0x00, //       
-	0x00, //       
-	0x78, //  #### 
-	0xCC, // ##  ##
-	0x84, // #    #
-	0x84, // #    #
-	0xCC, // ##  ##
-	0x78, //  #### 
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
-	0x00, //       
 };
 
 // Character descriptors for Microsoft Sans Serif 16pt
@@ -2376,6 +2331,7 @@ const FONT_CHAR_INFO microsoftSansSerif_16ptDescriptors[] =
 	{8, 2354}, 		// ^ 
 	{12, 2376}, 		// _ 
 	{4, 2420}, 		// ` 
+        {0,2420},   //hack for working lowercase characters
 	{9, 2442}, 		// a 
 	{9, 2486}, 		// b 
 	{9, 2530}, 		// c 
@@ -2406,66 +2362,15 @@ const FONT_CHAR_INFO microsoftSansSerif_16ptDescriptors[] =
 	{2, 3432}, 		// | 
 	{6, 3454}, 		// } 
 	{10, 3476}, 		// ~ 
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//  
-	{0, 0}, 		//   
-	{0, 0}, 		// ¡ 
-	{0, 0}, 		// ¢ 
-	{0, 0}, 		// £ 
-	{0, 0}, 		// ¤ 
-	{0, 0}, 		// ¥ 
-	{0, 0}, 		// ¦ 
-	{0, 0}, 		// § 
-	{0, 0}, 		// ¨ 
-	{0, 0}, 		// © 
-	{0, 0}, 		// ª 
-	{0, 0}, 		// « 
-	{0, 0}, 		// ¬ 
-	{0, 0}, 		// ­ 
-	{0, 0}, 		// ® 
-	{0, 0}, 		// ¯ 
-	{6, 3520}, 		// ° 
 };
 
 // Font information for Microsoft Sans Serif 16pt
 const FONT_INFO microsoftSansSerif_16ptFontInfo =
 {
-    17,
-    '!',
-    '~',
-    2,
-    microsoftSansSerif_16ptDescriptors,
-    microsoftSansSerif_16ptBitmaps
+	22, //  Character height
+	'!', //  Start character
+	'~', //  End character
+	2, //  Width, in pixels, of space character
+	microsoftSansSerif_16ptDescriptors, //  Character descriptor array
+	microsoftSansSerif_16ptBitmaps, //  Character bitmap array
 };
-

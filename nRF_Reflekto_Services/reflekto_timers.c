@@ -36,6 +36,9 @@ static void disconnect_timer_handler(void * p_context)
 void timers_init(void)
 {
     // Initialize timer module.
+    prev_hour= 255;
+    prev_min = 255;
+    prev_wday= 255;
     ret_code_t err_code = app_timer_init();
     APP_ERROR_CHECK(err_code);
     // Create timers.

@@ -42,6 +42,7 @@ extern collected_string work_eta;
 
 extern collected_string name;
 extern collected_string hello;
+extern collected_string compliment;
 
 void update_collected_string(uint8_t in_data[20], uint8_t length , string_type type);
 

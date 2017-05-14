@@ -119,6 +119,7 @@
       <file file_name="external/thedotfactory_fonts/serif16pts.c" />
       <file file_name="external/thedotfactory_fonts/serif8pts.c" />
       <file file_name="serif_time_20pts.c" />
+      <file file_name="serif_time_28.c" />
     </folder>
     <folder Name="nRF_Weather_Icons">
       <file file_name="weather_icons.c" />
