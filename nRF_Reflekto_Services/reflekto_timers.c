@@ -38,7 +38,6 @@ static void disconnect_timer_handler(void * p_context)
 static void clear_screen_handler(void * p_context)
 {
     screen_clear();
-    scr_clr_timer_stop();
 }
 
 void timers_init(void)
@@ -52,7 +51,7 @@ void timers_init(void)
     // Create timers.
     err_code = app_timer_create(&clock_timer,APP_TIMER_MODE_REPEATED, clock_timer_handler);
     err_code = app_timer_create(&disconnect_timer,APP_TIMER_MODE_REPEATED, disconnect_timer_handler);
-    err_code = app_timer_create(&clear_screen_timer,APP_TIMER_MODE_SINGLE_SHOT, clear_screen_handler);
+    err_code = app_timer_create(&clear_screen_timer,APP_TIMER_MODE_REPEATED, clear_screen_handler);
     APP_ERROR_CHECK(err_code);
     /* For every new timer needed, increase the value of the macro APP_TIMER_MAX_TIMERS by one.*/
 }

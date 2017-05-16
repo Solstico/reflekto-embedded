@@ -71,6 +71,7 @@ void screen_clear(void)
     name.data[0]='\0';
     hello.data[0]='\0';
     compliment.data[0]='\0';
+    scr_clr_timer_stop();
 }
 
 void update_gui(string_type type)
