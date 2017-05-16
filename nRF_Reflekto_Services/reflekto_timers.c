@@ -38,6 +38,7 @@ static void disconnect_timer_handler(void * p_context)
 static void clear_screen_handler(void * p_context)
 {
     screen_clear();
+    scr_clr_timer_stop();
 }
 
 void timers_init(void)

@@ -75,6 +75,8 @@ bool has_permission_to_write = false;
 
 void disconnect_peripheral(){
     scr_clr_timer_start();
+    disconnect_timer_stop();
+    has_permission_to_write = false;
     if(m_conn_handle!=BLE_CONN_HANDLE_INVALID) sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
 }
 
@@ -786,6 +788,7 @@ int main(void)
 
     advertising_start(erase_bonds);
     // Enter main loop.
+    sd_ble_gap_tx_power_set(-40);
     SEGGER_RTT_printf(0,"End of initial\n");
     for (;;)
     {
