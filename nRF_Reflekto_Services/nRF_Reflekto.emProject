@@ -30,7 +30,7 @@
       debug_additional_load_file="$(ProjectDir)/components/softdevice/s132/hex/s132_nrf52_4.0.2_softdevice.hex"
       gcc_optimization_level="Optimize For Size"
       linker_section_placement_file="$(ProjectDir)/components/toolchain/embedded_studio/flash_placement.xml"
-      linker_section_placement_macros="FLASH_START=0x1F000;SRAM_START=0x200020b0" />
+      linker_section_placement_macros="FLASH_START=0x1F000;SRAM_START=0x20002600" />
     <configuration
       Name="External Keil"
       c_additional_options="--reduce_paths" />

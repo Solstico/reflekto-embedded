@@ -1,7 +1,7 @@
 <!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks>
-  <BookmarkItem objectName="" line="5224" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="24" extra="return p_instance->p_lcd_cb->height;" color="5"/>
+  <BookmarkItem objectName="" line="5231" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="25" extra="return p_instance->p_lcd_cb->width;" color="5"/>
   <BookmarkItem objectName="" line="4804" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="1" extra="ASSERT(p_instance->p_lcd_cb->state == NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
   <BookmarkItem objectName="" line="4812" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="2" extra="ASSERT(p_instance->p_lcd_cb != NULL);" color="5"/>
   <BookmarkItem objectName="" line="4820" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="3" extra="p_instance->p_lcd_cb->state = NRF_DRV_STATE_INITIALIZED;" color="5"/>
@@ -25,7 +25,7 @@
   <BookmarkItem objectName="" line="5142" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="21" extra="p_instance->p_lcd_cb->height = width;" color="5"/>
   <BookmarkItem objectName="" line="5143" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="22" extra="p_instance->p_lcd_cb->width = height;" color="5"/>
   <BookmarkItem objectName="" line="5167" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="23" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="5231" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="25" extra="return p_instance->p_lcd_cb->width;" color="5"/>
+  <BookmarkItem objectName="" line="5224" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="24" extra="return p_instance->p_lcd_cb->height;" color="5"/>
  </Bookmarks>
  <Breakpoints groups="Breakpoints" active_group="Breakpoints">
   <BreakpointListItem trigger="" line="26" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="4" filename="time_service.c" useHWbreakpoint="false"/>
@@ -86,13 +86,13 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile x="30" y="790" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="770" codecName="Default"/>
-  <SessionOpenFile x="16" y="97" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="91" codecName="Default"/>
+  <SessionOpenFile x="0" y="768" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="1" top="768" codecName="Default"/>
+  <SessionOpenFile x="0" y="97" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="91" codecName="Default"/>
   <SessionOpenFile x="0" y="2" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="26" codecName="Default"/>
-  <SessionOpenFile x="23" y="40" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="24" codecName="Default"/>
+  <SessionOpenFile x="0" y="40" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="24" codecName="Default"/>
   <SessionOpenFile x="0" y="6" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.h" debugPath="reflekto_timers.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="15" y="21" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="35" y="402" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.c" debugPath="reflekto_display.c" selected="0" top="384" codecName="Default"/>
+  <SessionOpenFile x="0" y="21" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="402" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.c" debugPath="reflekto_display.c" selected="0" top="384" codecName="Default"/>
   <SessionOpenFile x="0" y="19" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.h" debugPath="reflekto_display.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile x="0" y="44" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.h" debugPath="reflekto_data_collector.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile x="0" y="1557" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/serif8pts.c" debugPath="external/thedotfactory_fonts/serif8pts.c" selected="0" top="1533" codecName="Default"/>
@@ -101,7 +101,7 @@
   <SessionOpenFile x="0" y="1387" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/serif16pts.c" debugPath="external/thedotfactory_fonts/serif16pts.c" selected="0" top="1366" codecName="Default"/>
   <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/nrf_font.h" debugPath="external/thedotfactory_fonts/nrf_font.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile x="0" y="480" useTextEdit="1" useBinaryEdit="0" left="0" path="components/libraries/gfx/nrf_gfx.c" debugPath="components/libraries/gfx/nrf_gfx.c" selected="0" top="476" codecName="Default"/>
-  <SessionOpenFile x="0" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="components/libraries/util/app_error_weak.c" debugPath="components/libraries/util/app_error_weak.c" selected="0" top="40" codecName=""/>
+  <SessionOpenFile x="0" y="53" useTextEdit="1" useBinaryEdit="0" left="0" path="components/libraries/util/app_error_weak.c" debugPath="components/libraries/util/app_error_weak.c" selected="0" top="40" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/external/thedotfactory_fonts" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
