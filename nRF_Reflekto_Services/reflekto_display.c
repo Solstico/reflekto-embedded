@@ -401,7 +401,6 @@ void update_timer()
 
     text_print(final,3,28,28);
     text_print(final_sec,90,41,16);
-    SEGGER_RTT_printf(0,"final: %s, final_sec: %s \n",final,final_sec);
     text_print(week_day,3,5,8);
     prev_min = local_time->tm_min;
     prev_hour = local_time->tm_hour;
