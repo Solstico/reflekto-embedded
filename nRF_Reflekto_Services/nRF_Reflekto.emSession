@@ -1,31 +1,31 @@
 <!DOCTYPE CrossStudio_Session_File>
 <session>
  <Bookmarks>
-  <BookmarkItem objectName="" line="5228" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="25" extra="return p_instance->p_lcd_cb->width;" color="5"/>
-  <BookmarkItem objectName="" line="4801" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="1" extra="ASSERT(p_instance->p_lcd_cb->state == NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="4809" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="2" extra="ASSERT(p_instance->p_lcd_cb != NULL);" color="5"/>
-  <BookmarkItem objectName="" line="4817" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="3" extra="p_instance->p_lcd_cb->state = NRF_DRV_STATE_INITIALIZED;" color="5"/>
-  <BookmarkItem objectName="" line="4826" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="4" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="4828" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="5" extra="p_instance->p_lcd_cb->state = NRF_DRV_STATE_UNINITIALIZED;" color="5"/>
-  <BookmarkItem objectName="" line="4838" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="6" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="4849" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="7" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="4927" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="8" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="4994" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="9" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="5063" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="10" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="5094" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="11" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="5114" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="12" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="5116" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="13" extra="bool rotated = (bool)(p_instance->p_lcd_cb->rotation % 2);" color="5"/>
-  <BookmarkItem objectName="" line="5123" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="14" extra="p_instance->p_lcd_cb->rotation = rotation;" color="5"/>
-  <BookmarkItem objectName="" line="5127" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="15" extra="p_instance->p_lcd_cb->height = height;" color="5"/>
-  <BookmarkItem objectName="" line="5128" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="16" extra="p_instance->p_lcd_cb->width = width;" color="5"/>
-  <BookmarkItem objectName="" line="5131" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="17" extra="p_instance->p_lcd_cb->height = width;" color="5"/>
-  <BookmarkItem objectName="" line="5132" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="18" extra="p_instance->p_lcd_cb->width = height;" color="5"/>
-  <BookmarkItem objectName="" line="5135" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="19" extra="p_instance->p_lcd_cb->height = height;" color="5"/>
-  <BookmarkItem objectName="" line="5136" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="20" extra="p_instance->p_lcd_cb->width = width;" color="5"/>
-  <BookmarkItem objectName="" line="5139" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="21" extra="p_instance->p_lcd_cb->height = width;" color="5"/>
-  <BookmarkItem objectName="" line="5140" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="22" extra="p_instance->p_lcd_cb->width = height;" color="5"/>
-  <BookmarkItem objectName="" line="5164" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="23" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
-  <BookmarkItem objectName="" line="5221" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="24" extra="return p_instance->p_lcd_cb->height;" color="5"/>
+  <BookmarkItem objectName="" line="5247" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="25" extra="return p_instance->p_lcd_cb->width;" color="5"/>
+  <BookmarkItem objectName="" line="4820" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="1" extra="ASSERT(p_instance->p_lcd_cb->state == NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="4828" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="2" extra="ASSERT(p_instance->p_lcd_cb != NULL);" color="5"/>
+  <BookmarkItem objectName="" line="4836" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="3" extra="p_instance->p_lcd_cb->state = NRF_DRV_STATE_INITIALIZED;" color="5"/>
+  <BookmarkItem objectName="" line="4845" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="4" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="4847" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="5" extra="p_instance->p_lcd_cb->state = NRF_DRV_STATE_UNINITIALIZED;" color="5"/>
+  <BookmarkItem objectName="" line="4857" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="6" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="4868" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="7" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="4946" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="8" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="5013" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="9" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="5082" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="10" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="5113" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="11" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="5133" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="12" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="5135" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="13" extra="bool rotated = (bool)(p_instance->p_lcd_cb->rotation % 2);" color="5"/>
+  <BookmarkItem objectName="" line="5142" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="14" extra="p_instance->p_lcd_cb->rotation = rotation;" color="5"/>
+  <BookmarkItem objectName="" line="5146" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="15" extra="p_instance->p_lcd_cb->height = height;" color="5"/>
+  <BookmarkItem objectName="" line="5147" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="16" extra="p_instance->p_lcd_cb->width = width;" color="5"/>
+  <BookmarkItem objectName="" line="5150" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="17" extra="p_instance->p_lcd_cb->height = width;" color="5"/>
+  <BookmarkItem objectName="" line="5151" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="18" extra="p_instance->p_lcd_cb->width = height;" color="5"/>
+  <BookmarkItem objectName="" line="5154" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="19" extra="p_instance->p_lcd_cb->height = height;" color="5"/>
+  <BookmarkItem objectName="" line="5155" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="20" extra="p_instance->p_lcd_cb->width = width;" color="5"/>
+  <BookmarkItem objectName="" line="5158" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="21" extra="p_instance->p_lcd_cb->height = width;" color="5"/>
+  <BookmarkItem objectName="" line="5159" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="22" extra="p_instance->p_lcd_cb->width = height;" color="5"/>
+  <BookmarkItem objectName="" line="5183" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="23" extra="ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);" color="5"/>
+  <BookmarkItem objectName="" line="5240" column="-1" path="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/components/libraries/gfx/nrf_gfx.c" number="24" extra="return p_instance->p_lcd_cb->height;" color="5"/>
  </Bookmarks>
  <Breakpoints groups="Breakpoints" active_group="Breakpoints">
   <BreakpointListItem trigger="" line="26" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="4" filename="time_service.c" useHWbreakpoint="false"/>
@@ -50,6 +50,7 @@
   <ProjectSessionItem path="nRF_Reflekto_Services"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;Application"/>
+  <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;Internal Files"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;nRF_Drivers_External"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;nRF_fonts"/>
   <ProjectSessionItem path="nRF_Reflekto_Services;nRF_Reflekto;nRF_Libraries"/>
@@ -73,7 +74,7 @@
  </TraceWindow>
  <Watch1>
   <Watches active="1" update="Never">
-   <Watchpoint numelements="0" expression="APP_TIMER_TICKS" evalMode="0" name="APP_TIMER_TICKS" radix="16" linenumber="79" filename="main.c" list=""/>
+   <Watchpoint numelements="0" expression="APP_TIMER_TICKS" evalMode="0" name="APP_TIMER_TICKS" radix="16" linenumber="91" filename="main.c" list=""/>
   </Watches>
  </Watch1>
  <Watch2>
@@ -86,20 +87,15 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile x="0" y="765" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="765" codecName="Default"/>
-  <SessionOpenFile x="0" y="67" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="5" codecName="Default"/>
-  <SessionOpenFile x="0" y="2" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="1" codecName="Default"/>
-  <SessionOpenFile x="19" y="40" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="0" y="6" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.h" debugPath="reflekto_timers.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="0" y="11" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="41" y="410" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.c" debugPath="reflekto_display.c" selected="1" top="370" codecName="Default"/>
-  <SessionOpenFile x="46" y="19" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.h" debugPath="reflekto_display.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="34" y="44" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.h" debugPath="reflekto_data_collector.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="25" y="1557" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/serif8pts.c" debugPath="external/thedotfactory_fonts/serif8pts.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="serif_time_20pts.c" debugPath="serif_time_20pts.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="1" y="633" useTextEdit="1" useBinaryEdit="0" left="0" path="serif_time_28.c" debugPath="serif_time_28.c" selected="0" top="3669" codecName="Default"/>
-  <SessionOpenFile x="18" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/serif16pts.c" debugPath="external/thedotfactory_fonts/serif16pts.c" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="external/thedotfactory_fonts/nrf_font.h" debugPath="external/thedotfactory_fonts/nrf_font.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="main.c" debugPath="main.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="11" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.c" debugPath="reflekto_ble_services.c" selected="0" top="20" codecName="Default"/>
+  <SessionOpenFile x="2" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_ble_services.h" debugPath="reflekto_ble_services.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="0" y="11" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.c" debugPath="reflekto_timers.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="2" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_timers.h" debugPath="reflekto_timers.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="5" y="88" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.c" debugPath="reflekto_display.c" selected="0" top="90" codecName="Default"/>
+  <SessionOpenFile x="2" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_display.h" debugPath="reflekto_display.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="2" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.h" debugPath="reflekto_data_collector.h" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile x="16" y="87" useTextEdit="1" useBinaryEdit="0" left="0" path="reflekto_data_collector.c" debugPath="reflekto_data_collector.c" selected="1" top="46" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/external/thedotfactory_fonts" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="nRF_Reflekto" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="nrf52832_xxaa" debugSearchFileMap="" fileDialogInitialDirectory="/Users/Michal/Desktop/Nordic/nRF_Reflekto/nRF_Reflekto_Services/external/thedotfactory_fonts" debugSearchPath="" autoConnectCapabilities="1132"/>
 </session>

@@ -1,3 +1,15 @@
+/*
+Copyright (c) 2017, Michal Wojcik, email: michal.t.wojcik@gmail.com
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "reflekto_data_collector.h"
 #include "SEGGER_RTT.h"
 #include "reflekto_display.h"
@@ -65,7 +77,7 @@ void update_collected_string(uint8_t in_data[20], uint8_t length, string_type ty
                 updated_string->is_completed = true;
                 updated_string->data[updated_string->collected_chars]='\0';
                 SEGGER_RTT_printf(0,"String updated: %s \nChars: %d \nUpdate %d\nType: %d\n", updated_string->data, updated_string->collected_chars, updated_string->needs_to_be_printed, type);
-                update_gui(type);
+                if(updated_string->needs_to_be_printed) update_gui(type);
                 break;
             default:
                 if(updated_string->data[updated_string->collected_chars] != in_data[i])

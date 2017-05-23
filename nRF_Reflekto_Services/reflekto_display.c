@@ -1,3 +1,15 @@
+/*
+Copyright (c) 2017, Michal Wojcik, email: michal.t.wojcik@gmail.com
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "reflekto_display.h"
 #include "reflekto_ble_services.h"
 #include "reflekto_timers.h"
@@ -60,17 +72,18 @@ void text_print(char *text_in, uint16_t posX, uint16_t posY, uint8_t size)
 void screen_clear(void)
 {
     nrf_gfx_screen_fill(p_lcd, BLACK);
-    weather_city.data[0]='\0';
-    weather_wind.data[0]='\0';
-    weather_wind.data[0]='\0';
+    scr_clr_timer_stop();
+    memset(&weather_city,0,sizeof(weather_city));
+    memset(&weather_advice,0,sizeof(weather_advice));
+    memset(&weather_wind,0,sizeof(weather_wind));
 
-    next_calendar_event.data[0]='\0';
-    unread_emails.data[0]='\0';
-    work_eta.data[0]='\0';
+    memset(&next_calendar_event,0,sizeof(next_calendar_event));
+    memset(&unread_emails,0,sizeof(unread_emails));
+    memset(&work_eta,0,sizeof(work_eta));
 
-    name.data[0]='\0';
-    hello.data[0]='\0';
-    compliment.data[0]='\0';
+    memset(&name,0,sizeof(name));
+    memset(&hello,0,sizeof(hello));
+    memset(&compliment,0,sizeof(compliment));
 }
 
 void update_gui(string_type type)
@@ -137,8 +150,8 @@ void clear_GUI(clear_gui_type type)
                             nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
                             break;
 			case HELLO_G:
-                            my_rect.x=0; my_rect.y=IMGWIDTH+20;
-                            my_rect.width=TFTWIDTH; my_rect.height=48;
+                            my_rect.x=0; my_rect.y=IMGWIDTH+19;
+                            my_rect.width=TFTWIDTH; my_rect.height=49;
                             nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
                             break;
 			case CALENDAR_G:
@@ -283,12 +296,12 @@ void update_weather()
             print_weather_icon(PARTLY_CLOUDLY_DAY);
             break;
     }
-    //uncomment when icon ready
-    weather_city.data[weather_city.collected_chars-1]='\0';//
+    weather_city.data[weather_city.collected_chars-1]='\0';
     text_print(weather_city.data,3*IMGWIDTH+8,8,8);
-    weather_city.data[weather_city.collected_chars-1]=weather_i+48;//
+    weather_city.data[weather_city.collected_chars-1]=weather_i+48;
     text_print(weather_wind.data,3*IMGWIDTH+8,24,8);
     uint16_t xpos=TFTWIDTH/2-weather_advice.collected_chars*3.2;
+    if (xpos<0 || xpos > TFTWIDTH) xpos=0;
     text_print(weather_advice.data,xpos,IMGWIDTH+3,8);
 }
 
@@ -401,7 +414,6 @@ void update_timer()
 
     text_print(final,3,28,28);
     text_print(final_sec,90,41,16);
-    SEGGER_RTT_printf(0,"final: %s, final_sec: %s \n",final,final_sec);
     text_print(week_day,3,5,8);
     prev_min = local_time->tm_min;
     prev_hour = local_time->tm_hour;
@@ -415,7 +427,7 @@ void update_calendar()
     if(!next_calendar_event.needs_to_be_printed) return;
     next_calendar_event.needs_to_be_printed = false;
     clear_GUI(CALENDAR_G);
-    text_print(next_calendar_event.data,8,2*IMGWIDTH+58,16);
+    text_print(next_calendar_event.data,8,2*IMGWIDTH+60,16);
 }
 
 void update_emails()
