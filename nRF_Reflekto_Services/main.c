@@ -1,3 +1,15 @@
+/*
+Copyright (c) 2017, Michal Wojcik, email: michal.t.wojcik@gmail.com
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
@@ -74,8 +86,6 @@ static ble_os_t our_configuration_service;
 bool has_permission_to_write = false;
 
 void disconnect_peripheral(){
-    scr_clr_timer_start();
-    disconnect_timer_stop();
     has_permission_to_write = false;
     if(m_conn_handle!=BLE_CONN_HANDLE_INVALID) sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
 }
@@ -198,13 +208,6 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
     }
 }
 
-/**@brief Function for the Timer initialization.
- *
- * @details Initializes the timer module. This creates and starts application timers.
- */
-
-
-
 /**@brief Function for the GAP initialization.
  *
  * @details This function sets up all the necessary GAP (Generic Access Profile) parameters of the
@@ -222,11 +225,6 @@ static void gap_params_init(void)
                                           (const uint8_t *)DEVICE_NAME,
                                           strlen(DEVICE_NAME));
     APP_ERROR_CHECK(err_code);
-
-    /* YOUR_JOB: Use an appearance value matching the application's use case.
-       err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_);
-       APP_ERROR_CHECK(err_code); */
-
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
 
     gap_conn_params.min_conn_interval = MIN_CONN_INTERVAL;
@@ -238,7 +236,6 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
 /**@brief Function for initializing the GATT module.
  */
 static void gatt_init(void)
@@ -246,33 +243,6 @@ static void gatt_init(void)
     ret_code_t err_code = nrf_ble_gatt_init(&m_gatt, NULL);
     APP_ERROR_CHECK(err_code);
 }
-
-
-/**@brief Function for handling the YYY Service events.
- * YOUR_JOB implement a service handler function depending on the event the service you are using can generate
- *
- * @details This function will be called for all YY Service events which are passed to
- *          the application.
- *
- * @param[in]   p_yy_service   YY Service structure.
- * @param[in]   p_evt          Event received from the YY Service.
- *
- *
-static void on_yys_evt(ble_yy_service_t     * p_yy_service,
-                       ble_yy_service_evt_t * p_evt)
-{
-    switch (p_evt->evt_type)
-    {
-        case BLE_YY_NAME_EVT_WRITE:
-            APPL_LOG("[APPL]: charact written with value %s. \r\n", p_evt->params.char_xx.value.p_str);
-            break;
-
-        default:
-            // No implementation needed.
-            break;
-    }
-}
-*/
 
 /**@brief Function for initializing services that will be used by the application.
  */
@@ -282,31 +252,7 @@ static void services_init(void)
       weather_service_init(&our_weather_service);
       personal_info_service_init(&our_personal_info_service);
       configuration_service_init(&our_configuration_service);
-    /* YOUR_JOB: Add code to initialize the services used by the application.
-       ret_code_t                         err_code;
-       ble_xxs_init_t                     xxs_init;
-       ble_yys_init_t                     yys_init;
-
-       // Initialize XXX Service.
-       memset(&xxs_init, 0, sizeof(xxs_init));
-
-       xxs_init.evt_handler                = NULL;
-       xxs_init.is_xxx_notify_supported    = true;
-       xxs_init.ble_xx_initial_value.level = 100;
-
-       err_code = ble_bas_init(&m_xxs, &xxs_init);
-       APP_ERROR_CHECK(err_code);
-
-       // Initialize YYY Service.
-       memset(&yys_init, 0, sizeof(yys_init));
-       yys_init.evt_handler                  = on_yys_evt;
-       yys_init.ble_yy_initial_value.counter = 0;
-
-       err_code = ble_yy_service_init(&yys_init, &yy_init);
-       APP_ERROR_CHECK(err_code);
-     */
 }
-
 
 /**@brief Function for handling the Connection Parameters Module.
  *
@@ -321,14 +267,12 @@ static void services_init(void)
 static void on_conn_params_evt(ble_conn_params_evt_t * p_evt)
 {
     ret_code_t err_code;
-
     if (p_evt->evt_type == BLE_CONN_PARAMS_EVT_FAILED)
     {
         err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_CONN_INTERVAL_UNACCEPTABLE);
         APP_ERROR_CHECK(err_code);
     }
 }
-
 
 /**@brief Function for handling a Connection Parameters error.
  *
@@ -338,7 +282,6 @@ static void conn_params_error_handler(uint32_t nrf_error)
 {
     APP_ERROR_HANDLER(nrf_error);
 }
-
 
 /**@brief Function for initializing the Connection Parameters module.
  */
@@ -369,19 +312,15 @@ static void conn_params_init(void)
 static void sleep_mode_enter(void)
 {
     ret_code_t err_code;
-
     err_code = bsp_indication_set(BSP_INDICATE_IDLE);
     APP_ERROR_CHECK(err_code);
-
     // Prepare wakeup buttons.
     err_code = bsp_btn_ble_sleep_mode_prepare();
     APP_ERROR_CHECK(err_code);
-
     // Go to system-off mode (this function will not return; wakeup will cause a reset).
     err_code = sd_power_system_off();
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Function for handling advertising events.
  *
@@ -392,7 +331,6 @@ static void sleep_mode_enter(void)
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 {
     ret_code_t err_code;
-
     switch (ble_adv_evt)
     {
         case BLE_ADV_EVT_FAST:
@@ -400,16 +338,13 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
             err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
             APP_ERROR_CHECK(err_code);
             break;
-
         case BLE_ADV_EVT_IDLE:
             sleep_mode_enter();
             break;
-
         default:
             break;
     }
 }
-
 
 /**@brief Function for handling the Application's BLE Stack events.
  *
@@ -425,7 +360,11 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             NRF_LOG_INFO("Disconnected.\r\n");
             err_code = bsp_indication_set(BSP_INDICATE_IDLE);
             APP_ERROR_CHECK(err_code);
+            // Timers handling:
+            m_conn_handle = BLE_CONN_HANDLE_INVALID;
             disconnect_timer_stop();
+            scr_clr_timer_start();
+            has_permission_to_write = false;
             break; // BLE_GAP_EVT_DISCONNECTED
 
         case BLE_GAP_EVT_CONNECTED:
@@ -433,7 +372,9 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
-            disconnect_timer_start(); // disconnect after 1 second if no password
+            // Timers handling:
+            disconnect_timer_start();
+            scr_clr_timer_stop();
             break; // BLE_GAP_EVT_CONNECTED
 
         case BLE_GATTC_EVT_TIMEOUT:
@@ -486,13 +427,11 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                 }
             }
         } break; // BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST
-
         default:
             // No implementation needed.
             break;
     }
 }
-
 
 /**@brief Function for dispatching a BLE stack event to all modules with a BLE stack event handler.
  *
@@ -521,7 +460,6 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 
 }
 
-
 /**@brief Function for dispatching a system event to interested modules.
  *
  * @details This function is called from the System event interrupt handler after a system
@@ -534,13 +472,11 @@ static void sys_evt_dispatch(uint32_t sys_evt)
     // Dispatch the system event to the fstorage module, where it will be
     // dispatched to the Flash Data Storage (FDS) module.
     fs_sys_event_handler(sys_evt);
-
     // Dispatch to the Advertising module last, since it will check if there are any
     // pending flash operations in fstorage. Let fstorage process system events first,
     // so that it can report correctly to the Advertising module.
     ble_advertising_on_sys_evt(sys_evt);
 }
-
 
 /**@brief Function for initializing the BLE stack.
  *
@@ -549,7 +485,6 @@ static void sys_evt_dispatch(uint32_t sys_evt)
 static void ble_stack_init(void)
 {
     ret_code_t err_code;
-
     nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
 
     // Initialize the SoftDevice handler module.
@@ -589,7 +524,6 @@ static void ble_stack_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
 /**@brief Function for the Peer Manager initialization.
  */
 static void peer_manager_init(void)
@@ -623,19 +557,15 @@ static void peer_manager_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
 /**@brief Clear bond information from persistent storage.
  */
 static void delete_bonds(void)
 {
     ret_code_t err_code;
-
     NRF_LOG_INFO("Erase bonds!\r\n");
-
     err_code = pm_peers_delete();
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Function for handling events from the BSP module.
  *
@@ -644,13 +574,11 @@ static void delete_bonds(void)
 static void bsp_event_handler(bsp_event_t event)
 {
     ret_code_t err_code;
-
     switch (event)
     {
         case BSP_EVENT_SLEEP:
             sleep_mode_enter();
             break; // BSP_EVENT_SLEEP
-
         case BSP_EVENT_DISCONNECT:
             err_code = sd_ble_gap_disconnect(m_conn_handle,
                                              BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
@@ -659,7 +587,6 @@ static void bsp_event_handler(bsp_event_t event)
                 APP_ERROR_CHECK(err_code);
             }
             break; // BSP_EVENT_DISCONNECT
-
         case BSP_EVENT_WHITELIST_OFF:
             if (m_conn_handle == BLE_CONN_HANDLE_INVALID)
             {
@@ -670,12 +597,10 @@ static void bsp_event_handler(bsp_event_t event)
                 }
             }
             break; // BSP_EVENT_KEY_0
-
         default:
             break;
     }
 }
-
 
 /**@brief Function for initializing the Advertising functionality.
  */
@@ -708,7 +633,6 @@ static void advertising_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
 /**@brief Function for initializing buttons and leds.
  *
  * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed to wake the application up.
@@ -727,7 +651,6 @@ static void buttons_leds_init(bool * p_erase_bonds)
     *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
 }
 
-
 /**@brief Function for initializing the nrf log module.
  */
 static void log_init(void)
@@ -736,7 +659,6 @@ static void log_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-
 /**@brief Function for the Power manager.
  */
 static void power_manage(void)
@@ -744,7 +666,6 @@ static void power_manage(void)
     ret_code_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
 }
-
 
 /**@brief Function for starting advertising.
  */
