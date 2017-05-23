@@ -426,7 +426,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                     APP_ERROR_CHECK(err_code);
                 }
             }
-        } break; // BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST
+        } break;
         default:
             // No implementation needed.
             break;
@@ -452,7 +452,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
     nrf_ble_gatt_on_ble_evt(&m_gatt, p_ble_evt);
-
+    //Reflekto services event handlers:
     configuration_service_on_ble_evt(&our_configuration_service, p_ble_evt);
     time_service_on_ble_evt(&our_time_service, p_ble_evt);
     weather_service_on_ble_evt(&our_weather_service, p_ble_evt);
@@ -679,7 +679,6 @@ static void advertising_start(bool erase_bonds)
     else
     {
         ret_code_t err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
-
         APP_ERROR_CHECK(err_code);
     }
 }
@@ -688,11 +687,11 @@ static void advertising_start(bool erase_bonds)
  */
 int main(void)
 {
+    // Initialize.
     gfx_initialization();
     screen_clear();
     has_permission_to_write = false;
     bool erase_bonds;
-    // Initialize.
     log_init();
     timers_init();
     buttons_leds_init(&erase_bonds);
@@ -703,13 +702,10 @@ int main(void)
     advertising_init();
     conn_params_init();
     peer_manager_init();
-
     // Start execution.
-    NRF_LOG_INFO("Template example started.\r\n");
-
     advertising_start(erase_bonds);
-    // Enter main loop.
     sd_ble_gap_tx_power_set(-40);
+    // Enter main loop.
     SEGGER_RTT_printf(0,"End of initial\n");
     for (;;)
     {
