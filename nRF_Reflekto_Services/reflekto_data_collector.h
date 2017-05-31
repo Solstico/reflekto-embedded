@@ -20,7 +20,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
-#define MAX_STRING_LENGTH 80
+#define MAX_STRING_LENGTH 100
 #define  STX 2 // Start of text
 #define  ETX 3 // End of text
 

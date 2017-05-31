@@ -3952,7 +3952,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__fs_data_run_start__ == __fs_data_run_end__) || ((__fs_data_run_end__ >= __SRAM_segment_start__) && (__fs_data_run_end__ <= __SRAM_segment_end__))), error: .fs_data_run is too large to fit in SRAM memory segment)
                 0x0000000020002648                __bss_load_start__ = ALIGN (__fs_data_run_end__, 0x4)
 
-.bss            0x0000000020002648     0x1870
+.bss            0x0000000020002648     0x1924
                 0x0000000020002648                __bss_start__ = .
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss.BLE_EVT_BUFFER.11263
@@ -3983,360 +3983,360 @@ Linker script and memory map
                 0x000000002000274c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_timers.o
                 0x000000002000274c                local_time
  .bss.compliment
-                0x0000000020002750       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x0000000020002750       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
                 0x0000000020002750                compliment
- *fill*         0x00000000200027a3        0x1 
- .bss.hello     0x00000000200027a4       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x00000000200027a4                hello
- *fill*         0x00000000200027f7        0x1 
- .bss.name      0x00000000200027f8       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x00000000200027f8                name
- *fill*         0x000000002000284b        0x1 
+ *fill*         0x00000000200027b7        0x1 
+ .bss.hello     0x00000000200027b8       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x00000000200027b8                hello
+ *fill*         0x000000002000281f        0x1 
+ .bss.name      0x0000000020002820       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x0000000020002820                name
+ *fill*         0x0000000020002887        0x1 
  .bss.next_calendar_event
-                0x000000002000284c       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x000000002000284c                next_calendar_event
- *fill*         0x000000002000289f        0x1 
+                0x0000000020002888       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x0000000020002888                next_calendar_event
+ *fill*         0x00000000200028ef        0x1 
  .bss.unread_emails
-                0x00000000200028a0       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x00000000200028a0                unread_emails
- *fill*         0x00000000200028f3        0x1 
+                0x00000000200028f0       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x00000000200028f0                unread_emails
+ *fill*         0x0000000020002957        0x1 
  .bss.weather_advice
-                0x00000000200028f4       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x00000000200028f4                weather_advice
- *fill*         0x0000000020002947        0x1 
+                0x0000000020002958       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x0000000020002958                weather_advice
+ *fill*         0x00000000200029bf        0x1 
  .bss.weather_city
-                0x0000000020002948       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x0000000020002948                weather_city
- *fill*         0x000000002000299b        0x1 
+                0x00000000200029c0       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x00000000200029c0                weather_city
+ *fill*         0x0000000020002a27        0x1 
  .bss.weather_wind
-                0x000000002000299c       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x000000002000299c                weather_wind
- *fill*         0x00000000200029ef        0x1 
- .bss.work_eta  0x00000000200029f0       0x53 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
-                0x00000000200029f0                work_eta
- *fill*         0x0000000020002a43        0x1 
+                0x0000000020002a28       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x0000000020002a28                weather_wind
+ *fill*         0x0000000020002a8f        0x1 
+ .bss.work_eta  0x0000000020002a90       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
+                0x0000000020002a90                work_eta
+ *fill*         0x0000000020002af7        0x1 
  .bss.day.10179
-                0x0000000020002a44        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- *fill*         0x0000000020002a47        0x1 
+                0x0000000020002af8        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ *fill*         0x0000000020002afb        0x1 
  .bss.final.10176
-                0x0000000020002a48        0xa Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- *fill*         0x0000000020002a52        0x2 
+                0x0000000020002afc        0xa Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ *fill*         0x0000000020002b06        0x2 
  .bss.final_sec.10177
-                0x0000000020002a54        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- *fill*         0x0000000020002a57        0x1 
+                0x0000000020002b08        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ *fill*         0x0000000020002b0b        0x1 
  .bss.hour.10173
-                0x0000000020002a58        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- *fill*         0x0000000020002a5b        0x1 
+                0x0000000020002b0c        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ *fill*         0x0000000020002b0f        0x1 
  .bss.minutes.10174
-                0x0000000020002a5c        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000020002b10        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .bss.prev_hour
-                0x0000000020002a5f        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
-                0x0000000020002a5f                prev_hour
- .bss.prev_min  0x0000000020002a60        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
-                0x0000000020002a60                prev_min
+                0x0000000020002b13        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000020002b13                prev_hour
+ .bss.prev_min  0x0000000020002b14        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000020002b14                prev_min
  .bss.prev_wday
-                0x0000000020002a61        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
-                0x0000000020002a61                prev_wday
- *fill*         0x0000000020002a62        0x2 
+                0x0000000020002b15        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000020002b15                prev_wday
+ *fill*         0x0000000020002b16        0x2 
  .bss.say_hello.10211
-                0x0000000020002a64       0x30 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000020002b18       0x30 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .bss.seconds.10175
-                0x0000000020002a94        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- *fill*         0x0000000020002a97        0x1 
+                0x0000000020002b48        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ *fill*         0x0000000020002b4b        0x1 
  .bss.week_day.10178
-                0x0000000020002a98       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000020002b4c       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .bss.current_long_push_pin_no.7899
-                0x0000000020002ab8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002b6c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_alert_on
-                0x0000000020002ab9        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
- *fill*         0x0000000020002aba        0x2 
+                0x0000000020002b6d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+ *fill*         0x0000000020002b6e        0x2 
  .bss.m_alert_timer_id_data
-                0x0000000020002abc       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002b70       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_button_timer_id_data
-                0x0000000020002adc       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002b90       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_events_list
-                0x0000000020002afc        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002bb0        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_indication_type
-                0x0000000020002b08        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002bbc        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_leds_clear
-                0x0000000020002b0c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
- *fill*         0x0000000020002b0d        0x3 
+                0x0000000020002bc0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+ *fill*         0x0000000020002bc1        0x3 
  .bss.m_leds_timer_id_data
-                0x0000000020002b10       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002bc4       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_registered_callback
-                0x0000000020002b30        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002be4        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_stable_state
-                0x0000000020002b34        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
- *fill*         0x0000000020002b35        0x3 
+                0x0000000020002be8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+ *fill*         0x0000000020002be9        0x3 
  .bss.release_event_at_push.7900
-                0x0000000020002b38        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
+                0x0000000020002bec        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
  .bss.m_error_handler
-                0x0000000020002b3c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp_btn_ble.o
+                0x0000000020002bf0        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp_btn_ble.o
  .bss.m_num_connections
-                0x0000000020002b40        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp_btn_ble.o
+                0x0000000020002bf4        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp_btn_ble.o
  .bss.m_adv_evt
-                0x0000000020002b44        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002bf8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_adv_mode_current
-                0x0000000020002b45        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
- *fill*         0x0000000020002b46        0x2 
+                0x0000000020002bf9        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+ *fill*         0x0000000020002bfa        0x2 
  .bss.m_adv_modes_config
-                0x0000000020002b48       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002bfc       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_advdata
-                0x0000000020002b68       0x3c Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c1c       0x3c Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_advertising_start_pending
-                0x0000000020002ba4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c58        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_conn_cfg_tag
-                0x0000000020002ba5        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c59        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_current_slave_link_conn_handle
-                0x0000000020002ba6        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c5a        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_error_handler
-                0x0000000020002ba8        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c5c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_evt_handler
-                0x0000000020002bac        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c60        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_initialized
-                0x0000000020002bb0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
- *fill*         0x0000000020002bb1        0x3 
+                0x0000000020002c64        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+ *fill*         0x0000000020002c65        0x3 
  .bss.m_manuf_data_array
-                0x0000000020002bb4       0x1f Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
- *fill*         0x0000000020002bd3        0x1 
+                0x0000000020002c68       0x1f Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+ *fill*         0x0000000020002c87        0x1 
  .bss.m_manuf_specific_data
-                0x0000000020002bd4        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002c88        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_peer_addr_reply_expected
-                0x0000000020002be0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
- *fill*         0x0000000020002be1        0x3 
+                0x0000000020002c94        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+ *fill*         0x0000000020002c95        0x3 
  .bss.m_peer_address
-                0x0000000020002be4        0x7 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
- *fill*         0x0000000020002beb        0x1 
+                0x0000000020002c98        0x7 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+ *fill*         0x0000000020002c9f        0x1 
  .bss.m_service_data
-                0x0000000020002bec        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002ca0        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_service_data_array
-                0x0000000020002bf8       0x1f Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
- *fill*         0x0000000020002c17        0x1 
+                0x0000000020002cac       0x1f Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+ *fill*         0x0000000020002ccb        0x1 
  .bss.m_slave_conn_int
-                0x0000000020002c18        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002ccc        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_whitelist_in_use
-                0x0000000020002c1c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002cd0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_whitelist_reply_expected
-                0x0000000020002c1d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002cd1        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_whitelist_temporarily_disabled
-                0x0000000020002c1e        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
+                0x0000000020002cd2        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_advertising.o
  .bss.m_change_param
-                0x0000000020002c1f        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+                0x0000000020002cd3        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
  .bss.m_conn_handle
-                0x0000000020002c20        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
- *fill*         0x0000000020002c22        0x2 
+                0x0000000020002cd4        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+ *fill*         0x0000000020002cd6        0x2 
  .bss.m_conn_params_config
-                0x0000000020002c24       0x1c Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+                0x0000000020002cd8       0x1c Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
  .bss.m_conn_params_timer_id_data
-                0x0000000020002c40       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+                0x0000000020002cf4       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
  .bss.m_current_conn_params
-                0x0000000020002c60        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+                0x0000000020002d14        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
  .bss.m_preferred_conn_params
-                0x0000000020002c68        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+                0x0000000020002d1c        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
  .bss.m_update_count
-                0x0000000020002c70        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
- *fill*         0x0000000020002c71        0x3 
- .bss.m_bcs     0x0000000020002c74       0xb8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_state.o
+                0x0000000020002d24        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_params.o
+ *fill*         0x0000000020002d25        0x3 
+ .bss.m_bcs     0x0000000020002d28       0xb8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ble_conn_state.o
  .bss.m_flag_local_db_apply_pending
-                0x0000000020002d2c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
+                0x0000000020002de0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
  .bss.m_flag_local_db_update_pending
-                0x0000000020002d2d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
+                0x0000000020002de1        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
  .bss.m_flag_service_changed_pending
-                0x0000000020002d2e        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
+                0x0000000020002de2        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
  .bss.m_flag_service_changed_sent
-                0x0000000020002d2f        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
+                0x0000000020002de3        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatt_cache_manager.o
  .bss.m_current_sc_store_peer_id
-                0x0000000020002d30        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatts_cache_manager.o
+                0x0000000020002de4        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatts_cache_manager.o
  .bss.start_handle.9281
-                0x0000000020002d32        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatts_cache_manager.o
+                0x0000000020002de6        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/gatts_cache_manager.o
  .bss.m_conn_state_user_flag_id
-                0x0000000020002d34        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/id_manager.o
- *fill*         0x0000000020002d35        0x3 
+                0x0000000020002de8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/id_manager.o
+ *fill*         0x0000000020002de9        0x3 
  .bss.m_connections
-                0x0000000020002d38       0xf0 Output/nRF_Reflekto nrf52832_xxaa/Obj/id_manager.o
+                0x0000000020002dec       0xf0 Output/nRF_Reflekto nrf52832_xxaa/Obj/id_manager.o
  .bss.m_fds_ftok
-                0x0000000020002e28        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_data_storage.o
+                0x0000000020002edc        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_data_storage.o
  .bss.m_peer_delete_ongoing
-                0x0000000020002e30        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_data_storage.o
+                0x0000000020002ee4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_data_storage.o
  .bss.m_peer_delete_queued
-                0x0000000020002e31        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_data_storage.o
- *fill*         0x0000000020002e32        0x2 
+                0x0000000020002ee5        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_data_storage.o
+ *fill*         0x0000000020002ee6        0x2 
  .bss.buffer_memory.9303
-                0x0000000020002e34      0x280 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
+                0x0000000020002ee8      0x280 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
  .bss.m_n_writes
-                0x00000000200030b4        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
+                0x0000000020003168        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
  .bss.m_write_buffer
-                0x00000000200030b8       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
+                0x000000002000316c       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
  .bss.m_write_buffer_records
-                0x00000000200030c8       0xa0 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
+                0x000000002000317c       0xa0 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
  .bss.mutex_memory.9304
-                0x0000000020003168        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
- *fill*         0x0000000020003169        0x3 
- .bss.m_pi      0x000000002000316c       0x40 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_id.o
+                0x000000002000321c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_database.o
+ *fill*         0x000000002000321d        0x3 
+ .bss.m_pi      0x0000000020003220       0x40 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_id.o
  .bss.m_bonding_flag_id
-                0x00000000200031ac        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
- *fill*         0x00000000200031ad        0x3 
+                0x0000000020003260        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+ *fill*         0x0000000020003261        0x3 
  .bss.m_current_highest_peer_rank
-                0x00000000200031b0        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x0000000020003264        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_deleting_all
-                0x00000000200031b4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
- *fill*         0x00000000200031b5        0x3 
+                0x0000000020003268        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+ *fill*         0x0000000020003269        0x3 
  .bss.m_evt_handlers
-                0x00000000200031b8        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x000000002000326c        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_highest_ranked_peer
-                0x00000000200031c4        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x0000000020003278        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_module_initialized
-                0x00000000200031c6        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x000000002000327a        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_n_registrants
-                0x00000000200031c7        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x000000002000327b        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_pairing_flag_id
-                0x00000000200031c8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x000000002000327c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_peer_rank_initialized
-                0x00000000200031c9        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
- *fill*         0x00000000200031ca        0x2 
+                0x000000002000327d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+ *fill*         0x000000002000327e        0x2 
  .bss.m_peer_rank_token
-                0x00000000200031cc        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
+                0x0000000020003280        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/peer_manager.o
  .bss.m_peer_pk
-                0x00000000200031d0       0x40 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_dispatcher.o
+                0x0000000020003284       0x40 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_dispatcher.o
  .bss.m_p_public_key
-                0x0000000020003210        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_manager.o
+                0x00000000200032c4        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_manager.o
  .bss.m_sec_params
-                0x0000000020003214        0x5 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_manager.o
+                0x00000000200032c8        0x5 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_manager.o
  .bss.m_sec_params_valid
-                0x0000000020003219        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_manager.o
- *fill*         0x000000002000321a        0x2 
+                0x00000000200032cd        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/security_manager.o
+ *fill*         0x00000000200032ce        0x2 
  .bss.m_clock_cb
-                0x000000002000321c       0x14 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_clock.o
- .bss.m_cb      0x0000000020003230       0x58 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_gpiote.o
- .bss.m_cb      0x0000000020003288       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_uart.o
- .bss.m_cb      0x00000000200032a8       0x24 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_spi.o
+                0x00000000200032d0       0x14 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_clock.o
+ .bss.m_cb      0x00000000200032e4       0x58 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_gpiote.o
+ .bss.m_cb      0x000000002000333c       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_uart.o
+ .bss.m_cb      0x000000002000335c       0x24 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_drv_spi.o
  .bss.m_button_count
-                0x00000000200032cc        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
- *fill*         0x00000000200032cd        0x3 
+                0x0000000020003380        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
+ *fill*         0x0000000020003381        0x3 
  .bss.m_detection_delay
-                0x00000000200032d0        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
+                0x0000000020003384        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
  .bss.m_detection_delay_timer_id_data
-                0x00000000200032d4       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
+                0x0000000020003388       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
  .bss.m_pin_state
-                0x00000000200032f4        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
+                0x00000000200033a8        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
  .bss.m_pin_transition
-                0x00000000200032f8        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
+                0x00000000200033ac        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
  .bss.mp_buttons
-                0x00000000200032fc        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
+                0x00000000200033b0        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_button.o
  .bss.m_op_queue
-                0x0000000020003300      0x10c Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+                0x00000000200033b4      0x10c Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
  .bss.m_rtc1_reset
-                0x000000002000340c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+                0x00000000200034c0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
  .bss.m_rtc1_running
-                0x000000002000340d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
- *fill*         0x000000002000340e        0x2 
+                0x00000000200034c1        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+ *fill*         0x00000000200034c2        0x2 
  .bss.m_ticks_elapsed
-                0x0000000020003410        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+                0x00000000200034c4        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
  .bss.m_ticks_elapsed_q_read_ind
-                0x0000000020003418        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+                0x00000000200034cc        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
  .bss.m_ticks_elapsed_q_write_ind
-                0x0000000020003419        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
- *fill*         0x000000002000341a        0x2 
+                0x00000000200034cd        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+ *fill*         0x00000000200034ce        0x2 
  .bss.m_ticks_latest
-                0x000000002000341c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+                0x00000000200034d0        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
  .bss.mp_timer_id_head
-                0x0000000020003420        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
+                0x00000000200034d4        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/app_timer.o
  .bss.nrf_nvic_state
-                0x0000000020003424        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/app_util_platform.o
-                0x0000000020003424                nrf_nvic_state
+                0x00000000200034d8        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/app_util_platform.o
+                0x00000000200034d8                nrf_nvic_state
  .bss.desc.8484
-                0x0000000020003430        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+                0x00000000200034e4        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
  .bss.m_cb_table
-                0x000000002000343c       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+                0x00000000200034f0       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
  .bss.m_chunk_queue
-                0x000000002000345c       0x48 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- .bss.m_flags   0x00000000200034a4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- *fill*         0x00000000200034a5        0x3 
- .bss.m_gc      0x00000000200034a8       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+                0x0000000020003510       0x48 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ .bss.m_flags   0x0000000020003558        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ *fill*         0x0000000020003559        0x3 
+ .bss.m_gc      0x000000002000355c       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
  .bss.m_latest_rec_id
-                0x00000000200034b8        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+                0x000000002000356c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
  .bss.m_op_queue
-                0x00000000200034bc       0x78 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- .bss.m_pages   0x0000000020003534       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+                0x0000000020003570       0x78 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ .bss.m_pages   0x00000000200035e8       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
  .bss.m_swap_page
-                0x0000000020003554        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- .bss.m_users   0x000000002000355c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- *fill*         0x000000002000355d        0x1 
+                0x0000000020003608        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ .bss.m_users   0x0000000020003610        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ *fill*         0x0000000020003611        0x1 
  .bss.page.8485
-                0x000000002000355e        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- .bss.tok.8390  0x0000000020003560        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
- .bss.m_flags   0x0000000020003568        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fstorage.o
- *fill*         0x0000000020003569        0x3 
- .bss.m_queue   0x000000002000356c       0x68 Output/nRF_Reflekto nrf52832_xxaa/Obj/fstorage.o
+                0x0000000020003612        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ .bss.tok.8390  0x0000000020003614        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
+ .bss.m_flags   0x000000002000361c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fstorage.o
+ *fill*         0x000000002000361d        0x3 
+ .bss.m_queue   0x0000000020003620       0x68 Output/nRF_Reflekto nrf52832_xxaa/Obj/fstorage.o
  .bss.m_retry_count
-                0x00000000200035d4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fstorage.o
+                0x0000000020003688        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/fstorage.o
  .bss.m_blocking_mode
-                0x00000000200035d5        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_log_backend_serial.o
+                0x0000000020003689        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_log_backend_serial.o
  .bss.m_initialized
-                0x00000000200035d6        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_log_backend_serial.o
- *fill*         0x00000000200035d7        0x1 
+                0x000000002000368a        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_log_backend_serial.o
+ *fill*         0x000000002000368b        0x1 
  .bss.m_log_data
-                0x00000000200035d8      0x418 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_log_frontend.o
+                0x000000002000368c      0x418 Output/nRF_Reflekto nrf52832_xxaa/Obj/nrf_log_frontend.o
  .bss._SEGGER_RTT
-                0x00000000200039f0       0x78 Output/nRF_Reflekto nrf52832_xxaa/Obj/SEGGER_RTT.o
-                0x00000000200039f0                _SEGGER_RTT
+                0x0000000020003aa4       0x78 Output/nRF_Reflekto nrf52832_xxaa/Obj/SEGGER_RTT.o
+                0x0000000020003aa4                _SEGGER_RTT
  .bss._acDownBuffer
-                0x0000000020003a68       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/SEGGER_RTT.o
+                0x0000000020003b1c       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/SEGGER_RTT.o
  .bss._acUpBuffer
-                0x0000000020003a78      0x400 Output/nRF_Reflekto nrf52832_xxaa/Obj/SEGGER_RTT.o
+                0x0000000020003b2c      0x400 Output/nRF_Reflekto nrf52832_xxaa/Obj/SEGGER_RTT.o
  .bss.m_ble_evt_buffer_size
-                0x0000000020003e78        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
- *fill*         0x0000000020003e7a        0x2 
+                0x0000000020003f2c        0x2 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+ *fill*         0x0000000020003f2e        0x2 
  .bss.m_ble_evt_handler
-                0x0000000020003e7c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+                0x0000000020003f30        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
  .bss.m_evt_schedule_func
-                0x0000000020003e80        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+                0x0000000020003f34        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
  .bss.m_softdevice_enabled
-                0x0000000020003e84        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+                0x0000000020003f38        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
  .bss.m_suspended
-                0x0000000020003e85        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
- *fill*         0x0000000020003e86        0x2 
+                0x0000000020003f39        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+ *fill*         0x0000000020003f3a        0x2 
  .bss.m_sys_evt_handler
-                0x0000000020003e88        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+                0x0000000020003f3c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
  .bss.mp_ble_evt_buffer
-                0x0000000020003e8c        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
+                0x0000000020003f40        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/softdevice_handler.o
  .bss.libc.__user_format_extender
-                0x0000000020003e90        0x4 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000020003e90                __user_format_extender
- .bss.libc._tm  0x0000000020003e94       0x24 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000020003f44        0x4 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000020003f44                __user_format_extender
+ .bss.libc._tm  0x0000000020003f48       0x24 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  *(COMMON)
-                0x0000000020003eb8                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
-                0x0000000000001870                __bss_size__ = SIZEOF (.bss)
-                0x0000000020003eb8                __bss_load_end__ = __bss_end__
+                0x0000000020003f6c                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
+                0x0000000000001924                __bss_size__ = SIZEOF (.bss)
+                0x0000000020003f6c                __bss_load_end__ = __bss_end__
                 0x0000000000000001                . = ASSERT (((__bss_start__ == __bss_end__) || ((__bss_end__ >= __SRAM_segment_start__) && (__bss_end__ <= __SRAM_segment_end__))), error: .bss is too large to fit in SRAM memory segment)
-                0x0000000020003eb8                __tbss_load_start__ = ALIGN (__bss_end__, 0x4)
+                0x0000000020003f6c                __tbss_load_start__ = ALIGN (__bss_end__, 0x4)
 
-.tbss           0x0000000020003eb8        0x0
-                0x0000000020003eb8                __tbss_start__ = .
+.tbss           0x0000000020003f6c        0x0
+                0x0000000020003f6c                __tbss_start__ = .
  *(.tbss .tbss.*)
-                0x0000000020003eb8                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
+                0x0000000020003f6c                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
                 0x0000000000000000                __tbss_size__ = SIZEOF (.tbss)
-                0x0000000020003eb8                __tbss_load_end__ = __tbss_end__
+                0x0000000020003f6c                __tbss_load_end__ = __tbss_end__
                 0x0000000000000001                . = ASSERT (((__tbss_start__ == __tbss_end__) || ((__tbss_end__ >= __SRAM_segment_start__) && (__tbss_end__ <= __SRAM_segment_end__))), error: .tbss is too large to fit in SRAM memory segment)
-                0x0000000020003eb8                __non_init_load_start__ = ALIGN (__tbss_end__, 0x4)
+                0x0000000020003f6c                __non_init_load_start__ = ALIGN (__tbss_end__, 0x4)
 
-.non_init       0x0000000020003eb8        0x0
-                0x0000000020003eb8                __non_init_start__ = .
+.non_init       0x0000000020003f6c        0x0
+                0x0000000020003f6c                __non_init_start__ = .
  *(.non_init .non_init.*)
-                0x0000000020003eb8                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
+                0x0000000020003f6c                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
                 0x0000000000000000                __non_init_size__ = SIZEOF (.non_init)
-                0x0000000020003eb8                __non_init_load_end__ = __non_init_end__
+                0x0000000020003f6c                __non_init_load_end__ = __non_init_end__
                 0x0000000000000001                . = ASSERT (((__non_init_start__ == __non_init_end__) || ((__non_init_end__ >= __SRAM_segment_start__) && (__non_init_end__ <= __SRAM_segment_end__))), error: .non_init is too large to fit in SRAM memory segment)
-                0x0000000020003eb8                __heap_load_start__ = ALIGN (__non_init_end__, 0x4)
+                0x0000000020003f6c                __heap_load_start__ = ALIGN (__non_init_end__, 0x4)
 
-.heap           0x0000000020003eb8      0x400
-                0x0000000020003eb8                __heap_start__ = .
+.heap           0x0000000020003f6c      0x400
+                0x0000000020003f6c                __heap_start__ = .
  *(.heap .heap.*)
-                0x00000000200042b8                . = ALIGN (MAX ((__heap_start__ + __HEAPSIZE__), .), 0x4)
- *fill*         0x0000000020003eb8      0x400 
-                0x00000000200042b8                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
+                0x000000002000436c                . = ALIGN (MAX ((__heap_start__ + __HEAPSIZE__), .), 0x4)
+ *fill*         0x0000000020003f6c      0x400 
+                0x000000002000436c                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
                 0x0000000000000400                __heap_size__ = SIZEOF (.heap)
-                0x00000000200042b8                __heap_load_end__ = __heap_end__
+                0x000000002000436c                __heap_load_end__ = __heap_end__
                 0x0000000000000001                . = ASSERT (((__heap_start__ == __heap_end__) || ((__heap_end__ >= __SRAM_segment_start__) && (__heap_end__ <= __SRAM_segment_end__))), error: .heap is too large to fit in SRAM memory segment)
                 0x000000002000fc00                __stack_load_start__ = (__SRAM_segment_end__ - 0x400)
 

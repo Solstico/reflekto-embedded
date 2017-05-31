@@ -16,7 +16,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "reflekto_data_collector.h"
 
 #include "nrf_gfx.h"
-#include "nrf52.h"
+#include "nrf.h"
 #include "nrf_gpio.h"
 #include "nrf_delay.h"
 #include "boards.h"

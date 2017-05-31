@@ -65,9 +65,10 @@ void update_collected_string(uint8_t in_data[20], uint8_t length, string_type ty
         default:
             return;
     }
-    for(uint8_t i = 0; i<length && updated_string->collected_chars < MAX_STRING_LENGTH; i++)
+    for (uint8_t i = 0; (i < length) && 
+                        (updated_string->collected_chars < MAX_STRING_LENGTH); i++)
     {
-        switch(in_data[i]){
+        switch (in_data[i]) {
             case STX:
                 updated_string->collected_chars = 0;
                 updated_string->is_completed = false;
