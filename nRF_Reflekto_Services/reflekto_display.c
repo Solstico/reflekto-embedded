@@ -23,14 +23,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #define BLACK           0x0000
 #define WHITE           0xFFFF
 
-extern const nrf_gfx_font_desc_t microsoftSansSerif_8ptFontInfo;
-extern const nrf_gfx_font_desc_t microsoftSansSerif_16ptFontInfo;
-extern const nrf_gfx_font_desc_t microsoftSansSerif_20ptFontInfo;
-extern const nrf_gfx_font_desc_t microsoftSansSerif_28ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_10ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_16ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_20ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_28ptFontInfo;
 extern const nrf_lcd_t nrf_lcd_ili9341;
 extern const nrf_lcd_t nrf_lcd_st7735;
 
-static const nrf_gfx_font_desc_t * p_font = &microsoftSansSerif_20ptFontInfo;
+static const nrf_gfx_font_desc_t * p_font = &nimbusSanL_20ptFontInfo;
 static const nrf_lcd_t * p_lcd = &nrf_lcd_ili9341;
 
 uint8_t prev_hour, prev_min, prev_wday;
@@ -41,28 +41,21 @@ void gfx_initialization(void)
     nrf_gfx_rotation_set(p_lcd,NRF_LCD_ROTATE_90);
 }
 
-void background_set(void)
-{
-    //nrf_gfx_invert(p_lcd, true);
-    //nrf_gfx_background_set(p_lcd, nrf52);
-    //nrf_gfx_invert(p_lcd, false);
-}
-
 void text_print(char *text_in, uint16_t posX, uint16_t posY, uint8_t size)
 {
     nrf_gfx_point_t text_start = NRF_GFX_POINT(posX, posY);
     switch(size){
         case 8:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_8ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_10ptFontInfo, true);
             break;
         case 16:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_16ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_16ptFontInfo, true);
             break;
         case 20:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_20ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_20ptFontInfo, true);
             break;
         case 28:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_28ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_28ptFontInfo, true);
             break;
         default:
             break;

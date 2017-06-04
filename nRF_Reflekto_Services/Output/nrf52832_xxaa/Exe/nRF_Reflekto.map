@@ -84,8 +84,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .data          0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .bss           0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- .text.background_set
-                0x0000000000000000        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .text.text_print
                 0x0000000000000000       0x70 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .text.clear_GUI
@@ -747,11 +745,11 @@ Discarded input sections
  .text          0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
  .data          0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
  .bss           0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
- .rodata.microsoftSansSerif_20ptBitmaps
-                0x0000000000000000      0x17c Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
- .rodata.microsoftSansSerif_20ptDescriptors
-                0x0000000000000000       0x2c Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
- .rodata.microsoftSansSerif_20ptFontInfo
+ .rodata.nimbusSanL_20ptBitmaps
+                0x0000000000000000     0x123f Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
+ .rodata.nimbusSanL_20ptDescriptors
+                0x0000000000000000      0x174 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
+ .rodata.nimbusSanL_20ptFontInfo
                 0x0000000000000000        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
  .comment       0x0000000000000000       0x4d Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_20pts.o
  .ARM.attributes
@@ -3511,7 +3509,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__ctors_start__ == __ctors_end__) || ((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= __FLASH_segment_end__))), error: .ctors is too large to fit in FLASH memory segment)
                 0x000000000002e698                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x000000000002e698     0x56c4
+.rodata         0x000000000002e698     0x5314
                 0x000000000002e698                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata        0x000000000002e698        0x4 Output/nRF_Reflekto nrf52832_xxaa/Obj/main.o
@@ -3621,229 +3619,229 @@ Linker script and memory map
                 0x000000000002ee04       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/ili9341.o
                 0x000000000002ee04                nrf_lcd_ili9341
  .rodata.spi    0x000000000002ee24        0x8 Output/nRF_Reflekto nrf52832_xxaa/Obj/ili9341.o
- .rodata.microsoftSansSerif_16ptBitmaps
-                0x000000000002ee2c      0xdc0 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif16pts.o
-                0x000000000002ee2c                microsoftSansSerif_16ptBitmaps
- .rodata.microsoftSansSerif_16ptDescriptors
-                0x000000000002fbec      0x178 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif16pts.o
-                0x000000000002fbec                microsoftSansSerif_16ptDescriptors
- .rodata.microsoftSansSerif_16ptFontInfo
-                0x000000000002fd64        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif16pts.o
-                0x000000000002fd64                microsoftSansSerif_16ptFontInfo
- .rodata.microsoftSansSerif_8ptBitmaps
-                0x000000000002fd70      0x5be Output/nRF_Reflekto nrf52832_xxaa/Obj/serif8pts.o
-                0x000000000002fd70                microsoftSansSerif_8ptBitmaps
- *fill*         0x000000000003032e        0x2 
- .rodata.microsoftSansSerif_8ptDescriptors
-                0x0000000000030330      0x178 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif8pts.o
-                0x0000000000030330                microsoftSansSerif_8ptDescriptors
- .rodata.microsoftSansSerif_8ptFontInfo
-                0x00000000000304a8        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif8pts.o
-                0x00000000000304a8                microsoftSansSerif_8ptFontInfo
- .rodata.microsoftSansSerif_28ptBitmaps
-                0x00000000000304b4     0x23fd Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_28.o
-                0x00000000000304b4                microsoftSansSerif_28ptBitmaps
- *fill*         0x00000000000328b1        0x3 
- .rodata.microsoftSansSerif_28ptDescriptors
-                0x00000000000328b4      0x174 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_28.o
-                0x00000000000328b4                microsoftSansSerif_28ptDescriptors
- .rodata.microsoftSansSerif_28ptFontInfo
-                0x0000000000032a28        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_28.o
-                0x0000000000032a28                microsoftSansSerif_28ptFontInfo
+ .rodata.nimbusSanL_16ptBitmaps
+                0x000000000002ee2c      0xd5f Output/nRF_Reflekto nrf52832_xxaa/Obj/serif16pts.o
+                0x000000000002ee2c                nimbusSanL_16ptBitmaps
+ *fill*         0x000000000002fb8b        0x1 
+ .rodata.nimbusSanL_16ptDescriptors
+                0x000000000002fb8c      0x178 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif16pts.o
+                0x000000000002fb8c                nimbusSanL_16ptDescriptors
+ .rodata.nimbusSanL_16ptFontInfo
+                0x000000000002fd04        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif16pts.o
+                0x000000000002fd04                nimbusSanL_16ptFontInfo
+ .rodata.nimbusSanL_10ptBitmaps
+                0x000000000002fd10      0x53b Output/nRF_Reflekto nrf52832_xxaa/Obj/serif8pts.o
+                0x000000000002fd10                nimbusSanL_10ptBitmaps
+ *fill*         0x000000000003024b        0x1 
+ .rodata.nimbusSanL_10ptDescriptors
+                0x000000000003024c      0x178 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif8pts.o
+                0x000000000003024c                nimbusSanL_10ptDescriptors
+ .rodata.nimbusSanL_10ptFontInfo
+                0x00000000000303c4        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif8pts.o
+                0x00000000000303c4                nimbusSanL_10ptFontInfo
+ .rodata.nimbusSanL_28ptBitmaps
+                0x00000000000303d0     0x2130 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_28.o
+                0x00000000000303d0                nimbusSanL_28ptBitmaps
+ .rodata.nimbusSanL_28ptDescriptors
+                0x0000000000032500      0x178 Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_28.o
+                0x0000000000032500                nimbusSanL_28ptDescriptors
+ .rodata.nimbusSanL_28ptFontInfo
+                0x0000000000032678        0xc Output/nRF_Reflekto nrf52832_xxaa/Obj/serif_time_28.o
+                0x0000000000032678                nimbusSanL_28ptFontInfo
  .rodata.clear_dayBitmaps
-                0x0000000000032a34      0x1f0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032a34                clear_dayBitmaps
+                0x0000000000032684      0x1f0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032684                clear_dayBitmaps
  .rodata.clear_dayHeightPixels
-                0x0000000000032c24        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032c24                clear_dayHeightPixels
+                0x0000000000032874        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032874                clear_dayHeightPixels
  .rodata.clear_dayWidthPages
-                0x0000000000032c25        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032c25                clear_dayWidthPages
- *fill*         0x0000000000032c26        0x2 
+                0x0000000000032875        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032875                clear_dayWidthPages
+ *fill*         0x0000000000032876        0x2 
  .rodata.clear_nightBitmaps
-                0x0000000000032c28      0x1a4 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032c28                clear_nightBitmaps
+                0x0000000000032878      0x1a4 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032878                clear_nightBitmaps
  .rodata.clear_nightHeightPixels
-                0x0000000000032dcc        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032dcc                clear_nightHeightPixels
+                0x0000000000032a1c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032a1c                clear_nightHeightPixels
  .rodata.clear_nightWidthPages
-                0x0000000000032dcd        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032dcd                clear_nightWidthPages
- *fill*         0x0000000000032dce        0x2 
+                0x0000000000032a1d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032a1d                clear_nightWidthPages
+ *fill*         0x0000000000032a1e        0x2 
  .rodata.cloudlyBitmaps
-                0x0000000000032dd0      0x130 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032dd0                cloudlyBitmaps
+                0x0000000000032a20      0x130 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032a20                cloudlyBitmaps
  .rodata.cloudlyHeightPixels
-                0x0000000000032f00        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032f00                cloudlyHeightPixels
+                0x0000000000032b50        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032b50                cloudlyHeightPixels
  .rodata.cloudlyWidthPages
-                0x0000000000032f01        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032f01                cloudlyWidthPages
- *fill*         0x0000000000032f02        0x2 
+                0x0000000000032b51        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032b51                cloudlyWidthPages
+ *fill*         0x0000000000032b52        0x2 
  .rodata.fogBitmaps
-                0x0000000000032f04      0x1a0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000032f04                fogBitmaps
+                0x0000000000032b54      0x1a0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032b54                fogBitmaps
  .rodata.fogHeightPixels
-                0x00000000000330a4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x00000000000330a4                fogHeightPixels
+                0x0000000000032cf4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032cf4                fogHeightPixels
  .rodata.fogWidthPages
-                0x00000000000330a5        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x00000000000330a5                fogWidthPages
- *fill*         0x00000000000330a6        0x2 
+                0x0000000000032cf5        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032cf5                fogWidthPages
+ *fill*         0x0000000000032cf6        0x2 
  .rodata.partly_cloudly_dayBitmaps
-                0x00000000000330a8      0x1c8 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x00000000000330a8                partly_cloudly_dayBitmaps
+                0x0000000000032cf8      0x1c8 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032cf8                partly_cloudly_dayBitmaps
  .rodata.partly_cloudly_dayHeightPixels
-                0x0000000000033270        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033270                partly_cloudly_dayHeightPixels
+                0x0000000000032ec0        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032ec0                partly_cloudly_dayHeightPixels
  .rodata.partly_cloudly_dayWidthPages
-                0x0000000000033271        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033271                partly_cloudly_dayWidthPages
- *fill*         0x0000000000033272        0x2 
+                0x0000000000032ec1        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032ec1                partly_cloudly_dayWidthPages
+ *fill*         0x0000000000032ec2        0x2 
  .rodata.partly_cloudly_nightBitmaps
-                0x0000000000033274      0x1a0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033274                partly_cloudly_nightBitmaps
+                0x0000000000032ec4      0x1a0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000032ec4                partly_cloudly_nightBitmaps
  .rodata.partly_cloudly_nightHeightPixels
-                0x0000000000033414        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033414                partly_cloudly_nightHeightPixels
+                0x0000000000033064        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000033064                partly_cloudly_nightHeightPixels
  .rodata.partly_cloudly_nightWidthPages
-                0x0000000000033415        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033415                partly_cloudly_nightWidthPages
- *fill*         0x0000000000033416        0x2 
+                0x0000000000033065        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000033065                partly_cloudly_nightWidthPages
+ *fill*         0x0000000000033066        0x2 
  .rodata.rainBitmaps
-                0x0000000000033418      0x1b0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033418                rainBitmaps
+                0x0000000000033068      0x1b0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000033068                rainBitmaps
  .rodata.rainHeightPixels
-                0x00000000000335c8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x00000000000335c8                rainHeightPixels
+                0x0000000000033218        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000033218                rainHeightPixels
  .rodata.rainWidthPages
-                0x00000000000335c9        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x00000000000335c9                rainWidthPages
- *fill*         0x00000000000335ca        0x2 
+                0x0000000000033219        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x0000000000033219                rainWidthPages
+ *fill*         0x000000000003321a        0x2 
  .rodata.sleetBitmaps
-                0x00000000000335cc      0x1c8 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x00000000000335cc                sleetBitmaps
+                0x000000000003321c      0x1c8 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x000000000003321c                sleetBitmaps
  .rodata.sleetHeightPixels
-                0x0000000000033794        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033794                sleetHeightPixels
+                0x00000000000333e4        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x00000000000333e4                sleetHeightPixels
  .rodata.sleetWidthPages
-                0x0000000000033795        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033795                sleetWidthPages
- *fill*         0x0000000000033796        0x2 
+                0x00000000000333e5        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x00000000000333e5                sleetWidthPages
+ *fill*         0x00000000000333e6        0x2 
  .rodata.snowBitmaps
-                0x0000000000033798      0x1e0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033798                snowBitmaps
+                0x00000000000333e8      0x1e0 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x00000000000333e8                snowBitmaps
  .rodata.snowHeightPixels
-                0x0000000000033978        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033978                snowHeightPixels
+                0x00000000000335c8        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x00000000000335c8                snowHeightPixels
  .rodata.snowWidthPages
-                0x0000000000033979        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033979                snowWidthPages
- *fill*         0x000000000003397a        0x2 
+                0x00000000000335c9        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x00000000000335c9                snowWidthPages
+ *fill*         0x00000000000335ca        0x2 
  .rodata.windBitmaps
-                0x000000000003397c      0x160 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x000000000003397c                windBitmaps
+                0x00000000000335cc      0x160 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x00000000000335cc                windBitmaps
  .rodata.windHeightPixels
-                0x0000000000033adc        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033adc                windHeightPixels
+                0x000000000003372c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x000000000003372c                windHeightPixels
  .rodata.windWidthPages
-                0x0000000000033add        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
-                0x0000000000033add                windWidthPages
- *fill*         0x0000000000033ade        0x2 
+                0x000000000003372d        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/weather_icons.o
+                0x000000000003372d                windWidthPages
+ *fill*         0x000000000003372e        0x2 
  .rodata.libc.__RAL_ascii_ctype_map
-                0x0000000000033ae0       0x80 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033ae0                __RAL_ascii_ctype_map
+                0x0000000000033730       0x80 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033730                __RAL_ascii_ctype_map
  .rodata.libc.__RAL_ascii_ctype_mask
-                0x0000000000033b60        0xd /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
- *fill*         0x0000000000033b6d        0x3 
+                0x00000000000337b0        0xd /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+ *fill*         0x00000000000337bd        0x3 
  .rodata.libc.__RAL_c_locale
-                0x0000000000033b70        0xc /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033b70                __RAL_c_locale
+                0x00000000000337c0        0xc /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000337c0                __RAL_c_locale
  .rodata.libc.__RAL_c_locale_abbrev_day_names
-                0x0000000000033b7c       0x1d /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033b7c                __RAL_c_locale_abbrev_day_names
- *fill*         0x0000000000033b99        0x3 
+                0x00000000000337cc       0x1d /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000337cc                __RAL_c_locale_abbrev_day_names
+ *fill*         0x00000000000337e9        0x3 
  .rodata.libc.__RAL_c_locale_abbrev_month_names
-                0x0000000000033b9c       0x31 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033b9c                __RAL_c_locale_abbrev_month_names
- *fill*         0x0000000000033bcd        0x3 
+                0x00000000000337ec       0x31 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000337ec                __RAL_c_locale_abbrev_month_names
+ *fill*         0x000000000003381d        0x3 
  .rodata.libc.__RAL_c_locale_am_pm_indicator
-                0x0000000000033bd0        0x7 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033bd0                __RAL_c_locale_am_pm_indicator
- *fill*         0x0000000000033bd7        0x1 
+                0x0000000000033820        0x7 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033820                __RAL_c_locale_am_pm_indicator
+ *fill*         0x0000000000033827        0x1 
  .rodata.libc.__RAL_c_locale_data
-                0x0000000000033bd8       0x58 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033bd8                __RAL_c_locale_data
+                0x0000000000033828       0x58 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033828                __RAL_c_locale_data
  .rodata.libc.__RAL_c_locale_date_format
-                0x0000000000033c30        0x9 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033c30                __RAL_c_locale_date_format
- *fill*         0x0000000000033c39        0x3 
+                0x0000000000033880        0x9 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033880                __RAL_c_locale_date_format
+ *fill*         0x0000000000033889        0x3 
  .rodata.libc.__RAL_c_locale_date_time_format
-                0x0000000000033c3c        0xf /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033c3c                __RAL_c_locale_date_time_format
- *fill*         0x0000000000033c4b        0x1 
+                0x000000000003388c        0xf /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003388c                __RAL_c_locale_date_time_format
+ *fill*         0x000000000003389b        0x1 
  .rodata.libc.__RAL_c_locale_day_names
-                0x0000000000033c4c       0x3a /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033c4c                __RAL_c_locale_day_names
- *fill*         0x0000000000033c86        0x2 
+                0x000000000003389c       0x3a /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003389c                __RAL_c_locale_day_names
+ *fill*         0x00000000000338d6        0x2 
  .rodata.libc.__RAL_c_locale_month_names
-                0x0000000000033c88       0x57 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033c88                __RAL_c_locale_month_names
- *fill*         0x0000000000033cdf        0x1 
+                0x00000000000338d8       0x57 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000338d8                __RAL_c_locale_month_names
+ *fill*         0x000000000003392f        0x1 
  .rodata.libc.__RAL_c_locale_time_format
-                0x0000000000033ce0        0x9 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033ce0                __RAL_c_locale_time_format
- *fill*         0x0000000000033ce9        0x3 
+                0x0000000000033930        0x9 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033930                __RAL_c_locale_time_format
+ *fill*         0x0000000000033939        0x3 
  .rodata.libc.__RAL_codeset_ascii
-                0x0000000000033cec       0x20 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033cec                __RAL_codeset_ascii
+                0x000000000003393c       0x20 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003393c                __RAL_codeset_ascii
  .rodata.libc.__RAL_data_empty_string
-                0x0000000000033d0c        0x1 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033d0c                __RAL_data_empty_string
- *fill*         0x0000000000033d0d        0x3 
+                0x000000000003395c        0x1 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000003395c                __RAL_data_empty_string
+ *fill*         0x000000000003395d        0x3 
  .rodata.libc.__RAL_data_utf8_period
-                0x0000000000033d10        0x2 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033d10                __RAL_data_utf8_period
- *fill*         0x0000000000033d12        0x2 
+                0x0000000000033960        0x2 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033960                __RAL_data_utf8_period
+ *fill*         0x0000000000033962        0x2 
  .rodata.libc.__RAL_find_locale.str1.4
-                0x0000000000033d14        0xc /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033964        0xc /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
                                           0xa (size before relaxing)
  .rodata.libc.__RAL_hex_lc
-                0x0000000000033d20       0x10 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033d20                __RAL_hex_lc
+                0x0000000000033970       0x10 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033970                __RAL_hex_lc
  .rodata.libc.__RAL_hex_uc
-                0x0000000000033d30       0x10 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033d30                __RAL_hex_uc
+                0x0000000000033980       0x10 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033980                __RAL_hex_uc
  .rodata.libc.__RAL_mon_lengths
-                0x0000000000033d40       0x18 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000033990       0x18 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .rodata.libc.__RAL_year_lengths
-                0x0000000000033d58        0x4 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000033d5c                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x00000000000056c4                __rodata_size__ = SIZEOF (.rodata)
-                0x0000000000033d5c                __rodata_load_end__ = __rodata_end__
+                0x00000000000339a8        0x4 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000339ac                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x0000000000005314                __rodata_size__ = SIZEOF (.rodata)
+                0x00000000000339ac                __rodata_load_end__ = __rodata_end__
 
 .rel.dyn        0x0000000000000000        0x0
  .rel.iplt      0x0000000000000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/ses_nrf52_startup.o
                 0x0000000000000001                . = ASSERT (((__rodata_start__ == __rodata_end__) || ((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= __FLASH_segment_end__))), error: .rodata is too large to fit in FLASH memory segment)
-                0x0000000000033d5c                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
+                0x00000000000339ac                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
 
-.ARM.exidx      0x0000000000033d5c        0x0
-                0x0000000000033d5c                __ARM.exidx_start__ = .
-                0x0000000000033d5c                __exidx_start = __ARM.exidx_start__
+.ARM.exidx      0x00000000000339ac        0x0
+                0x00000000000339ac                __ARM.exidx_start__ = .
+                0x00000000000339ac                __exidx_start = __ARM.exidx_start__
  *(.ARM.exidx .ARM.exidx.*)
-                0x0000000000033d5c                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
+                0x00000000000339ac                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
                 0x0000000000000000                __ARM.exidx_size__ = SIZEOF (.ARM.exidx)
-                0x0000000000033d5c                __exidx_end = __ARM.exidx_end__
-                0x0000000000033d5c                __ARM.exidx_load_end__ = __ARM.exidx_end__
+                0x00000000000339ac                __exidx_end = __ARM.exidx_end__
+                0x00000000000339ac                __ARM.exidx_load_end__ = __ARM.exidx_end__
                 0x0000000000000001                . = ASSERT (((__ARM.exidx_start__ == __ARM.exidx_end__) || ((__ARM.exidx_end__ >= __FLASH_segment_start__) && (__ARM.exidx_end__ <= __FLASH_segment_end__))), error: .ARM.exidx is too large to fit in FLASH memory segment)
-                0x0000000000033d5c                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
+                0x00000000000339ac                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
 
-.fast           0x0000000020002600        0x0 load address 0x0000000000033d5c
+.fast           0x0000000020002600        0x0 load address 0x00000000000339ac
                 0x0000000020002600                __fast_start__ = .
  *(.fast .fast.*)
                 0x0000000020002600                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
                 0x0000000000000000                __fast_size__ = SIZEOF (.fast)
-                0x0000000000033d5c                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x00000000000339ac                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
                 0x0000000000000001                . = ASSERT (((__fast_load_start__ == __fast_load_end__) || ((__fast_load_end__ >= __FLASH_segment_start__) && (__fast_load_end__ <= __FLASH_segment_end__))), error: .fast is too large to fit in FLASH memory segment)
 
 .fast_run       0x0000000020002600        0x0
@@ -3853,9 +3851,9 @@ Linker script and memory map
                 0x0000000000000000                __fast_run_size__ = SIZEOF (.fast_run)
                 0x0000000020002600                __fast_run_load_end__ = __fast_run_end__
                 0x0000000000000001                . = ASSERT (((__fast_run_start__ == __fast_run_end__) || ((__fast_run_end__ >= __SRAM_segment_start__) && (__fast_run_end__ <= __SRAM_segment_end__))), error: .fast_run is too large to fit in SRAM memory segment)
-                0x0000000000033d5c                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
+                0x00000000000339ac                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
 
-.data           0x0000000020002600       0x38 load address 0x0000000000033d5c
+.data           0x0000000020002600       0x38 load address 0x00000000000339ac
                 0x0000000020002600                __data_start__ = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data.SystemCoreClock
@@ -3896,13 +3894,13 @@ Linker script and memory map
                 0x0000000020002624                __RAL_global_locale
                 0x0000000020002638                __data_end__ = (__data_start__ + SIZEOF (.data))
                 0x0000000000000038                __data_size__ = SIZEOF (.data)
-                0x0000000000033d94                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x00000000000339e4                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
 
 .igot.plt       0x0000000100000000        0x0
  .igot.plt      0x0000000100000000        0x0 Output/nRF_Reflekto nrf52832_xxaa/Obj/ses_nrf52_startup.o
                 0x0000000000000001                . = ASSERT (((__data_load_start__ == __data_load_end__) || ((__data_load_end__ >= __FLASH_segment_start__) && (__data_load_end__ <= __FLASH_segment_end__))), error: .data is too large to fit in FLASH memory segment)
 
-.data_run       0x0000000020002600       0x38 load address 0x0000000000033d5c
+.data_run       0x0000000020002600       0x38 load address 0x00000000000339ac
                 0x0000000020002600                __data_run_start__ = .
                 0x0000000020002638                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
  *fill*         0x0000000020002600       0x38 
@@ -3910,14 +3908,14 @@ Linker script and memory map
                 0x0000000000000038                __data_run_size__ = SIZEOF (.data_run)
                 0x0000000020002638                __data_run_load_end__ = __data_run_end__
                 0x0000000000000001                . = ASSERT (((__data_run_start__ == __data_run_end__) || ((__data_run_end__ >= __SRAM_segment_start__) && (__data_run_end__ <= __SRAM_segment_end__))), error: .data_run is too large to fit in SRAM memory segment)
-                0x0000000000033d94                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
+                0x00000000000339e4                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
 
-.tdata          0x0000000020002638        0x0 load address 0x0000000000033d94
+.tdata          0x0000000020002638        0x0 load address 0x00000000000339e4
                 0x0000000020002638                __tdata_start__ = .
  *(.tdata .tdata.*)
                 0x0000000020002638                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
                 0x0000000000000000                __tdata_size__ = SIZEOF (.tdata)
-                0x0000000000033d94                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
+                0x00000000000339e4                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
                 0x0000000000000001                . = ASSERT (((__tdata_load_start__ == __tdata_load_end__) || ((__tdata_load_end__ >= __FLASH_segment_start__) && (__tdata_load_end__ <= __FLASH_segment_end__))), error: .tdata is too large to fit in FLASH memory segment)
 
 .tdata_run      0x0000000020002638        0x0
@@ -3927,20 +3925,20 @@ Linker script and memory map
                 0x0000000000000000                __tdata_run_size__ = SIZEOF (.tdata_run)
                 0x0000000020002638                __tdata_run_load_end__ = __tdata_run_end__
                 0x0000000000000001                . = ASSERT (((__tdata_run_start__ == __tdata_run_end__) || ((__tdata_run_end__ >= __SRAM_segment_start__) && (__tdata_run_end__ <= __SRAM_segment_end__))), error: .tdata_run is too large to fit in SRAM memory segment)
-                0x0000000000033d94                __fs_data_load_start__ = ALIGN ((__tdata_load_start__ + SIZEOF (.tdata)), 0x4)
+                0x00000000000339e4                __fs_data_load_start__ = ALIGN ((__tdata_load_start__ + SIZEOF (.tdata)), 0x4)
 
-.fs_data        0x0000000020002638       0x10 load address 0x0000000000033d94
+.fs_data        0x0000000020002638       0x10 load address 0x00000000000339e4
                 0x0000000020002638                __fs_data_start__ = .
  *(.fs_data .fs_data.*)
  .fs_data       0x0000000020002638       0x10 Output/nRF_Reflekto nrf52832_xxaa/Obj/fds.o
                 0x0000000020002648                __fs_data_end__ = (__fs_data_start__ + SIZEOF (.fs_data))
                 0x0000000000000010                __fs_data_size__ = SIZEOF (.fs_data)
-                0x0000000000033da4                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
-                0x0000000000033da4                __FLASH_segment_used_end__ = (ALIGN ((__tdata_load_start__ + SIZEOF (.tdata)), 0x4) + SIZEOF (.fs_data))
-                0x0000000000033da4                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
+                0x00000000000339f4                __fs_data_load_end__ = (__fs_data_load_start__ + SIZEOF (.fs_data))
+                0x00000000000339f4                __FLASH_segment_used_end__ = (ALIGN ((__tdata_load_start__ + SIZEOF (.tdata)), 0x4) + SIZEOF (.fs_data))
+                0x00000000000339f4                __FLASH_segment_used_size__ = (__FLASH_segment_used_end__ - __FLASH_segment_start__)
                 0x0000000000000001                . = ASSERT (((__fs_data_load_start__ == __fs_data_load_end__) || ((__fs_data_load_end__ >= __FLASH_segment_start__) && (__fs_data_load_end__ <= __FLASH_segment_end__))), error: .fs_data is too large to fit in FLASH memory segment)
 
-.fs_data_run    0x0000000020002638       0x10 load address 0x0000000000033d94
+.fs_data_run    0x0000000020002638       0x10 load address 0x00000000000339e4
                 0x0000000020002638                __fs_data_run_start__ = .
                 0x0000000020002638                __start_fs_data = __fs_data_run_start__
                 0x0000000020002648                . = MAX ((__fs_data_run_start__ + SIZEOF (.fs_data)), .)
@@ -4015,19 +4013,19 @@ Linker script and memory map
  .bss.work_eta  0x0000000020002a90       0x67 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_data_collector.o
                 0x0000000020002a90                work_eta
  *fill*         0x0000000020002af7        0x1 
- .bss.day.10179
+ .bss.day.10176
                 0x0000000020002af8        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  *fill*         0x0000000020002afb        0x1 
- .bss.final.10176
+ .bss.final.10173
                 0x0000000020002afc        0xa Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  *fill*         0x0000000020002b06        0x2 
- .bss.final_sec.10177
+ .bss.final_sec.10174
                 0x0000000020002b08        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  *fill*         0x0000000020002b0b        0x1 
- .bss.hour.10173
+ .bss.hour.10170
                 0x0000000020002b0c        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  *fill*         0x0000000020002b0f        0x1 
- .bss.minutes.10174
+ .bss.minutes.10171
                 0x0000000020002b10        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .bss.prev_hour
                 0x0000000020002b13        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
@@ -4038,12 +4036,12 @@ Linker script and memory map
                 0x0000000020002b15        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
                 0x0000000020002b15                prev_wday
  *fill*         0x0000000020002b16        0x2 
- .bss.say_hello.10211
+ .bss.say_hello.10208
                 0x0000000020002b18       0x30 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- .bss.seconds.10175
+ .bss.seconds.10172
                 0x0000000020002b48        0x3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  *fill*         0x0000000020002b4b        0x1 
- .bss.week_day.10178
+ .bss.week_day.10175
                 0x0000000020002b4c       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
  .bss.current_long_push_pin_no.7899
                 0x0000000020002b6c        0x1 Output/nRF_Reflekto nrf52832_xxaa/Obj/bsp.o
@@ -4606,52 +4604,52 @@ OUTPUT(Output/nrf52832_xxaa/Exe/nRF_Reflekto.elf elf32-littlearm)
  .comment       0x000000000000004c       0x4d /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .comment       0x000000000000004c       0x4d /Applications/SEGGER Embedded Studio 3.12/lib/libvfprintf_v7em_fpv4_sp_d16_hard_t_le_eabi.o
 
-.debug_line     0x0000000000000000      0xb2c
+.debug_line     0x0000000000000000      0xb1c
  .debug_line    0x0000000000000000       0xde Output/nRF_Reflekto nrf52832_xxaa/Obj/ses_nrf52_startup.o
  .debug_line    0x00000000000000de      0x26b Output/nRF_Reflekto nrf52832_xxaa/Obj/thumb_crt0.o
- .debug_line    0x0000000000000349      0x7e3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ .debug_line    0x0000000000000349      0x7d3 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
-.debug_info     0x0000000000000000     0x28bd
+.debug_info     0x0000000000000000     0x28aa
  .debug_info    0x0000000000000000       0xe2 Output/nRF_Reflekto nrf52832_xxaa/Obj/ses_nrf52_startup.o
  .debug_info    0x00000000000000e2       0xd7 Output/nRF_Reflekto nrf52832_xxaa/Obj/thumb_crt0.o
- .debug_info    0x00000000000001b9     0x2704 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ .debug_info    0x00000000000001b9     0x26f1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
-.debug_abbrev   0x0000000000000000      0x3c7
+.debug_abbrev   0x0000000000000000      0x3c0
  .debug_abbrev  0x0000000000000000       0x14 Output/nRF_Reflekto nrf52832_xxaa/Obj/ses_nrf52_startup.o
  .debug_abbrev  0x0000000000000014       0x12 Output/nRF_Reflekto nrf52832_xxaa/Obj/thumb_crt0.o
- .debug_abbrev  0x0000000000000026      0x3a1 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ .debug_abbrev  0x0000000000000026      0x39a Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
-.debug_aranges  0x0000000000000000      0x150
+.debug_aranges  0x0000000000000000      0x148
  .debug_aranges
                 0x0000000000000000       0x20 Output/nRF_Reflekto nrf52832_xxaa/Obj/ses_nrf52_startup.o
  .debug_aranges
                 0x0000000000000020       0xb0 Output/nRF_Reflekto nrf52832_xxaa/Obj/thumb_crt0.o
  .debug_aranges
-                0x00000000000000d0       0x80 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x00000000000000d0       0x78 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
-.debug_ranges   0x0000000000000000      0x2a8
+.debug_ranges   0x0000000000000000      0x2a0
  .debug_ranges  0x0000000000000000       0xa8 Output/nRF_Reflekto nrf52832_xxaa/Obj/thumb_crt0.o
- .debug_ranges  0x00000000000000a8      0x200 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ .debug_ranges  0x00000000000000a8      0x1f8 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
-.debug_frame    0x0000000000000000      0x924
- .debug_frame   0x0000000000000000      0x2e8 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
- .debug_frame   0x00000000000002e8      0x428 /Applications/SEGGER Embedded Studio 3.12/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
- .debug_frame   0x0000000000000710      0x164 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
- .debug_frame   0x0000000000000874       0xb0 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+.debug_frame    0x0000000000000000      0x914
+ .debug_frame   0x0000000000000000      0x2d8 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+ .debug_frame   0x00000000000002d8      0x428 /Applications/SEGGER Embedded Studio 3.12/lib/libm_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libm_asm.o)
+ .debug_frame   0x0000000000000700      0x164 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+ .debug_frame   0x0000000000000864       0xb0 /Applications/SEGGER Embedded Studio 3.12/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
 
 .debug_loc      0x0000000000000000      0x926
  .debug_loc     0x0000000000000000      0x926 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
 .debug_pubnames
-                0x0000000000000000      0x336
+                0x0000000000000000      0x323
  .debug_pubnames
-                0x0000000000000000      0x336 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                0x0000000000000000      0x323 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
 .debug_pubtypes
                 0x0000000000000000      0x31b
  .debug_pubtypes
                 0x0000000000000000      0x31b Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
 
-.debug_str      0x0000000000000000     0x1044
- .debug_str     0x0000000000000000     0x1044 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
-                                       0x117a (size before relaxing)
+.debug_str      0x0000000000000000     0x1016
+ .debug_str     0x0000000000000000     0x1016 Output/nRF_Reflekto nrf52832_xxaa/Obj/reflekto_display.o
+                                       0x114c (size before relaxing)
