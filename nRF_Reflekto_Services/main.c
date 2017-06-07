@@ -34,7 +34,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "nrf_gpio.h"
 #include "ble_conn_state.h"
 #include "nrf_ble_gatt.h"
-#include "SEGGER_RTT.h"
 
 #define NRF_LOG_MODULE_NAME "APP"
 #include "nrf_log.h"
@@ -56,9 +55,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)        /**< Minimum acceptable connection interval (0.1 seconds). */
 #define MAX_CONN_INTERVAL               MSEC_TO_UNITS(200, UNIT_1_25_MS)        /**< Maximum acceptable connection interval (0.2 second). */
 #define SLAVE_LATENCY                   0                                       /**< Slave latency. */
-#define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(4000, UNIT_10_MS)         /**< Connection supervisory timeout (4 seconds). */
+#define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(10000, UNIT_10_MS)         /**< Connection supervisory timeout (4 seconds). */
 
-#define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(5000)                   /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (5 seconds). */
+#define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(9000)                   /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (5 seconds). */
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000)                  /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                       /**< Number of attempts before giving up the connection parameter negotiation. */
 
@@ -422,7 +421,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                     auth_reply.params.write.gatt_status = APP_FEATURE_NOT_SUPPORTED;
                     err_code = sd_ble_gatts_rw_authorize_reply(p_ble_evt->evt.gatts_evt.conn_handle,
                                                                &auth_reply);
-                    SEGGER_RTT_printf(0,"AUTH REQ ErrCode: %x\n",err_code);
+                    NRF_LOG_DEBUG("AUTH REQ ErrCode: %x\n",err_code);
                     APP_ERROR_CHECK(err_code);
                 }
             }
@@ -444,7 +443,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     /** The Connection state module has to be fed BLE events in order to function correctly
      * Remember to call ble_conn_state_on_ble_evt before calling any ble_conns_state_* functions. */
-    SEGGER_RTT_printf(0,"BLE Event: %x\n",p_ble_evt->header.evt_id);
+    NRF_LOG_INFO("BLE Event: %x\r\n",p_ble_evt->header.evt_id);
     ble_conn_state_on_ble_evt(p_ble_evt);
     pm_on_ble_evt(p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
@@ -704,9 +703,9 @@ int main(void)
     peer_manager_init();
     // Start execution.
     advertising_start(erase_bonds);
-    sd_ble_gap_tx_power_set(-40);
+    sd_ble_gap_tx_power_set(-30);
     // Enter main loop.
-    SEGGER_RTT_printf(0,"End of initial\n");
+    NRF_LOG_INFO("End of initial\n");
     for (;;)
     {
         if (NRF_LOG_PROCESS() == false)

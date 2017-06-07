@@ -686,10 +686,10 @@ unsigned SEGGER_RTT_Write(unsigned BufferIndex, const void* pBuffer, unsigned Nu
 *    (3) \0 termination character is *not* stored in RTT buffer
 */
 unsigned SEGGER_RTT_WriteString(unsigned BufferIndex, const char* s) {
-  unsigned Len;
-
-  Len = STRLEN(s);
-  return SEGGER_RTT_Write(BufferIndex, s, Len);
+//  unsigned Len;
+//
+//  Len = STRLEN(s);
+//  return SEGGER_RTT_Write(BufferIndex, s, Len);
 }
 
 /*********************************************************************

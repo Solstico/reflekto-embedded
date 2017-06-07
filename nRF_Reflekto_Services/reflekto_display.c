@@ -15,22 +15,25 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "reflekto_timers.h"
 #include "nrf_gfx.h"
 #include "weather_icons.h"
-#include "SEGGER_RTT.h"
 
 #define GRAY            0xC618
 #define RED             0xF800
 #define BLUE            0x001F
 #define BLACK           0x0000
 #define WHITE           0xFFFF
+#define THICKNESS 1
+#define LARGE_FONT_HEIGHT 28
+#define MEDIUM_FONT_HEIGHT 16
+#define SMALL_FONT_HEIGHT 14
 
-extern const nrf_gfx_font_desc_t microsoftSansSerif_8ptFontInfo;
-extern const nrf_gfx_font_desc_t microsoftSansSerif_16ptFontInfo;
-extern const nrf_gfx_font_desc_t microsoftSansSerif_20ptFontInfo;
-extern const nrf_gfx_font_desc_t microsoftSansSerif_28ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_10ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_16ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_20ptFontInfo;
+extern const nrf_gfx_font_desc_t nimbusSanL_28ptFontInfo;
 extern const nrf_lcd_t nrf_lcd_ili9341;
 extern const nrf_lcd_t nrf_lcd_st7735;
 
-static const nrf_gfx_font_desc_t * p_font = &microsoftSansSerif_20ptFontInfo;
+static const nrf_gfx_font_desc_t * p_font = &nimbusSanL_20ptFontInfo;
 static const nrf_lcd_t * p_lcd = &nrf_lcd_ili9341;
 
 uint8_t prev_hour, prev_min, prev_wday;
@@ -41,28 +44,21 @@ void gfx_initialization(void)
     nrf_gfx_rotation_set(p_lcd,NRF_LCD_ROTATE_90);
 }
 
-void background_set(void)
-{
-    //nrf_gfx_invert(p_lcd, true);
-    //nrf_gfx_background_set(p_lcd, nrf52);
-    //nrf_gfx_invert(p_lcd, false);
-}
-
 void text_print(char *text_in, uint16_t posX, uint16_t posY, uint8_t size)
 {
     nrf_gfx_point_t text_start = NRF_GFX_POINT(posX, posY);
     switch(size){
         case 8:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_8ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_10ptFontInfo, true);
             break;
         case 16:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_16ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_16ptFontInfo, true);
             break;
         case 20:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_20ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_20ptFontInfo, true);
             break;
         case 28:
-            nrf_gfx_print(p_lcd, &text_start, 0xFFFF, text_in, &microsoftSansSerif_28ptFontInfo, true);
+            nrf_gfx_print(p_lcd, &text_start, WHITE, text_in, &nimbusSanL_28ptFontInfo, true);
             break;
         default:
             break;
@@ -73,20 +69,20 @@ void screen_clear(void)
 {
     nrf_gfx_screen_fill(p_lcd, BLACK);
     scr_clr_timer_stop();
-    memset(&weather_city,0,sizeof(weather_city));
-    memset(&weather_advice,0,sizeof(weather_advice));
-    memset(&weather_wind,0,sizeof(weather_wind));
+    memset(&weather_city, 0, sizeof(weather_city));
+    memset(&weather_advice, 0, sizeof(weather_advice));
+    memset(&weather_wind, 0, sizeof(weather_wind));
 
-    memset(&next_calendar_event,0,sizeof(next_calendar_event));
-    memset(&unread_emails,0,sizeof(unread_emails));
-    memset(&work_eta,0,sizeof(work_eta));
+    memset(&next_calendar_event, 0, sizeof(next_calendar_event));
+    memset(&unread_emails, 0, sizeof(unread_emails));
+    memset(&work_eta, 0, sizeof(work_eta));
 
-    memset(&name,0,sizeof(name));
-    memset(&hello,0,sizeof(hello));
-    memset(&compliment,0,sizeof(compliment));
+    memset(&name, 0, sizeof(name));
+    memset(&hello, 0, sizeof(hello));
+    memset(&compliment, 0, sizeof(compliment));
 }
 
-void update_gui(string_type type)
+void update_gui(string_type_t type)
 {
     switch(type) {
         case CITY:
@@ -124,56 +120,56 @@ void update_gui(string_type type)
 
 void clear_GUI(clear_gui_type type)
 {
-		nrf_gfx_rect_t my_rect = NRF_GFX_RECT(0,0,TFTWIDTH, TFTHEIGHT);
+		nrf_gfx_rect_t my_rect = NRF_GFX_RECT(0, 0, TFTWIDTH, TFTHEIGHT);
 		switch (type){
 			case TIME_A:
-                            my_rect.x=0; my_rect.y=0;
-                            my_rect.width=2*IMGWIDTH; my_rect.height=IMGWIDTH;
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x0000);
+                            my_rect.x = 0; my_rect.y = 0;
+                            my_rect.width = 2 * IMGWIDTH; my_rect.height = IMGWIDTH;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
                             break;
                         case TIME_H:
-                            my_rect.x=0; my_rect.y=28;
-                            my_rect.width=2*IMGWIDTH; my_rect.height=IMGWIDTH-my_rect.y;
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x0000);
+                            my_rect.x = 0; my_rect.y = LARGE_FONT_HEIGHT;
+                            my_rect.width = 2 * IMGWIDTH; my_rect.height = IMGWIDTH - my_rect.y;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
                             break;
                         case TIME_S:
-                            my_rect.x=90; my_rect.y=28;
-                            my_rect.width=38; my_rect.height=IMGWIDTH-my_rect.y;
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x0000);
+                            my_rect.x = 90; my_rect.y = LARGE_FONT_HEIGHT;
+                            my_rect.width = 38; my_rect.height = IMGWIDTH - my_rect.y;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
                             break;
 			case WEATHER_G:
-                            my_rect.x=2*IMGWIDTH; my_rect.y=0;
-                            my_rect.width=3*IMGWIDTH; my_rect.height=IMGWIDTH;
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
-                            my_rect.x=0; my_rect.y=IMGWIDTH+3;
-                            my_rect.width=TFTWIDTH; my_rect.height=14;
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
+                            my_rect.x = 2 * IMGWIDTH; my_rect.y = 0;
+                            my_rect.width = 3 * IMGWIDTH; my_rect.height = IMGWIDTH;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
+                            my_rect.x = 0; my_rect.y = IMGWIDTH + 3;
+                            my_rect.width = TFTWIDTH; my_rect.height = SMALL_FONT_HEIGHT;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
                             break;
 			case HELLO_G:
-                            my_rect.x=0; my_rect.y=IMGWIDTH+19;
-                            my_rect.width=TFTWIDTH; my_rect.height=49;
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
+                            my_rect.x = 0; my_rect.y = IMGWIDTH + 18;
+                            my_rect.width = TFTWIDTH; my_rect.height = 50;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
                             break;
 			case CALENDAR_G:
-                            my_rect.x=0; my_rect.y=2*IMGWIDTH+56;
+                            my_rect.x = 0; my_rect.y = 2 * IMGWIDTH + 56;
                             my_rect.width = TFTWIDTH; my_rect.height = 56; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,true,0x0000);
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, WHITE, true, BLACK);
                             break;
                         case WORK_ETA_G:
-                            my_rect.x=0; my_rect.y=2*IMGWIDTH+4;
+                            my_rect.x = 0; my_rect.y = 2 * IMGWIDTH + 4;
                             my_rect.width = TFTWIDTH; my_rect.height = 26; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
-                            my_rect.x=0; my_rect.y=2*IMGWIDTH+4;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
+                            my_rect.x = 0; my_rect.y = 2 * IMGWIDTH + 4;
                             my_rect.width = TFTWIDTH; my_rect.height = 53; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,false,0x000);
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, WHITE, false, BLACK);
                             break;
                         case MAIL_G:
-                            my_rect.x=0; my_rect.y=2*IMGWIDTH+30;
+                            my_rect.x = 0; my_rect.y = 2 * IMGWIDTH + 30;
                             my_rect.width = TFTWIDTH; my_rect.height = 26; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0x0000,true,0x000);
-                            my_rect.x=0; my_rect.y=2*IMGWIDTH+4;
+                            nrf_gfx_rect_draw(p_lcd, &my_rect, THICKNESS, BLACK, true, BLACK);
+                            my_rect.x = 0; my_rect.y = 2 * IMGWIDTH + 4;
                             my_rect.width = TFTWIDTH; my_rect.height = 53; 
-                            nrf_gfx_rect_draw(p_lcd,&my_rect,1,0xFFFF,false,0x000);
+                            nrf_gfx_rect_draw(p_lcd,&my_rect, THICKNESS, WHITE, false, BLACK);
                             break;
 			case CLR_SCR:
                             screen_clear();
@@ -248,8 +244,14 @@ static void print_weather_icon(weather_icon icon)
 
 void update_weather()
 {
-    if(!(weather_city.is_completed && weather_wind.is_completed && weather_advice.is_completed)) return;
-    if(!(weather_city.needs_to_be_printed || weather_wind.needs_to_be_printed || weather_advice.needs_to_be_printed)) return;
+    if(!(weather_city.is_completed && weather_wind.is_completed && weather_advice.is_completed))
+    {
+        return;
+    }
+    if(!(weather_city.needs_to_be_printed || weather_wind.needs_to_be_printed || weather_advice.needs_to_be_printed)) 
+    {
+        return;
+    }
     weather_city.needs_to_be_printed = false;
     weather_wind.needs_to_be_printed = false;
     weather_advice.needs_to_be_printed = false;
@@ -258,9 +260,10 @@ void update_weather()
     weather_advice.is_completed = false;
 
     clear_GUI(WEATHER_G);
+    // preserving the icon value
     uint8_t weather_i = weather_city.data[weather_city.collected_chars-1];
-    weather_i -= 48;
-    SEGGER_RTT_printf(0,"WEATHER ICON: %d\n", weather_i);
+    weather_i -= 48; //ASCII offset for '0' char
+    NRF_LOG_INFO("WEATHER ICON: %d\r\n", weather_i);
     switch (weather_i){
         case 1:
             print_weather_icon(CLEAR_DAY);
@@ -296,12 +299,20 @@ void update_weather()
             print_weather_icon(PARTLY_CLOUDLY_DAY);
             break;
     }
+    // preventing the icon value from the city string to be printed
     weather_city.data[weather_city.collected_chars-1]='\0';
+    // printing the city without the icon value
     text_print(weather_city.data,3*IMGWIDTH+8,8,8);
+    // setting back the last char, so when compared, the city will not be printed again
     weather_city.data[weather_city.collected_chars-1]=weather_i+48;
+    // wind printing
     text_print(weather_wind.data,3*IMGWIDTH+8,24,8);
+    // calculating the center position for the weather advice and printing
     uint16_t xpos=TFTWIDTH/2-weather_advice.collected_chars*3.2;
-    if (xpos<0 || xpos > TFTWIDTH) xpos=0;
+    if ((xpos < 0) || (xpos > TFTWIDTH)) 
+    {
+        xpos = 0;
+    }
     text_print(weather_advice.data,xpos,IMGWIDTH+3,8);
 }
 
@@ -412,13 +423,12 @@ void update_timer()
     strcat(final_sec,seconds);
     clear_GUI(TIME_S);
 
-    text_print(final,3,28,28);
-    text_print(final_sec,90,41,16);
+    text_print(final,3,28,LARGE_FONT_HEIGHT);
+    text_print(final_sec,90,41,MEDIUM_FONT_HEIGHT);
     text_print(week_day,3,5,8);
     prev_min = local_time->tm_min;
     prev_hour = local_time->tm_hour;
     prev_wday = local_time->tm_wday;
-    
 }
 
 void update_calendar()
@@ -427,7 +437,7 @@ void update_calendar()
     if(!next_calendar_event.needs_to_be_printed) return;
     next_calendar_event.needs_to_be_printed = false;
     clear_GUI(CALENDAR_G);
-    text_print(next_calendar_event.data,8,2*IMGWIDTH+60,16);
+    text_print(next_calendar_event.data,8,2*IMGWIDTH+60, MEDIUM_FONT_HEIGHT);
 }
 
 void update_emails()
@@ -437,17 +447,23 @@ void update_emails()
     unread_emails.needs_to_be_printed = false;
     
     clear_GUI(MAIL_G);
-    text_print(unread_emails.data,8,2*IMGWIDTH+31,16);
+    text_print(unread_emails.data,8,2*IMGWIDTH+31,MEDIUM_FONT_HEIGHT);
 }
 
 void update_work_eta()
 {
-    if(!work_eta.is_completed) return;
-    if(!work_eta.needs_to_be_printed) return;
+    if(!work_eta.is_completed) 
+    {
+        return;
+    }
+    if(!work_eta.needs_to_be_printed) 
+    {
+        return;
+    }
     work_eta.needs_to_be_printed = false;
 
     clear_GUI(WORK_ETA_G);
-    text_print(work_eta.data,8,2*IMGWIDTH+7,16);
+    text_print(work_eta.data,8,2*IMGWIDTH+7,MEDIUM_FONT_HEIGHT);
 }
 
 void update_hello()
@@ -466,8 +482,8 @@ void update_hello()
     strcat(say_hello,", ");
     strcat(say_hello,name.data);
     clear_GUI(HELLO_G);
-    text_print(say_hello,8,IMGWIDTH+20,16);
-    text_print(compliment.data,8, IMGWIDTH+42,16);
+    text_print(say_hello,8,IMGWIDTH+20,MEDIUM_FONT_HEIGHT);
+    text_print(compliment.data,8, IMGWIDTH+42,MEDIUM_FONT_HEIGHT);
 
 }
 

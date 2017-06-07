@@ -486,17 +486,25 @@ ret_code_t nrf_gfx_bitmap_draw(nrf_lcd_t const * p_instance,
     ASSERT(p_instance != NULL);
     ASSERT(p_instance->p_lcd_cb->state != NRF_DRV_STATE_UNINITIALIZED);
     ASSERT(img_buf != NULL);
-    uint8_t pixel=0;
-    for(uint8_t i = 0; i < height; i++)
+    uint8_t pixel = 0;
+    for (uint8_t i = 0; i < height; i++)
     {
-        for(uint8_t j = 0; j < width; j++)
+        for (uint8_t j = 0; j < width; j++)
         {
-            for(int8_t k = 7; k >= 0; k--)
+            for (int8_t k = 7; k >= 0; k--)
             {
-                pixel=img_buf[i*width+j];
+                pixel = img_buf[i * width + j];
                 pixel >>= k;
                 pixel &= 0x01;
-                if(pixel) pixel_draw(p_instance, x + j*8+7-k, y + i, 0xFFFF);
+                if(pixel) 
+                {
+                    pixel_draw(p_instance, x + j*8+7-k, y + i, 0xFFFF); 
+                    // x -> start x positon, 
+                    // j*8 -> offset for each byte from hex graphics file
+                    // 7-k -> offset for each bit from hex graphics file
+                    // y -> start y position
+                    // i -> current row
+                }
             }
         }
     }
@@ -602,7 +610,7 @@ ret_code_t nrf_gfx_print(nrf_lcd_t const * p_instance,
             x = p_point->x;
             y += p_font->height + p_font->height / 10;
         }
-        else if (string[i] > 31 && string [i] < 127)
+        else if ((string[i] > 31) && (string [i] < 127))
         {
             write_character(p_instance, p_font, (uint8_t)string[i], &x, y, font_color);
         }

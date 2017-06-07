@@ -11,7 +11,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 #include "reflekto_data_collector.h"
-#include "SEGGER_RTT.h"
 #include "reflekto_display.h"
 
 collected_string weather_city = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
@@ -26,7 +25,7 @@ collected_string name  = {.data = "", .collected_chars = 0, .is_completed = fals
 collected_string hello  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 collected_string compliment  = {.data = "", .collected_chars = 0, .is_completed = false, .needs_to_be_printed = false};
 
-void update_collected_string(uint8_t in_data[20], uint8_t length, string_type type)
+void update_collected_string(uint8_t in_data[20], uint8_t length, string_type_t type)
 {
     if(!has_permission_to_write) 
     {
@@ -65,9 +64,10 @@ void update_collected_string(uint8_t in_data[20], uint8_t length, string_type ty
         default:
             return;
     }
-    for(uint8_t i = 0; i<length && updated_string->collected_chars < MAX_STRING_LENGTH; i++)
+    for (uint8_t i = 0; (i < length) && 
+                        (updated_string->collected_chars < MAX_STRING_LENGTH); i++)
     {
-        switch(in_data[i]){
+        switch (in_data[i]) {
             case STX:
                 updated_string->collected_chars = 0;
                 updated_string->is_completed = false;
@@ -76,7 +76,7 @@ void update_collected_string(uint8_t in_data[20], uint8_t length, string_type ty
             case ETX:
                 updated_string->is_completed = true;
                 updated_string->data[updated_string->collected_chars]='\0';
-                SEGGER_RTT_printf(0,"String updated: %s \nChars: %d \nUpdate %d\nType: %d\n", updated_string->data, updated_string->collected_chars, updated_string->needs_to_be_printed, type);
+                NRF_LOG_INFO("String updated: %s \r\nChars: %d \r\nUpdate %d\r\nType: %d\r\n", (uint32_t) updated_string->data, updated_string->collected_chars, updated_string->needs_to_be_printed, type);
                 if(updated_string->needs_to_be_printed) update_gui(type);
                 break;
             default:
