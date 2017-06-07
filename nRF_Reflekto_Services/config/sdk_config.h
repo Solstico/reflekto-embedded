@@ -3819,7 +3819,7 @@
 // <i> Logger backend RAM usage is determined by this value.
 
 #ifndef NRF_LOG_BACKEND_MAX_STRING_LENGTH
-#define NRF_LOG_BACKEND_MAX_STRING_LENGTH 256
+#define NRF_LOG_BACKEND_MAX_STRING_LENGTH 512
 #endif
 
 // <o> NRF_LOG_TIMESTAMP_DIGITS - Number of digits for timestamp 

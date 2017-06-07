@@ -32,7 +32,7 @@
       gcc_optimization_level="Level 3"
       linker_output_format="hex"
       linker_section_placement_file="$(ProjectDir)/components/toolchain/embedded_studio/flash_placement.xml"
-      linker_section_placement_macros="FLASH_START=0x1F000;SRAM_START=0x20002600" />
+      linker_section_placement_macros="FLASH_START=0x1F000;SRAM_START=0x200020b0" />
     <configuration
       Name="External Keil"
       c_additional_options="--reduce_paths" />
@@ -104,9 +104,15 @@
       <file file_name="./components/libraries/log/src/nrf_log_frontend.c" />
     </folder>
     <folder Name="nRF_Segger_RTT">
-      <file file_name="./external/segger_rtt/RTT_Syscalls_KEIL.c" />
-      <file file_name="./external/segger_rtt/SEGGER_RTT.c" />
-      <file file_name="./external/segger_rtt/SEGGER_RTT_printf.c" />
+      <file file_name="./external/segger_rtt/RTT_Syscalls_KEIL.c">
+        <configuration Name="nrf52832_xxaa" build_exclude_from_build="Yes" />
+      </file>
+      <file file_name="./external/segger_rtt/SEGGER_RTT.c">
+        <configuration Name="nrf52832_xxaa" build_exclude_from_build="No" />
+      </file>
+      <file file_name="./external/segger_rtt/SEGGER_RTT_printf.c">
+        <configuration Name="nrf52832_xxaa" build_exclude_from_build="No" />
+      </file>
     </folder>
     <folder Name="nRF_SoftDevice">
       <file file_name="./components/softdevice/common/softdevice_handler/softdevice_handler.c" />

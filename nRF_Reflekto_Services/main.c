@@ -34,7 +34,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "nrf_gpio.h"
 #include "ble_conn_state.h"
 #include "nrf_ble_gatt.h"
-#include "SEGGER_RTT.h"
 
 #define NRF_LOG_MODULE_NAME "APP"
 #include "nrf_log.h"
@@ -422,7 +421,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                     auth_reply.params.write.gatt_status = APP_FEATURE_NOT_SUPPORTED;
                     err_code = sd_ble_gatts_rw_authorize_reply(p_ble_evt->evt.gatts_evt.conn_handle,
                                                                &auth_reply);
-                    SEGGER_RTT_printf(0,"AUTH REQ ErrCode: %x\n",err_code);
+                    NRF_LOG_DEBUG("AUTH REQ ErrCode: %x\n",err_code);
                     APP_ERROR_CHECK(err_code);
                 }
             }
@@ -444,7 +443,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     /** The Connection state module has to be fed BLE events in order to function correctly
      * Remember to call ble_conn_state_on_ble_evt before calling any ble_conns_state_* functions. */
-    SEGGER_RTT_printf(0,"BLE Event: %x\n",p_ble_evt->header.evt_id);
+    NRF_LOG_INFO("BLE Event: %x\r\n",p_ble_evt->header.evt_id);
     ble_conn_state_on_ble_evt(p_ble_evt);
     pm_on_ble_evt(p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
@@ -706,7 +705,7 @@ int main(void)
     advertising_start(erase_bonds);
     sd_ble_gap_tx_power_set(-30);
     // Enter main loop.
-    SEGGER_RTT_printf(0,"End of initial\n");
+    NRF_LOG_INFO("End of initial\n");
     for (;;)
     {
         if (NRF_LOG_PROCESS() == false)
