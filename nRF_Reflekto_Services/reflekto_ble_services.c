@@ -1,5 +1,4 @@
-/*
-Copyright (c) 2017, Michal Wojcik, email: michal.t.wojcik@gmail.com
+/*Copyright (c) 2017, Michal Wojcik, email: michal.t.wojcik@gmail.com
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,29 +13,28 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <string.h>
 
 #include "reflekto_ble_services.h"
-#include "SEGGER_RTT.h"
 #include "boards.h"
 #include "app_error.h"
 #include "ble_srv_common.h"
 #include "app_timer.h"
 #include "reflekto_timers.h"
 #include "reflekto_data_collector.h"
+#include "nrf_log.h"
 
 // EVENT HANDLING
 static void on_time_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
 {
-    if(!has_permission_to_write) 
+    if(!has_permission_to_write)
     {
         disconnect_peripheral();
         return;
     }
     ble_gatts_evt_write_t * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
-    SEGGER_RTT_WriteString(0, "Time was written\n"); // Print message to RTT to the application flow
+    NRF_LOG_INFO("Time was written\n"); // Print message to RTT to the application flow
     if(p_evt_write->len > 0)
     {
-	SEGGER_RTT_printf(0, "%d\n",p_evt_write->len);
-	SEGGER_RTT_printf(0, "%\n",p_evt_write->data);
-	SEGGER_RTT_printf(0, "UUID: %x\n", p_evt_write->uuid.uuid);
+	NRF_LOG_INFO("%d\n",p_evt_write->len);
+	NRF_LOG_INFO("UUID: %x\n", p_evt_write->uuid.uuid);
 
         time_t received_time = 0;
         received_time |= p_evt_write->data[3];
@@ -46,9 +44,8 @@ static void on_time_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
         received_time |= p_evt_write->data[1];
         received_time <<= 8;
         received_time |= p_evt_write->data[0];
-        SEGGER_RTT_printf(0, "Received time: %d", received_time);
-        if(received_time > 1494000000) //check if time is after 5.5.2017
-          set_current_time(received_time);
+        NRF_LOG_INFO("Received time: %d\r\n", received_time);
+        set_current_time(received_time);
     }
 }
 
@@ -116,12 +113,13 @@ static void configuration_char_write(ble_os_t *p_nus, ble_evt_t *p_ble_evt)
         p_evt_write->data[3] == 2 &&
         p_evt_write->data[4] == 2 &&
         p_evt_write->data[5] == 0
-    ) 
+    ) // password that allows writing to Reflekto is: 001220
         {
             has_permission_to_write = true;
             disconnect_timer_stop();
             return;
         }
+    // command used to disconnect from peripheral is 666
     if( p_evt_write->data[0] == 6 && p_evt_write->data[1] == 6 && p_evt_write->data[2] == 6)
     {
         has_permission_to_write = false;
@@ -173,8 +171,9 @@ void configuration_service_on_ble_evt(ble_os_t *p_our_service, ble_evt_t *p_ble_
                     p_our_service->conn_handle = BLE_CONN_HANDLE_INVALID;
                     break;
                 case BLE_GATTS_EVT_WRITE:
-                    if(p_ble_evt->evt.gatts_evt.params.write.uuid.uuid == BLE_UUID_CONFIGURATION_CHAR)
+                    if(p_ble_evt->evt.gatts_evt.params.write.uuid.uuid == BLE_UUID_CONFIGURATION_CHAR){
                         configuration_char_write(p_our_service,p_ble_evt);
+                    }
                     break;
 		default:
                     break;
@@ -193,14 +192,14 @@ void time_service_init(ble_os_t * p_our_service)
     APP_ERROR_CHECK(err_code);
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,&service_uuid,&p_our_service->service_handle);
     APP_ERROR_CHECK(err_code);
-    
+
     p_our_service->conn_handle = BLE_CONN_HANDLE_INVALID;
 
-    SEGGER_RTT_WriteString(0, "Exectuing time_service_init()\n"); // Print message to RTT to the application flow
-    SEGGER_RTT_printf(0, "Service UUID: 0x%#04x\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
-    SEGGER_RTT_printf(0, "Service UUID type: 0x%#02x\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
-    SEGGER_RTT_printf(0, "Service handle: 0x%#04x\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
-    SEGGER_RTT_WriteString(0,"End of time service init\n");
+    NRF_LOG_INFO("Exectuing time_service_init()\r\n"); // Print message to RTT to the application flow
+    NRF_LOG_INFO("Service UUID: 0x%#04x\r\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
+    NRF_LOG_INFO("Service UUID type: 0x%#02x\r\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
+    NRF_LOG_INFO("Service handle: 0x%#04x\r\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
+    NRF_LOG_INFO("End of time service init\r\n");
     time_char_add(p_our_service);
 }
 
@@ -215,14 +214,14 @@ void weather_service_init(ble_os_t * p_our_service)
     APP_ERROR_CHECK(err_code);
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,&service_uuid,&p_our_service->service_handle);
     APP_ERROR_CHECK(err_code);
-    
+
     p_our_service->conn_handle = BLE_CONN_HANDLE_INVALID;
 
-    SEGGER_RTT_WriteString(0, "Exectuing weather_service_init()\n"); // Print message to RTT to the application flow
-    SEGGER_RTT_printf(0, "Service UUID: 0x%#04x\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
-    SEGGER_RTT_printf(0, "Service UUID type: 0x%#02x\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
-    SEGGER_RTT_printf(0, "Service handle: 0x%#04x\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
-    SEGGER_RTT_WriteString(0,"End of time service init\n");
+    NRF_LOG_INFO("Exectuing weather_service_init()\n"); // Print message to RTT to the application flow
+    NRF_LOG_INFO("Service UUID: 0x%#04x\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
+    NRF_LOG_INFO("Service UUID type: 0x%#02x\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
+    NRF_LOG_INFO("Service handle: 0x%#04x\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
+    NRF_LOG_INFO("End of time service init\n");
     ble_uuid_t char_uuid;
     char_uuid.uuid = BLE_UUID_WEATHER_CHAR_CITY;
     string_char_add(p_our_service,char_uuid);
@@ -243,15 +242,15 @@ void personal_info_service_init(ble_os_t * p_our_service)
     APP_ERROR_CHECK(err_code);
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,&service_uuid,&p_our_service->service_handle);
     APP_ERROR_CHECK(err_code);
-    
+
     p_our_service->conn_handle = BLE_CONN_HANDLE_INVALID;
 
-    SEGGER_RTT_WriteString(0, "Exectuing personal_service_init()\n"); // Print message to RTT to the application flow
-    SEGGER_RTT_printf(0, "Service UUID: 0x%#04x\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
-    SEGGER_RTT_printf(0, "Service UUID type: 0x%#02x\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
-    SEGGER_RTT_printf(0, "Service handle: 0x%#04x\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
-    SEGGER_RTT_WriteString(0,"End of time service init\n");
-    
+    NRF_LOG_INFO("Exectuing personal_service_init()\n"); // Print message to RTT to the application flow
+    NRF_LOG_INFO("Service UUID: 0x%#04x\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
+    NRF_LOG_INFO("Service UUID type: 0x%#02x\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
+    NRF_LOG_INFO("Service handle: 0x%#04x\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
+    NRF_LOG_INFO("End of time service init\n");
+
     ble_uuid_t char_uuid;
     char_uuid.uuid = BLE_UUID_PERSONAL_CALENDAR_CHAR;
     string_char_add(p_our_service,char_uuid);
@@ -279,14 +278,12 @@ void configuration_service_init(ble_os_t * p_our_service)
     APP_ERROR_CHECK(err_code);
     err_code = sd_ble_gatts_service_add(BLE_GATTS_SRVC_TYPE_PRIMARY,&service_uuid,&p_our_service->service_handle);
     APP_ERROR_CHECK(err_code);
-    
-    p_our_service->conn_handle = BLE_CONN_HANDLE_INVALID;
 
-    SEGGER_RTT_WriteString(0, "Exectuing time_service_init()\n"); // Print message to RTT to the application flow
-    SEGGER_RTT_printf(0, "Service UUID: 0x%#04x\n", service_uuid.uuid); // Print service UUID should match definition BLE_UUID_OUR_SERVICE
-    SEGGER_RTT_printf(0, "Service UUID type: 0x%#02x\n", service_uuid.type); // Print UUID type. Should match BLE_UUID_TYPE_VENDOR_BEGIN. Search for BLE_UUID_TYPES in ble_types.h for more info
-    SEGGER_RTT_printf(0, "Service handle: 0x%#04x\n", p_our_service->service_handle); // Print out the service handle. Should match service handle shown in MCP under Attribute values
-    SEGGER_RTT_WriteString(0,"End of cofniguration service init\n");
+    p_our_service->conn_handle = BLE_CONN_HANDLE_INVALID;
+    NRF_LOG_INFO("Exectuing time_service_init()\r\n");
+    NRF_LOG_INFO("Service UUID: 0x%#04x\r\n", service_uuid.uuid);
+    NRF_LOG_INFO("Service UUID type: 0x%#02x\n", service_uuid.type);
+    NRF_LOG_INFO("End of cofniguration service init\r\n");
     configuration_char_add(p_our_service);
 }
 
@@ -311,17 +308,17 @@ static void time_char_add(ble_os_t * p_our_service)
     ble_gatts_attr_md_t attr_md;
     memset (&attr_md, 0, sizeof(attr_md));
     attr_md.vloc = BLE_GATTS_VLOC_STACK;
-    
+
     // 2G - read/write permissions
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
 
     // 2C - Characteristic Value Attribue
     ble_gatts_attr_t    attr_char_value;
-    memset(&attr_char_value, 0, sizeof(attr_char_value));    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
     attr_char_value.p_uuid      = &char_uuid;
     attr_char_value.p_attr_md   = &attr_md;
-    
+
     // 2H - Characteristic length
     attr_char_value.max_len     = 4;
     attr_char_value.init_len    = 4;
@@ -334,7 +331,7 @@ static void time_char_add(ble_os_t * p_our_service)
                                    &attr_char_value,
                                    &p_our_service->char_handles);
     APP_ERROR_CHECK(err_code);
-    SEGGER_RTT_WriteString(0, "Characteristic was added to time service\n");
+    NRF_LOG_INFO("Characteristic was added to time service\n");
 }
 
 static void string_char_add(ble_os_t * p_our_service, ble_uuid_t char_uuid)
@@ -355,22 +352,20 @@ static void string_char_add(ble_os_t * p_our_service, ble_uuid_t char_uuid)
     ble_gatts_attr_md_t attr_md;
     memset (&attr_md, 0, sizeof(attr_md));
     attr_md.vloc = BLE_GATTS_VLOC_STACK;
-    
+
     // 2G - read/write permissions
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
 
     // 2C - Characteristic Value Attribue
     ble_gatts_attr_t    attr_char_value;
-    memset(&attr_char_value, 0, sizeof(attr_char_value));    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
     attr_char_value.p_uuid      = &char_uuid;
     attr_char_value.p_attr_md   = &attr_md;
-    
+
     // 2H - Characteristic length
     attr_char_value.max_len     = 20;
     attr_char_value.init_len    = 0;
-    //uint8_t value[5]            = {0x65,0x6D,0x70,0x74,0x79};
-    //attr_char_value.p_value     = value;
 
     // 2E - Add characteristic to the service
     err_code = sd_ble_gatts_characteristic_add(p_our_service->service_handle,
@@ -378,7 +373,7 @@ static void string_char_add(ble_os_t * p_our_service, ble_uuid_t char_uuid)
                                    &attr_char_value,
                                    &p_our_service->char_handles);
     APP_ERROR_CHECK(err_code);
-    SEGGER_RTT_WriteString(0, "Characteristic was added to string service\n");
+    NRF_LOG_INFO("Characteristic was added to string service\n");
 }
 
 static void configuration_char_add(ble_os_t * p_our_service)
@@ -401,17 +396,17 @@ static void configuration_char_add(ble_os_t * p_our_service)
     ble_gatts_attr_md_t attr_md;
     memset (&attr_md, 0, sizeof(attr_md));
     attr_md.vloc = BLE_GATTS_VLOC_STACK;
-    
+
     // 2G - read/write permissions
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
 
     // 2C - Characteristic Value Attribue
     ble_gatts_attr_t    attr_char_value;
-    memset(&attr_char_value, 0, sizeof(attr_char_value));    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
     attr_char_value.p_uuid      = &char_uuid;
     attr_char_value.p_attr_md   = &attr_md;
-    
+
     // 2H - Characteristic length
     attr_char_value.max_len     = 6;
     attr_char_value.init_len    = 6;
@@ -424,5 +419,5 @@ static void configuration_char_add(ble_os_t * p_our_service)
                                    &attr_char_value,
                                    &p_our_service->char_handles);
     APP_ERROR_CHECK(err_code);
-    SEGGER_RTT_WriteString(0, "Characteristic was added to configuration service\n");
+    NRF_LOG_INFO("Characteristic was added to configuration service\n");
 }

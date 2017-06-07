@@ -31,7 +31,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #define IMGWIDTH    64
 extern uint8_t prev_hour, prev_min, prev_wday;
 void gfx_initialization(void);
-void background_set(void);
 void screen_clear(void);
 void text_print(char *text_in, uint16_t posX, uint16_t posY, uint8_t size);
 
@@ -62,7 +61,7 @@ typedef enum{
     WIND_I
 }weather_icon;
 
-void update_gui(string_type type);
+void update_gui(string_type_t type);
 void clear_GUI(clear_gui_type type);
 
 static void print_weather_icon(weather_icon icon);

@@ -42,7 +42,7 @@ typedef enum {
     NAME,
     HELLO,
     COMPLIMENT
-} string_type;
+} string_type_t;
 
 extern collected_string weather_city;
 extern collected_string weather_wind;
@@ -56,7 +56,7 @@ extern collected_string name;
 extern collected_string hello;
 extern collected_string compliment;
 
-void update_collected_string(uint8_t in_data[20], uint8_t length , string_type type);
+void update_collected_string(uint8_t in_data[20], uint8_t length , string_type_t type);
 
 
 #endif

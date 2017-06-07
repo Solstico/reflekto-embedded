@@ -13,7 +13,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "reflekto_timers.h"
 #include "app_timer.h"
 #include "app_error.h"
-#include "SEGGER_RTT.h"
 #include "reflekto_ble_services.h"
 #include "reflekto_display.h"
 
@@ -31,7 +30,7 @@ APP_TIMER_DEF(clear_screen_timer);
 
 static void time_convert_and_update(){
     local_time = localtime(&current_unix_seconds);
-    SEGGER_RTT_printf(0, " %d %d %d\n",local_time->tm_hour,local_time->tm_min,local_time->tm_sec);
+    NRF_LOG_INFO(" %d:%d:%d\r\n",local_time->tm_hour,local_time->tm_min,local_time->tm_sec);
     update_timer();
 }
 
